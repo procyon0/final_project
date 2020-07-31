@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyPageDTO;
 import org.zerock.domain.ReplyVO;
+import org.zerock.mapper.BoardAttachMapper;
 import org.zerock.mapper.BoardMapper;
 import org.zerock.mapper.ReplyMapper;
 
@@ -26,10 +27,11 @@ public class ReplyServiceImpl implements ReplyService {
 	
 	@Setter(onMethod_=@Autowired)
 	private BoardMapper boardMapper;
-
 	
+	@Setter(onMethod_ = @Autowired)
+	private BoardAttachMapper attachMapper;
 	
-	@Transactional
+	//@Transactional
 	@Override
 	public int register(ReplyVO vo) {
 		
@@ -57,19 +59,28 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	
+	/*
+	 * @Transactional
+	 * 
+	 * @Override public int remove(Long rno) {
+	 * 
+	 * log.info("remove............." + rno);
+	 * 
+	 * ReplyVO vo =mapper.read(rno);
+	 * 
+	 * boardMapper.updateReplyCnt(vo.getBno(),-1);
+	 * 
+	 * return mapper.delete(rno); }
+	 */
+	
 	@Transactional
 	@Override
-	public int remove(Long rno) {
-		
-		log.info("remove............." + rno);
-		
-		ReplyVO vo =mapper.read(rno);
-		
-		boardMapper.updateReplyCnt(vo.getBno(),-1);
-		
-		return mapper.delete(rno);
+	public boolean remove (Long bno) {
+		log.info("remove...." + bno);
+		attachMapper.deleteAll(bno);
+		return mapper.delete(bno) == 1;
 	}
-
+	
 	@Override
 	public List<ReplyVO> getList(Criteria cri, Long bno) {
 		
@@ -86,5 +97,6 @@ public class ReplyServiceImpl implements ReplyService {
 				mapper.getListWithPaging(cri, bno));
 			
 	}
+	
 	
 }

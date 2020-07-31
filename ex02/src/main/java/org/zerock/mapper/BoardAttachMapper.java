@@ -11,4 +11,9 @@ public interface BoardAttachMapper {
 	public void delete(String uuid);
 	
 	public List<BoardAttachVO> findByBno(Long bno);
+	// 578쪽에서 추가함
+	public void deleteAll(Long bno);
+	// 600쪽에서 추가함
+	public List<BoardAttachVO> getOldFiles();
+	
 }

@@ -31,15 +31,20 @@ public class Criteria {
 		
 		return type == null? new String[] {}:type.split("");
 	}
-	
+	// 580쪽에서 수정
 	public String getListLink() {
-		
+		/*
+		 * UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
+		 * .queryParam("pageNum",this.pageNum) .queryParam("amount",this.getAmount())
+		 * .queryParam("type",this.getType()) .queryParam("keyword",this.getKeyword());
+		 * 
+		 * return builder.toUriString();
+		 */
 		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
-				.queryParam("pageNum",this.pageNum)
-				.queryParam("amount",this.getAmount())
-				.queryParam("type",this.getType())
-				.queryParam("keyword",this.getKeyword());
-		
+				.queryParam("pageNum", this.pageNum)
+				.queryParam("amount", this.getAmount())
+				.queryParam("type", this.getType())
+				.queryParam("keyword", this.getKeyword());
 		return builder.toUriString();
 	}
 }

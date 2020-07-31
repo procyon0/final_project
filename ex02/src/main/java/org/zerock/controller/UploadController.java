@@ -208,7 +208,7 @@ public class UploadController {
 		
 		/* log.info("download file : " + fileName); */
 		
-		Resource resource = new FileSystemResource("c:/temp/" + fileName);
+		Resource resource = new FileSystemResource("c:\\temp\\" + fileName);
 		
 		if(resource.exists() == false) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -230,7 +230,7 @@ public class UploadController {
 				
 				log.info("IE browser");
 							
-				downloadName = URLEncoder.encode(resourceOriginalName,"UTF-8").replaceAll("/", " ");
+				downloadName = URLEncoder.encode(resourceOriginalName,"UTF-8").replaceAll("\\", " ");
 		
 			}else if(userAgent.contains("Edge")) {
 				
@@ -265,7 +265,7 @@ public class UploadController {
 		
 		try {
 			
-			file = new File("c:/temp/" + URLDecoder.decode(fileName,"UTF-8"));
+			file = new File("c:\\temp\\" + URLDecoder.decode(fileName,"UTF-8"));
 			
 			file.delete();
 			
