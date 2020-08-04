@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.final_proj.mapper.RecipeMapper">
+	<select id="getList" resultType="org.final_proj.domain.RecipeVO">
+		<![CDATA[
+			SELECT * FROM recipe
+			WHERE id > 0
+			ORDER BY id DESC	
+		]]>
+	</select>
+
+
+	<select id="read" resultType="org.final_proj.domain.RecipeVO">
+		SELECT * FROM recipe
+		WHERE id = #{id}
+	</select>
+	
+	<select id="getListWithPaging" resultType="org.final_proj.domain.RecipeVO">
+		<![CDATA[
+			SELECT id, name
+			FROM 	(SELECT /*+INDEX_DESC(recipe SYS_C007584)*/
+					ROWNUM rn, id, name, way, kind, thumbnail_l, thumbnail, ingredient, kcal,
+					manual_1, photo_1,manual_2, photo_2, manual_3, photo_3,
+					manual_4, photo_4,manual_5, photo_5
+					FROM recipe
+					WHERE ROWNUM <= #{pageNum} * #{amount})
+			WHERE rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	
+	</select>
+</mapper>
