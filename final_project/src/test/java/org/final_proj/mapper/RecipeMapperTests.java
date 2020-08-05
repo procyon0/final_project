@@ -40,4 +40,15 @@ public class RecipeMapperTests {
 		List<RecipeVO> list = mapper.getListWithPaging(cri);
 		list.forEach(recipe -> log.info(recipe.getId()));
 	}
+	
+	@Test
+	public void testSearchRecipe() {
+		Criteria c = new Criteria();
+		c.setQuery("당근");
+		c.setType("I");
+		
+		List <RecipeVO> l = mapper.getListWithPaging(c);
+		
+		l.forEach(r -> log.info(r));
+	}
 }

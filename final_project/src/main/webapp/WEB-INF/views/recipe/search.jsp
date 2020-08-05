@@ -4,9 +4,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>~ 검색 기능을 테스트하는 페이지 ~</title>
+	<title>~ 검색 결과를 테스트하는 페이지 ~</title>
 </head>
 <body>
-
+	<h1>${query}</h1>
+	<h2>${type}</h2>
 </body>
 </html>

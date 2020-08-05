@@ -7,7 +7,6 @@ import org.final_proj.domain.Criteria;
 import org.final_proj.domain.RecipeVO;
 
 public interface RecipeMapper {
-	//@Select("SELECT * FROM recipe ORDER BY id DESC")
 	public List<RecipeVO> getList();
 	
 	public List<RecipeVO> getListWithPaging(Criteria cri);
