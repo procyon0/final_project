@@ -1,6 +1,13 @@
 * {
     margin: 0 auto;
 }
+
 body {
     text-align: center;
 }
+
+.main_title {
+    font-size: 5em;
+    font-family: 'Bazzi';
+}
+/*메인 검색창 스타일 따로 만들어야함*/

@@ -1,0 +1,23 @@
+package org.final_proj.domain;
+
+import org.springframework.stereotype.Component;
+
+import lombok.Data;
+
+@Data
+@Component
+public class SearchDTO {
+	private String type;
+	private String query;
+
+	/* 검색 타입 참고
+	 * 1. 재료: I 
+	 * 2. 음식 이름: N
+	 * 3. 음식 종류: K
+	 */
+
+	public String [] getTypeArr() {
+		return type == null? 
+				new String[] {} : type.split(""); 
+	}
+}

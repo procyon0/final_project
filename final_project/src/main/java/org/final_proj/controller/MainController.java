@@ -13,7 +13,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class MainController {	
 	
-	// /main을 main.jsp 페이지로 리다이렉트 시킴
+	// /main 요청을 main.jsp 페이지로 리다이렉트 시킴
 	@RequestMapping("/main")
 	public String home(Model model) {
 		return "main";

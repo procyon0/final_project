@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.final_proj.domain.Criteria;
 import org.final_proj.domain.RecipeVO;
+import org.final_proj.domain.SearchDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,6 @@ public class RecipeMapperTests {
 	}
 	
 	@Test
-	public void testRead() {
-		RecipeVO recipe = mapper.read(201L);
-		log.info(recipe);
-	}
-	
-	@Test
 	public void testPaging() {
 		Criteria cri = new Criteria();
 		// 3개 씩 2 페이지
@@ -40,14 +35,13 @@ public class RecipeMapperTests {
 		List<RecipeVO> list = mapper.getListWithPaging(cri);
 		list.forEach(recipe -> log.info(recipe.getId()));
 	}
-	
+	 
 	@Test
 	public void testSearchRecipe() {
-		Criteria c = new Criteria();
-		c.setQuery("당근");
-		c.setType("I");
-		
-		List <RecipeVO> l = mapper.getListWithPaging(c);
+		SearchDTO search = new SearchDTO();
+		search.setQuery("당근");
+		search.setType("I");
+		List <RecipeVO> l = mapper.searchResult(search);
 		
 		l.forEach(r -> log.info(r));
 	}

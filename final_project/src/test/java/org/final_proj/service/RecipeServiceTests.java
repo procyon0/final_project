@@ -2,6 +2,7 @@ package org.final_proj.service;
 
 import static org.junit.Assert.assertNotNull;
 
+import org.final_proj.domain.SearchDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,23 @@ public class RecipeServiceTests {
 	}
 	
 	@Test
-	public void testGet() {
-		log.info(service.detail(201L));
+	public void testGetDetail() {
+		log.info(service.getDetail(201L));
+	}
+	
+	@Test
+	public void testSearchResult() {
+		SearchDTO query = new SearchDTO();
+		query.setQuery("후식");
+		query.setType("K");
+		service.searchResult(query).forEach(result -> log.info(result));
+	}
+	
+	@Test
+	public void testSearchWay() {
+		SearchDTO query = new SearchDTO();
+		query.setQuery("당근");
+		query.setType("I");
+		service.searchWay(query).forEach(result -> log.info(result));
 	}
 }

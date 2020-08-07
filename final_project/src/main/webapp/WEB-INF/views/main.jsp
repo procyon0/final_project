@@ -5,13 +5,12 @@
 <head>
 <meta charset="UTF-8">
 	<title>메인 페이지</title>
-	<style type="text/css">
-		/*CSS 파일 따로 분리함*/
-		@import url('\resources/css/main.css');
-	</style>
+<link href="/resources/css/main.css" rel="stylesheet">
+<script type="text/javascript" src="/resources/js/jquery-3.5.1.js"></script>
+	<!-- 자바스크립트 파일 분리할 것 -->
 </head>
 <body>
-	<h1>메인 페이지</h1>
+	<h1 class="main_title">메인 페이지</h1>
 	<div class="logo">
 		<img src="/resources/img/placeholder.jpg" width="500px">
 	</div>
