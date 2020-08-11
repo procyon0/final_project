@@ -35,19 +35,5 @@ public class RecipeServiceTests {
 		log.info(service.getDetail(201L));
 	}
 	
-	@Test
-	public void testSearchResult() {
-		SearchDTO query = new SearchDTO();
-		query.setQuery("후식");
-		query.setType("K");
-		service.searchResult(query).forEach(result -> log.info(result));
-	}
 	
-	@Test
-	public void testSearchWay() {
-		SearchDTO query = new SearchDTO();
-		query.setQuery("당근");
-		query.setType("I");
-		service.searchWay(query).forEach(result -> log.info(result));
-	}
 }

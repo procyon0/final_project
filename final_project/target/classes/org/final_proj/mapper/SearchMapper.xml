@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.final_proj.mapper.SearchMapper">
+
+	<!-- 검색 결과 가져오기 -->
+	<select id="getResult"
+		resultType="org.final_proj.domain.RecipeVO">
+		<![CDATA[
+			SELECT id, name, thumbnail, way, kind, ingredient
+			FROM recipe
+			WHERE
+		]]>
+		<include refid="searchRef"></include>
+		AND id > 0
+	</select>
+
+	<!-- 검색 결과의 개수 계산하기 -->
+	<select id="getTotalNumber" resultType="int">
+		SELECT COUNT(*)
+		FROM recipe
+		WHERE
+		<include refid="searchRef"></include>
+		AND id > 0
+	</select>
+
+	<!-- 검색 결과에서 방법 키워드만 가져오기 -->
+	<select id="searchWay" resultType="String">
+		SELECT DISTINCT way
+		FROM recipe
+		WHERE
+		<include refid="searchRef"></include>
+		AND id > 0
+	</select>
+
+	<!-- 검색 결과에서 종류 키워드만 가져오기 -->
+	<select id="searchKind" resultType="String">
+		SELECT DISTINCT kind
+		FROM recipe
+		WHERE
+		<include refid="searchRef"></include>
+		AND id > 0
+	</select>
+
+	<select id="getFilteredResult"
+		resultType="org.final_proj.domain.RecipeVO">
+		<![CDATA[
+			SELECT id, name, thumbnail, way, kind, ingredient
+			FROM recipe
+			WHERE
+		]]>
+		<include refid="searchRef"></include>
+		AND
+		<include refid="filterRef"></include>
+		AND id > 0
+	</select>
+
+	<!-- 검색 결과 조건절 -->
+	<sql id="searchRef">
+		<choose>
+			<when test="type == 'I'.toString()">
+				ingredient LIKE '%'||#{query}||'%'
+			</when>
+			<when test="type == 'N'.toString()">
+				name LIKE '%'||#{query}||'%'
+			</when>
+			<when test="type == 'K'.toString()">
+				kind LIKE '%'||#{query}||'%'
+			</when>
+		</choose>
+	</sql>
+
+	<!-- 검색 결과 필터링 조건절 -->
+	<sql id="filterRef">
+		<choose>
+			<when test="filter == 'w'.toString()">
+				way LIKE '%'||#{filterWord}||'%'
+			</when>
+			<when test="filter == 'k'.toString()">
+				kind LIKE '%'||#{filterWord}||'%'
+			</when>
+		</choose>
+	</sql>
+</mapper>

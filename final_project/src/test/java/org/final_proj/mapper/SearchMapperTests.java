@@ -2,7 +2,6 @@ package org.final_proj.mapper;
 
 import java.util.List;
 
-import org.final_proj.domain.Criteria;
 import org.final_proj.domain.RecipeVO;
 import org.final_proj.domain.SearchDTO;
 import org.junit.Test;
@@ -17,24 +16,29 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class RecipeMapperTests {
+public class SearchMapperTests {
 	@Setter(onMethod_ = @Autowired)
-	private RecipeMapper mapper;
+	private SearchMapper mapper;
 	
 	@Test
-	public void testGetList() {
-		mapper.getList().forEach(recipe -> log.info(recipe));
+	public void testSearchRecipe() {
+		SearchDTO query = new SearchDTO();
+		query.setQuery("당근");
+		query.setType("I");
+		List <RecipeVO> l = mapper.getResult(query);
+		
+		l.forEach(r -> log.info(r));
 	}
 	
 	@Test
-	public void testPaging() {
-		Criteria cri = new Criteria();
-		// 3개 씩 2 페이지
-		cri.setPageNum(1);
-		cri.setAmount(5);
-		List<RecipeVO> list = mapper.getListWithPaging(cri);
-		list.forEach(recipe -> log.info(recipe.getId()));
+	public void testFilteredResult() {
+		SearchDTO query = new SearchDTO();
+		query.setQuery("당근");
+		query.setType("I");
+		query.setFilter("k");
+		query.setFilterWord("후식");
+		List <RecipeVO> l = mapper.getFilteredResult(query);
+		
+		l.forEach(r -> log.info(r));
 	}
-	 
-
 }

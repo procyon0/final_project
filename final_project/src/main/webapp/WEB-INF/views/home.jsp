@@ -5,6 +5,11 @@
 <html>
 <head>
 <title>Home</title>
+<style>
+* {
+	margin:0 auto;
+}
+</style>
 </head>
 <body>
 	<h1>Hello world!</h1>

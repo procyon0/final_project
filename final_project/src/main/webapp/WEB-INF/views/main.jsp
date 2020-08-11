@@ -15,7 +15,7 @@
 		<img src="/resources/img/placeholder.jpg" width="500px">
 	</div>
 	<!-- 검색창 -->
-	<form action="/recipe/search" name="search" method="GET">
+	<form action="/search/result" name="search" method="GET">
 		<div>
 			<select name="type">
 				<option value="I" selected>재료</option>
