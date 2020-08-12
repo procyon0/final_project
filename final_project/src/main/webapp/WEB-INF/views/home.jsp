@@ -18,7 +18,7 @@
 
 	<div>	
 		<h1>
-			<a href="/main">메인 페이지로</a>
+			<a href="/index">메인 페이지로</a>
 		</h1>
 	</div>
 
