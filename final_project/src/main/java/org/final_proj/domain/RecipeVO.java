@@ -1,5 +1,6 @@
 package org.final_proj.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 // VO 클래스는 테이블 설계를 기준으로 작성하면 된다. (183쪽)

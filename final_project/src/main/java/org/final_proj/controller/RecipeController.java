@@ -38,6 +38,19 @@ public class RecipeController {
 		log.info("detail-id: " + id + "----------------------------------");
 		model.addAttribute("recipe", service.getDetail(id));
 	}
+	
+	// 검색 페이지를 출력하고 검색어를 searchController로 넘김
+	@GetMapping("/search")
+	public void getSearch(@RequestParam("type") String type, @RequestParam("query") String query, Model model) {
+		log.info("검색 - 타입: " + type + "검색어: " + query);
+		SearchDTO search = new SearchDTO();
+		search.setQuery(query);
+		search.setType(type);
+		model.addAttribute("query", query);
+		model.addAttribute("type", type);
+		model.addAttribute("search", search);
+	}
+	
 
 	
 

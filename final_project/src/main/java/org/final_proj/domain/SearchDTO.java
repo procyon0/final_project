@@ -9,7 +9,8 @@ import lombok.Data;
 public class SearchDTO {
 	private String type;
 	private String query;
-
+	private String filter;
+	private String filterWord;
 	/* 검색 타입 참고
 	 * 1. 재료: I 
 	 * 2. 음식 이름: N
@@ -18,6 +19,11 @@ public class SearchDTO {
 
 	public String [] getTypeArr() {
 		return type == null? 
+				new String[] {} : type.split(""); 
+	}
+	
+	public String [] getFilterArr() {
+		return filter == null? 
 				new String[] {} : type.split(""); 
 	}
 }

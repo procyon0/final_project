@@ -31,29 +31,5 @@ public class RecipeServiceImpl implements RecipeService {
 		log.info("목록 불러오기---------------------------------------------------------------");
 		return mapper.getList();
 	}
-
-	@Override
-	public List<RecipeVO> searchResult(SearchDTO query) {
-		log.info("검색 결과 불러오기----------------------------------------------------------");
-		return mapper.searchResult(query);
-	}
-
-	@Override
-	public List<String> searchWay(SearchDTO query) {
-		log.info("검색 결과에서 방법만 추리기-------------------------------------------------");
-		return mapper.searchWay(query);
-	}
-
-	@Override
-	public List<String> searchKind(SearchDTO query) {
-		log.info("검색 결과에서 요리 종류만 추리기--------------------------------------------");
-		return mapper.searchKind(query);
-	}
-
-	@Override
-	public List<RecipeVO> getFilteredResult(String Keyword) {
-		log.info("검색 결과 필터링 하기-------------------------------------------------------");
-		return null;
-	}
 	
 }

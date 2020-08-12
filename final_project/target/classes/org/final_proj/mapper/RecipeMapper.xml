@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.final_proj.mapper.RecipeMapper">
+	<!-- 레시피 전부 출력하기 -->
 	<select id="getList" resultType="org.final_proj.domain.RecipeVO">
 		<![CDATA[
 			SELECT 	id, name, way, kind, hashtag, thumbnail_l,
@@ -15,13 +16,9 @@
 		]]>
 	</select>
 
-
-	<select id="getDetail" resultType="org.final_proj.domain.RecipeVO">
-		SELECT * FROM recipe
-		WHERE id = #{id}
-	</select>
-	
-	<select id="getListWithPaging" resultType="org.final_proj.domain.RecipeVO">
+	<!-- 레시피 전부를 페이징 처리해서 가져오기 -->
+	<select id="getListWithPaging"
+		resultType="org.final_proj.domain.RecipeVO">
 		<![CDATA[
 			SELECT id, name
 			FROM 	(SELECT /*+INDEX_DESC(recipe SYS_C007584)*/
@@ -35,25 +32,13 @@
 			ROWNUM <= #{pageNum} * #{amount})
 			WHERE subrn > (#{pageNum} - 1) * #{amount}
 		]]>
-	
+
 	</select>
-	
-	<select id="searchResult" resultType="org.final_proj.domain.RecipeVO">
-		<![CDATA[
-			SELECT id, name, thumbnail, way, kind, ingredient
-			FROM recipe
-			WHERE
-		]]>
-		<include refid="search"></include>
-		id > 0
-	</select>
-	
-	<select id="getTotalNumber" resultType="int">
-		SELECT COUNT(*)
-		FROM recipe
-		WHERE
-		<include refid="search"></include>
-		id > 0
+
+	<!-- 레시피 상세보기 -->
+	<select id="getDetail" resultType="org.final_proj.domain.RecipeVO">
+		SELECT * FROM recipe
+		WHERE id = #{id}
 	</select>
 	
 	<sql id="search">
@@ -75,21 +60,4 @@
 			</foreach>
 		</trim>
 	</sql>
-	
-	<select id="searchWay" resultType="String">
-		SELECT DISTINCT way 
-		FROM recipe 
-		WHERE
-		<include refid="search"></include>
-		id > 0
-	</select>
-	
-	<select id="searchKind" resultType="String">
-		SELECT DISTINCT kind 
-		FROM recipe 
-		WHERE
-		<include refid="search"></include>
-		id > 0
-	</select>
-	
 </mapper>
