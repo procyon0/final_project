@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -28,5 +29,15 @@ public class VideoController {
 	public void channelPage(Model model) {
 		List<ChannelVO> cList = service.getChannel();
 		model.addAttribute("cList", cList);
+	}
+	
+	@GetMapping("/playlist")
+	public void playlistPage(@RequestParam("pid") String pid,Model model) {
+		model.addAttribute("pid", pid);
+	}
+	
+	@GetMapping("/play")
+	public void playVideo(@RequestParam("vid") String vid, Model model) {
+		model.addAttribute("vid", vid);
 	}
 }
