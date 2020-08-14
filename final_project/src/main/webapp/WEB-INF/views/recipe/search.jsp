@@ -59,9 +59,6 @@
 						str += "<div id='content_blo'>";
 						str += "<h2>";
 						str += "<a href='/recipe/detail?id=" + result[i].id + "'>";
-						// 현재 상세보기 링크가 작동하기 않음
-						// -> href에 따옴표가 인식되지 않기 때문임
-						// 	  따라서 URLEncoder를 사용해야함 (수정 예정) 
 						str += result[i].name;
 						str += "</a>";
 						str += "</h2>"

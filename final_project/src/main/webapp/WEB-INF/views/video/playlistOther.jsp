@@ -13,15 +13,15 @@
     <script>
         $(document).ready(function () {
             var pid = '<c:out value="${pid}"></c:out>';
-            var pageToken = '<c:out value="${pageToken}"></c:out>';
+            var token = '<c:out value="${pageToken}"></c:out>';
             
             var recipeUI = $('body');
 
-            showPlaylist();
+            showResult();
 
-            function showPlaylist() {
-                youtubeService.getPlaylist(
-                    { playlistId: pid },
+            function showResult() {
+                youtubeService.getPlaylistOther(
+                    { playlistId: pid, pageToken:token },
                     function (data) {
                         var str = "";
                         if (data == null || data.length == 0) {
@@ -30,12 +30,13 @@
                         }
                         for (var i = 0 || 0; i < 5; i++) {
                         	str += "<a href='/video/play?vid="+data.items[i].snippet.resourceId.videoId + "'>";
-                            str += "<img src='" + data.items[i].snippet.thumbnails.maxres.url + "' width='240px'>";
+                            str += "<img src='" + data.items[i].snippet.thumbnails.medium.url + "' width='240px'>";
                             str += "<br>"
                            	str += data.items[i].snippet.title +"</a>";
                             str += "<hr>"
                             
                         }
+              				str += "<a href='/video/playlistOther?pid=" +pid + "&pageToken="+ data.prevPageToken + "'><h1>←</h1></a><br>";
                         if(data.nextPageToken != null) {
                         	str += "<a href='/video/playlistOther?pid=" +pid + "&pageToken="+ data.nextPageToken + "'><h1>→</h1></a><br>";
                         }
