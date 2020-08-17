@@ -9,7 +9,40 @@
 <link href="/resources/css/detail.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="/resources/js/detail.js"></script>
+<!-- <script type="text/javascript" src="/resources/js/read.js"></script> -->
 <link rel="stylesheet" href="/resources/css/detail.css">
+<script type="text/javascript">
+$(document).ready(function() {
+//자바스크립트 자체 음성 합성 모듈을 불러옴
+var synth = window.speechSynthesis;
+
+// 읽어올 텍스트를 저장할 변수들
+var inputForm = document.getElementById("readForm");
+var textInput = document.getElementById("manual1");
+// 음성 언어: 한국어
+var lang = 'ko-KR';
+// 속도: 1
+var rateValue = 1;
+// 목소리 높낮이: 1
+var pitchValue = 1;
+// 글자를 하나씩 읽어와 합성할 변수
+var voices = [];
+
+// 재생 버튼을 누를 때 문장이 재생됨
+inputForm.onsubmit = function(event) {
+	// submit을 누를때 페이지가 새로고침 되는 것을 방지함
+	event.preventDefault();
+	var readThis = new SpeechSynthesisUtterance(textInput.value);
+	// 글자마다 언어 설정하기
+    for(var i = 0; i < voices.length; i++) {
+    	readThis.voice = lang;
+    }
+    readThis.pitch = pitchValue;
+    readThis.rate = rateValue;
+
+    synth.speak(readThis);
+});
+</script>
 </head>
 <body>
 	<!-- 헤더 -->
@@ -57,7 +90,13 @@
         </div>
         <hr>
         <div id="cooking">
-			<p>${recipe.manual_1}</p>
+			<p>
+				${recipe.manual_1}
+				<form id="readForm">
+					<input type="hidden" value="${recipe.manual_1}" id="manual1">
+					<input type="submit"  value="재생">
+				</form>
+			</p>
 			<img src='${recipe.photo_1}'>
 
 			<p>${recipe.manual_2}</p>
@@ -76,6 +115,5 @@
 	<div>
 		<a href="javascript:window.history.back()">뒤로 가기</a>
 	</div>
-
 </body>
 </html>

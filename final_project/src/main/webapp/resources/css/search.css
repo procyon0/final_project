@@ -88,12 +88,15 @@ img{border: 0;}
 }
 
 #search{
-
     text-align: center;
     padding: 100px;
     font-family: 'Nanum Gothic', sans-serif;
-
 }
+/*
+#search form {
+	width: 50%;
+}
+*/
 select{
     font-size: 15px;
     width:80px;
@@ -138,14 +141,21 @@ button{
    
 }
 
-#img_blo{
-    
-    float: left;    
+#img_blp{
+	display: block;
 }
+#img_blo img{
+    float: left;
+	padding-top: 10px;
+    padding-bottom: 10px; 
+}
+
 #content_blo{
     height: 200px;
     margin-left: 250px;
-    font-size:15px;  
+    font-size:15px;
+    padding-top: 10px;
+    padding-bottom: 10px; 
 }
 #content_blo>h2>a:hover{
     color:rgb(230, 98, 37);

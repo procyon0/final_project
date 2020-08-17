@@ -83,12 +83,13 @@
 			<ul>
 				<li><a href="#">레시피검색</a></li>
 				<li><a href="#">요리비책</a>
-				<li><a href="#">게시판</a>
+				<li><a href="#">마트</a>
 					<ul>
-						<li><a href="#">레시피공유</a></li>
-						<li><a href="#">공지사항</a></li>
+						<li><a href="#">밀키트</a></li>
+						<li><a href="#">간편식</a></li>
+						<li><a href="#">소분재료</a></li>
 					</ul></li>
-				<li><a href="#">스토어</a></li>
+				<li><a href="#">공지사항</a></li>
 			</ul>
 		</nav>
 		<nav id="login">
@@ -122,7 +123,6 @@
 				</h2>
 			</div>
 		</div> --%>
-		
 	</div>
 	<div>
 		<a href="/main">메인으로</a>
