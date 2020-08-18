@@ -58,12 +58,7 @@
 						str += "</div>";
 						str += "<div id='content_blo'>";
 						str += "<h2>";
-						str += "<a href='/recipe/detail?id=";
-						// 현재 상세보기 링크가 작동하기 않음
-						// -> href에 따옴표가 인식되지 않기 때문임
-						// 	  따라서 URLEncoder를 사용해야함 (수정 예정) 
-						str += "<c:out value=" + result[i].thumbnail + "></c:out>";		// 수정할 부분
-						str += "'>";
+						str += "<a href='/recipe/detail?id=" + result[i].id + "'>";
 						str += result[i].name;
 						str += "</a>";
 						str += "</h2>"
@@ -88,12 +83,13 @@
 			<ul>
 				<li><a href="#">레시피검색</a></li>
 				<li><a href="#">요리비책</a>
-				<li><a href="#">게시판</a>
+				<li><a href="#">마트</a>
 					<ul>
-						<li><a href="#">레시피공유</a></li>
-						<li><a href="#">공지사항</a></li>
+						<li><a href="#">밀키트</a></li>
+						<li><a href="#">간편식</a></li>
+						<li><a href="#">소분재료</a></li>
 					</ul></li>
-				<li><a href="#">스토어</a></li>
+				<li><a href="#">공지사항</a></li>
 			</ul>
 		</nav>
 		<nav id="login">
@@ -127,7 +123,6 @@
 				</h2>
 			</div>
 		</div> --%>
-		
 	</div>
 	<div>
 		<a href="/main">메인으로</a>

@@ -48,7 +48,7 @@ public class SearchController {
 	  public ResponseEntity<List<RecipeVO>>getFilteredResult (@RequestParam("type") String type, 
 			  @RequestParam("query") String query, @RequestParam("filter") String filter,
 			  @RequestParam("Keyword") String keyword) { 
-		  log.info("filtered results---------------------------------------------------------------------");
+		log.info("filtered results---------------------------------------------------------------------");
 		SearchDTO search = new SearchDTO();
 		search.setType(type);
 		search.setQuery(query);
