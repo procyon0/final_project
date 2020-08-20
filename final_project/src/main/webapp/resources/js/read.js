@@ -1,3 +1,4 @@
+// TTS 자바스크립트 코드(백업용)
 // 자바스크립트 자체 음성 합성 모듈을 불러옴
 var synth = window.speechSynthesis;
 

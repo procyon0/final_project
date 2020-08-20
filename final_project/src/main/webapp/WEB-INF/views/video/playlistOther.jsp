@@ -1,3 +1,4 @@
+<!-- 유튜브 재생목록에서 이전, 다음 페이지를 출력하는 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

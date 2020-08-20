@@ -1,7 +1,7 @@
 * {margin: 0; padding: 0}
 body{font-family: sans-serif;}
 li{list-style: none;}
-a{text-decoration: none;}
+a{text-decoration:none; color:  seashell;}
 img{border: 0;}
 
 #logo_header{
@@ -112,7 +112,7 @@ input{
     width:400px;
     height: 100%;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 50px;
     outline: none;
     font-family: 'Nanum Gothic', sans-serif;
     
@@ -120,11 +120,11 @@ input{
 input:hover{
     border-color:rgb(230, 98, 37);
 }
-button{
+#button{
     width:60px;
     height: 100%;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 50px;
     outline: none;
     background: rgb(230, 98, 37);
     color: seashell;
@@ -132,38 +132,69 @@ button{
     font-family: 'Nanum Gothic', sans-serif;
 }
 
-#block{
-    margin-left: 500px;
-    margin-right: 500px;
-   
-}
 
-#img_blo{
-	margin-left:20px;
-    float: left;    
+#categoryBox{
+    
+    padding: 10px 50px;
+    text-align: center;   
 }
-#img_blo img {
-	border: 10px #FFFFFF;
-	/*border-radius:10%;*/
+#M_button{
+    width:100px;
+    height:100%;
+    padding: 20px;
+    outline: none;
+    border:0;
+    border-radius: 60px;
+    background: rgb(230, 98, 37);
+    font-family: 'Nanum Gothic', sans-serif;
 }
-#content_blo{
-	padding-top:10px;
-   	padding-bottom:10px;
-    height: 200px;
-    margin-left: 250px;
-    font-size:15px;  
+#F_button{
+    width:100px;
+    height:100%;
+    padding: 20px;
+    outline: none;
+    border:0;
+    border-radius: 60px;
+    background: rgb(230, 98, 37);
+    font-family: 'Nanum Gothic', sans-serif;
 }
-#content_blo>h2>a{
-    color:#000000;
+#s_button{
+    width:100px;
+    height:100%;
+    padding: 20px;
+    outline: none;
+    border:0;
+    border-radius: 60px;
+    background: rgb(230, 98, 37);
+    font-family: 'Nanum Gothic', sans-serif;
 }
-#content_blo>h2>a:hover{
-    color:rgb(230, 98, 37);
+#image{
+    padding: 30px;  
 }
+#list_goods{
+    width:1050px;
+    margin: auto;
+}
+#info_goods{
+    margin: auto;
+    align-items: center;
+}
+#title{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 25px;
+    padding-bottom: 15px;
 
-#footer {
-	margin: 0 auto;
-	text-align:center;
 }
-#footer a {
-	color: #000000;	
+#price{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: lighter;
+    color:gray;
+    padding-bottom: 15px;
+}
+#desc{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: lighter;
+    font-size: 13px;
+    padding-bottom: 15px;
+
 }

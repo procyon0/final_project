@@ -207,11 +207,6 @@ body {
 	<div class="search-wrapper">
 		<div class="input-holder">
 			<form action="/recipe/search" name="search" method="GET">
-				<!-- <select name="type">
-					<option value="I" selected>재료</option>
-					<option value="N">음식</option>
-					<option value="K">종류</option>
-				</select>  -->
 				<input type="hidden" value="I" name="type"> <input
 					type="text" class="search-input" placeholder="주재료의 키워드만 입력해주세요."
 					name="query" />
