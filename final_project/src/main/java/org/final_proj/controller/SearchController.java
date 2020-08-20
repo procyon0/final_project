@@ -1,3 +1,8 @@
+/** 검색 결과를 담당하는 REST 방식 컨트롤러
+ * REST 방식: view(html 페이지)를 반환하는게 아닌 데이터(JSON 형식)만 반환함
+ *
+ */
+
 package org.final_proj.controller;
 
 import java.util.List;
@@ -17,11 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-/**
- * 검색 결과를 담당하는 REST 방식 컨트롤러
- * REST 방식: view(html 페이지)를 반환하는게 아닌 데이터(JSON 형식)만 반환함
- *
- */
 
 @RestController
 @RequestMapping("/search/*")

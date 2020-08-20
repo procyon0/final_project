@@ -139,14 +139,31 @@ button{
 }
 
 #img_blo{
-    
+	margin-left:20px;
     float: left;    
 }
+#img_blo img {
+	border: 10px #FFFFFF;
+	/*border-radius:10%;*/
+}
 #content_blo{
+	padding-top:10px;
+   	padding-bottom:10px;
     height: 200px;
     margin-left: 250px;
     font-size:15px;  
 }
+#content_blo>h2>a{
+    color:#000000;
+}
 #content_blo>h2>a:hover{
     color:rgb(230, 98, 37);
+}
+
+#footer {
+	margin: 0 auto;
+	text-align:center;
+}
+#footer a {
+	color: #000000;	
 }

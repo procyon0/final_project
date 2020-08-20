@@ -1,3 +1,4 @@
+<!-- 한 개의 레시피의 상세한 정보를 출력하는 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -12,24 +13,24 @@
 <!-- <script type="text/javascript" src="/resources/js/read.js"></script> -->
 <link rel="stylesheet" href="/resources/css/detail.css">
 <script type="text/javascript">
-function makeSound(txt) {
-    // 음성 합성 모듈 불러옴
-    var synth = window.speechSynthesis;
-    // 읽을 텍스트를 가져올 변수
-    var textInput = txt;
-    var lang = 'ko-KR';
-    var rateValue = 0.8;
-    var pitchValue = 1;
-    var voices = [];
-    var readThis = new SpeechSynthesisUtterance(textInput);
-    for(var i = 0; i < voices.length; i++) {
-        readThis.voice = lang;
-    }
-    readThis.pitch = pitchValue;
-    readThis.rate = rateValue;
+	function makeSound(txt) {
+		// 음성 합성 모듈 불러옴
+		var synth = window.speechSynthesis;
+		// 읽을 텍스트를 가져올 변수
+		var textInput = txt;
+		var lang = 'ko-KR';
+		var rateValue = 0.8;
+		var pitchValue = 1;
+		var voices = [];
+		var readThis = new SpeechSynthesisUtterance(textInput);
+		for (var i = 0; i < voices.length; i++) {
+			readThis.voice = lang;
+		}
+		readThis.pitch = pitchValue;
+		readThis.rate = rateValue;
 
-    synth.speak(readThis);
-}
+		synth.speak(readThis);
+	}
 </script>
 </head>
 <body>
@@ -61,46 +62,51 @@ function makeSound(txt) {
 	</header>
 	<!-- 헤더 끝 -->
 	<div id="recipe">
-		<h1>레시피 상세 정보</h1>
-		<h3>
+		<h1>
 			<c:out value="${recipe.name}" />
-		</h3>
+		</h1>
+		<hr>
 		<div id="searchDetail_img">
 			<p>
 				<img src='${recipe.thumbnail}' width="571px">
 			</p>
 		</div>
-		<hr>
 		<div id="ingredients">
 			<h2>Ingredients</h2>
+			<hr>
 			<br>
 			<p>
 				<c:out value="${recipe.ingredient}"></c:out>
 			</p>
 		</div>
-		<hr>
+
 		<div id="cooking">
-			<div>${recipe.manual_1}<br>
-			<button onclick="makeSound('${recipe.manual_1}')">재생</button>
-			<img src='${recipe.photo_1}'>
+			<h2>요리 방법</h2>
+			<hr>
+			<div>${recipe.manual_1}
+				<button onclick="makeSound('${recipe.manual_1}')">재생</button>
+				<br> <img src='${recipe.photo_1}'>
 			</div>
 			<div>
 				${recipe.manual_2}
-			<button onclick="makeSound('${recipe.manual_2}')">재생</button>
-			<img src='${recipe.photo_2}'>
+				<button onclick="makeSound('${recipe.manual_2}')">재생</button>
+				<br> <img src='${recipe.photo_2}'>
 			</div>
 			<div>
-			${recipe.manual_3}</p>
-			<button onclick="makeSound('${recipe.manual_3}')">재생</button>
-			<img src='${recipe.photo_3}'>
+				${recipe.manual_3}
+				<button onclick="makeSound('${recipe.manual_3}')">재생</button>
+				<br> <img src='${recipe.photo_3}'>
 			</div>
-			<p>${recipe.manual_4}</p>
-			<button onclick="makeSound('${recipe.manual_4}')">재생</button>
-			<img src='${recipe.photo_4}'>
-
-			<p>${recipe.manual_5}</p>
-			<button onclick="makeSound('${recipe.manual_5}')">재생</button>
-			<img src='${recipe.photo_5}'>
+			<div>
+				${recipe.manual_4}
+				<button onclick="makeSound('${recipe.manual_4}')">재생</button>
+				<br> <img src='${recipe.photo_4}'>
+			</div>
+			<div>
+				${recipe.manual_5}
+				<button onclick="makeSound('${recipe.manual_5}')">재생</button>
+				<br> <img src='${recipe.photo_5}'>
+			</div>
 		</div>
 	</div>
 	<div>

@@ -1,5 +1,5 @@
 /** 
- * 레시피에 관한 것을 담당하는 컨트롤러
+ * 레시피(recipe)에 관한 것을 담당하는 컨트롤러
  * 기능: 검색, 상세보기, 검색 결과 필터링
  */
 package org.final_proj.controller;

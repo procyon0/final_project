@@ -1,3 +1,4 @@
+<!-- 검색 결과를 출력하는 페이지의 샘플 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

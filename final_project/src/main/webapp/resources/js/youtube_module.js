@@ -1,4 +1,4 @@
-/** 유튜브에서 재생목록을 가져오는 자바스크립트 모듈
+/** 유튜브 API를 사용해 재생목록 데이터를 가져오는 자바스크립트 모듈
  * 
  */
 console.log("유튜브 모듈-----------------------------------------------");
@@ -47,7 +47,7 @@ var youtubeService = (function() {
 		});
     }
 	// ****유튜브에서 동영상의 정보를 가져오는 함수****
-	// 매개변수: vid(동영상 id )
+	// 매개변수: vid(동영상 id)
 	function getVideoDetail(param, callback, error) {
 		var vid = param.vid;
 		var key = "AIzaSyBxTQh0vv3IGHD1PUzHlmxkuJmkf9vYmDw";

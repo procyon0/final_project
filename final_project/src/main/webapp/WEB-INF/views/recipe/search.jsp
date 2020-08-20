@@ -54,11 +54,11 @@
 					for (var i = 0, len = result.length || 0; i < len; i++) {
 						str += "<div id='block'>"
 						str += "<div id='img_blo'>";
+						str += "<a href='/recipe/detail?id=" + result[i].id + "'>";
 						str += "<img src='" + result[i].thumbnail + "' width='200px' height='200px'>";
 						str += "</div>";
 						str += "<div id='content_blo'>";
 						str += "<h2>";
-						str += "<a href='/recipe/detail?id=" + result[i].id + "'>";
 						str += result[i].name;
 						str += "</a>";
 						str += "</h2>"
@@ -99,7 +99,7 @@
 			</ul>
 		</nav>
 	</header>
-	<!-- 분할선 -->
+	<!-- ↑헤더 - 내용↓ 분할선 -->
 	<div id="search">
 		<form action="search.html" method="GET">
 			<select>
@@ -110,21 +110,9 @@
 		</form>
 	</div>
 	<div id="result">
-		<%-- <div id="block">
-			<div id="img_blo">
-				<img src="<c:out value="${result.thumbnail}"/>" width="200px"
-					height="200px">
-			</div>
-			<div id="content_blo">
-				<h2>
-					<a href="/recipe/detail?id=<c:out value="${result.id}"/>"> <c:out
-							value="${result.name}" />
-					</a>
-				</h2>
-			</div>
-		</div> --%>
+		<!-- 검색 결과가 출력되는 곳 -->
 	</div>
-	<div>
+	<div id="footer">
 		<a href="/main">메인으로</a>
 	</div>
 </body>
