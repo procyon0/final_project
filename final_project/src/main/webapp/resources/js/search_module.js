@@ -3,6 +3,7 @@
  */
 console.log("검색 모듈--------------------------------");
 var searchService = (function() {
+	// 기본 검색
 	function getResult(param, callback, error) {
 		var query = param.query;
 		var type = param.type;
@@ -19,7 +20,55 @@ var searchService = (function() {
 			}
 		});
 	}
+	function getKind (param, callback, error) {
+		var query = param.query;
+		var type= param.type;
+		$.getJSON("/kind?type="+type+"&query="+query,
+		function(data) {
+			if(callback) {
+				callback(data);
+			}
+		}).fail(function(xhr, callback, error) {
+			if(error) {
+				error();
+			}
+		});
+	}
+	function getWay (param, callback, error) {
+		var query = param.query;
+		var type= param.type;
+		$.getJSON("/Way?type="+type+"&query="+query,
+		function(data) {
+			if(callback) {
+				callback(data);
+			}
+		}).fail(function(xhr, callback, error) {
+			if(error) {
+				error();
+			}
+		});
+	}
+	// 필터링이 적용된 검색 결과
+	function getFilteredResult(param, callback, error) {
+		var query = param.query;
+		var type = param.type;
+		var filter = param.filter;
+		var keyword = param.keyword;
+		$.getJSON("/search/result/filter?type="+type+"&query="+query+"filter="+filter+"&keyword="+keyword,
+		function(data) {
+			if(callback) {
+				callback(data);
+			}
+		}).fail(function(xhr, status, err) {
+			if(error) {
+				error();
+			}
+		});
+	}
 	return {
-		getResult : getResult
+		getResult : getResult,
+		getFilteredResult:getFilteredResult,
+		getKind:getKind,
+		getWay:getWay
 	};
 })();

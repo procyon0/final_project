@@ -42,4 +42,13 @@ public class SearchServiceTests {
 		service.searchKind(query).forEach(result -> log.info(result));
 	}
 	
+	@Test
+	public void testFilterResult () {
+		SearchDTO query = new SearchDTO();
+		query.setQuery("당근");
+		query.setType("I");
+		query.setFilter("k");
+		query.setFilterWord("후식");
+		service.searchFilteredResult(query).forEach(result -> log.info(result));
+	}
 }

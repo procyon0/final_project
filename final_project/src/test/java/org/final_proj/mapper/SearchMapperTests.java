@@ -31,6 +31,24 @@ public class SearchMapperTests {
 	}
 	
 	@Test
+	public void testGetKind() {
+		SearchDTO query = new SearchDTO();
+		query.setQuery("당근");
+		query.setType("I");
+		List <String> kl = mapper.searchKind(query);
+		kl.forEach(k -> log.info(k));
+	}
+	
+	@Test
+	public void testGetWay() {
+		SearchDTO query = new SearchDTO();
+		query.setQuery("당근");
+		query.setType("I");
+		List <String> wl = mapper.searchKind(query);
+		wl.forEach(w -> log.info(w));
+	}
+	
+	@Test
 	public void testFilteredResult() {
 		SearchDTO query = new SearchDTO();
 		query.setQuery("당근");

@@ -45,15 +45,16 @@
 
 	<select id="getFilteredResult"
 		resultType="org.final_proj.domain.RecipeVO">
-		<![CDATA[
-			SELECT id, name, thumbnail, way, kind, ingredient
-			FROM recipe
-			WHERE
-		]]>
+		SELECT id, name, thumbnail, way, kind, ingredient
+		FROM recipe
+		WHERE
 		<include refid="searchRef"></include>
 		AND
 		<include refid="filterRef"></include>
-		AND id > 0
+		AND
+		<![CDATA[
+		 id > 0
+		]]>
 	</select>
 
 	<!-- 검색 결과 조건절 -->
@@ -75,10 +76,10 @@
 	<sql id="filterRef">
 		<choose>
 			<when test="filter == 'w'.toString()">
-				way LIKE '%'||#{filterWord}||'%'
+				way LIKE #{filterWord}
 			</when>
 			<when test="filter == 'k'.toString()">
-				kind LIKE '%'||#{filterWord}||'%'
+				kind LIKE #{filterWord}
 			</when>
 		</choose>
 	</sql>

@@ -68,6 +68,21 @@
 					recipeUI.html(str);
 				});
 			}
+		function getKind() {
+			searchService.getKind(
+				{query:queryValue, type:typeValue},
+				function(result) {
+					var str = "";
+					if (result == null|| result.length == 0) {
+						recipeUI.html("");
+						return;
+					}
+					for(var i = 0; i < result.length; i++) {
+						str += "";
+					}
+				}
+			);
+		}
 		});
 </script>
 </head>
@@ -108,6 +123,13 @@
 			</select> <input type="search" title="검색" placeholder="입력해주세요.">
 			<button>검색</button>
 		</form>
+	</div>
+	<div id="filter">
+		<!-- 검색 결과를 필터링할 키워드가 출력되는 곳 -->
+		<div>
+			<span>요리 종류 </span> <span id="kind"></span><br>
+			<span>조리 방법 </span> <span id="way"></span>
+		</div>
 	</div>
 	<div id="result">
 		<!-- 검색 결과가 출력되는 곳 -->

@@ -14,5 +14,6 @@ public interface SearchMapper {
 	
 	public List<String> searchKind(SearchDTO query);
 	
+	// 필터링된 검색 결과를 출력함
 	public List<RecipeVO> getFilteredResult(SearchDTO query);
 }
