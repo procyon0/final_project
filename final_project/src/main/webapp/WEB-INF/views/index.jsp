@@ -207,8 +207,8 @@ body {
 	<div class="search-wrapper">
 		<div class="input-holder">
 			<form action="/recipe/search" name="search" method="GET">
-				<input type="hidden" value="I" name="type"> <input
-					type="text" class="search-input" placeholder="주재료의 키워드만 입력해주세요."
+				<input type="hidden" value="I" name="type">
+				<input type="text" class="search-input" placeholder="주재료의 키워드만 입력해주세요."
 					name="query" />
 				<button class="search-icon" onclick="searchToggle(this, event);">
 					<span></span>

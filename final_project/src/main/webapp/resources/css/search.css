@@ -86,14 +86,16 @@ img{border: 0;}
     padding: 2px 10px;
     color :black;
 }
-#filter span{
+#filter {
 	margin-left: 350px;
+}
+#filter span{
 	text-align: center;
-    padding-top:50px;
     padding-bottom:50px;
     width:960px;
     font-family: 'Nanum Gothic', sans-serif;
 }
+
 #search{
     text-align: center;
     padding: 100px;
@@ -126,6 +128,19 @@ input:hover{
     border-color:rgb(230, 98, 37);
 }
 button{
+    width:auto;
+    height: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    background: rgb(230, 98, 37);
+    color: seashell;
+    border-color: rgb(230, 98, 37);
+    font-family: 'Nanum Gothic', sans-serif;
+    margin-left: 15px;
+}
+
+#searchBtn{
     width:60px;
     height: 100%;
     padding: 10px;
@@ -135,6 +150,7 @@ button{
     color: seashell;
     border-color: rgb(230, 98, 37);
     font-family: 'Nanum Gothic', sans-serif;
+    margin-left: 15px;
 }
 
 #block{

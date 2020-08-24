@@ -23,7 +23,7 @@ var searchService = (function() {
 	function getKind (param, callback, error) {
 		var query = param.query;
 		var type= param.type;
-		$.getJSON("/kind?type="+type+"&query="+query,
+		$.getJSON("/search/kind?type="+type+"&query="+query,
 		function(data) {
 			if(callback) {
 				callback(data);
@@ -37,7 +37,7 @@ var searchService = (function() {
 	function getWay (param, callback, error) {
 		var query = param.query;
 		var type= param.type;
-		$.getJSON("/Way?type="+type+"&query="+query,
+		$.getJSON("/search/way?type="+type+"&query="+query,
 		function(data) {
 			if(callback) {
 				callback(data);
@@ -54,7 +54,7 @@ var searchService = (function() {
 		var type = param.type;
 		var filter = param.filter;
 		var keyword = param.keyword;
-		$.getJSON("/search/result/filter?type="+type+"&query="+query+"filter="+filter+"&keyword="+keyword,
+		$.getJSON("/search/filter?type="+type+"&query="+query+"&filter="+filter+"&keyword="+keyword,
 		function(data) {
 			if(callback) {
 				callback(data);

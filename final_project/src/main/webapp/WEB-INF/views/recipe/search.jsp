@@ -33,24 +33,143 @@
 			}
 		}
 	); */
+	
+	var queryValue = '<c:out value="${search.query}"></c:out>';
+	var typeValue = '<c:out value="${search.type}"></c:out>';
+
+	var subQuery = "type="+typeValue+"&query="+queryValue;
+	//  alert(subQuery);
+	var resultDiv = $('.result');
+	var kindSpan = $('#kind');
+	var waySpan = $('#way');
+	
 	$(document).ready(function() {
 		var queryValue = '<c:out value="${search.query}"></c:out>';
 		var typeValue = '<c:out value="${search.type}"></c:out>';
 
-	
-		var recipeUI = $('#result');
-
+		var subQuery = "type="+typeValue+"&query="+queryValue;
+		//  alert(subQuery);
+		var resultDiv = $('.result');
+		var kindSpan = $('#kind');
+		var waySpan = $('#way');
+		var resetBtn = $('#resetBtn');
+		
 		showResult();
-
+		getKind();
+		getWay();
+		
 		function showResult() {
 			searchService.getResult(
 				{query : queryValue, type : typeValue},
+					function(result) {
+						var str = "";
+						if (result == null|| result.length == 0) {
+							recipeUI.html("");
+							return;
+						}
+						for (var i = 0, len = result.length || 0; i < len; i++) {
+							str += "<div id='block'>"
+							str += "<div id='img_blo'>";
+							str += "<a href='/recipe/detail?id=" + result[i].id + "'>";
+							str += "<img src='" + result[i].thumbnail + "' width='200px' height='200px'>";
+							str += "</div>";
+							str += "<div id='content_blo'>";
+							str += "<h2>";
+							str += result[i].name;
+							str += "</a>";
+							str += "</h2>"
+							str += "</div>";
+							str += "</div>"
+					}
+				resultDiv.html(str);
+			});
+		}
+		
+		// 음식 종류 키워드를 출력하는 함수
+		function getKind() {
+			searchService.getKind(
+				{query:queryValue, type:typeValue},
 				function(result) {
 					var str = "";
+					//"<button onclick='getFilterefData("'k'', ")'>";
+					if (result == null|| result.length == 0) {
+						kindSpan.html("");
+						return;
+					}
+					for(var i = 0; i < result.length; i++) {
+						console.log(result[i]);
+						str += "<button onclick='getFilteredData(\"k\",\""+result[i]+"\")'>";
+						str += result[i];
+						str += "</button>";
+					}
+					kindSpan.html(str);
+				});
+		}
+		
+		// 조리 방법 키워드를 출력하는 함수
+		function getWay() {
+			searchService.getWay(
+				{query:queryValue, type:typeValue},
+				function(result) {
+					var str = "";
+					//"<button onclick='getFilterefData("'k'', ")'>";
+					if (result == null|| result.length == 0) {
+						waySpan.html("");
+						return;
+					}
+					for(var i = 0; i < result.length; i++) {
+						console.log(result[i]);
+						str += "<button class='tg' onclick='getFilteredData(\"w\",\""+result[i]+"\")'>";
+						str += result[i];
+						str += "</button>";
+					}
+					waySpan.html(str);
+				});
+		}
+	});
+	
+	function resetResult() {
+		$(".result").remove();
+		searchService.getResult(
+				{query : queryValue, type : typeValue},
+					function(result) {
+						var str = "";
+						if (result == null|| result.length == 0) {
+							recipeUI.html("");
+							return;
+						}
+						for (var i = 0, len = result.length || 0; i < len; i++) {
+							str += "<div id='block'>"
+							str += "<div id='img_blo'>";
+							str += "<a href='/recipe/detail?id=" + result[i].id + "'>";
+							str += "<img src='" + result[i].thumbnail + "' width='200px' height='200px'>";
+							str += "</div>";
+							str += "<div id='content_blo'>";
+							str += "<h2>";
+							str += result[i].name;
+							str += "</a>";
+							str += "</h2>"
+							str += "</div>";
+							str += "</div>"
+					}
+				$(".container").html(str);
+			});
+	
+	}
+
+	function getFilteredData (filterValue,keywordValue) {
+		console.log("필터링된 검색 결과 출력--------------");
+		var str = "<div class='result'>";
+		$(".result").remove();
+		//alert("검색 결과 삭제");
+		searchService.getFilteredResult(
+				{query:queryValue, type:typeValue, filter:filterValue, keyword:keywordValue},
+				function(result) {
 					if (result == null|| result.length == 0) {
 						recipeUI.html("");
 						return;
 					}
+					
 					for (var i = 0, len = result.length || 0; i < len; i++) {
 						str += "<div id='block'>"
 						str += "<div id='img_blo'>";
@@ -64,26 +183,13 @@
 						str += "</h2>"
 						str += "</div>";
 						str += "</div>"
-					}
-					recipeUI.html(str);
-				});
-			}
-		function getKind() {
-			searchService.getKind(
-				{query:queryValue, type:typeValue},
-				function(result) {
-					var str = "";
-					if (result == null|| result.length == 0) {
-						recipeUI.html("");
-						return;
-					}
-					for(var i = 0; i < result.length; i++) {
-						str += "";
-					}
 				}
-			);
-		}
-		});
+				str += "</div>";
+				$(".container").html(str);
+			});
+		
+	}
+
 </script>
 </head>
 <body>
@@ -121,18 +227,25 @@
 				<option value="I">재료</option>
 				<option value="N">요리</option>
 			</select> <input type="search" title="검색" placeholder="입력해주세요.">
-			<button>검색</button>
+			<button id="searchBtn">검색</button>
 		</form>
 	</div>
 	<div id="filter">
 		<!-- 검색 결과를 필터링할 키워드가 출력되는 곳 -->
 		<div>
-			<span>요리 종류 </span> <span id="kind"></span><br>
-			<span>조리 방법 </span> <span id="way"></span>
+			<div>
+				요리 종류  <span id="kind"></span>
+			</div>
+			<div>
+				조리 방법 <span id="way"></span>
+			</div>
 		</div>
+		<button id="resetBtn" onclick='resetResult()'>초기화</button>
 	</div>
-	<div id="result">
+	<div class="container">
+		<div class="result">
 		<!-- 검색 결과가 출력되는 곳 -->
+		</div>
 	</div>
 	<div id="footer">
 		<a href="/main">메인으로</a>
