@@ -10,17 +10,10 @@
 </head>
 <script src="/resources/js/jquery-3.5.1.js" type="text/javascript"></script>
 <script src="/resources/js/youtube_module.js"></script>
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="/resources/css/play.css">
 <script>
 $(document).ready(function () {
     var vidValue = '<c:out value="${vid}"></c:out>';
-    var videoUI = $('#vid');
+    var videoUI = $('body');
     
     showVideoDetail();
 
@@ -33,14 +26,15 @@ $(document).ready(function () {
                     videoUI.html("");
                     return;
                 }
-                	str += '<iframe id="video" width="960" height="540" src="https://www.youtube.com/embed/' + vidValue + '" frameborder="0" ';
+                	str += '<iframe width="960" height="540" src="https://www.youtube.com/embed/' + vidValue + '" frameborder="0" ';
                 	str += 'allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-                   	str += "<h3 id='title'>"+data.items[0].snippet.title+"</h3>";
-                   	str += "<small id='date'>"+data.items[0].snippet.publishedAt+"<hr id='divider'></small>";
-                    str += "<div class='container'><div id='description'>";
+                    str += "<br>"
+                   	str += "<h1>"+data.items[0].snippet.title+"</h1>";
+                   	str += "<h3>"+data.items[0].snippet.publishedAt+"</h3>";
+                    str += "<div>";
                     str += data.items[0].snippet.description;
                     // 현재 날짜와 시간이 동시에 나옴. 날짜만 나오도록 문자열을 수정할 필요가 있음
-                    str += "</div></div>";
+                    str += "</div>";
  
                 videoUI.html(str);
             });
@@ -48,15 +42,8 @@ $(document).ready(function () {
 });
 </script>
 <body>
-	<div id="header">
-		<!-- 메뉴가 들어갈 자리 -->
-	</div>
-	<div class="container">
-		<div id="vid"></div>
-	</div>
-	<div class="container"></div>
-	<div id="footer-nav">
-		<!-- 푸터가 들어갈 자리 -->
-	</div>
+	<%-- <iframe width="960" height="540" src="https://www.youtube.com/embed/${vid}" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<h1>제목이 들어갈 자리</h1> --%>
 </body>
 </html>
