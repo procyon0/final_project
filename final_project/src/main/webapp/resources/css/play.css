@@ -1,1 +1,55 @@
 @charset "UTF-8";
+
+* {
+	margin: 0 auto;
+}
+
+.container {
+	width: 60%;
+	margin: 0 auto;
+	background-color: #EEEEEE;
+}
+
+#video {
+	margin-left: 7.5%;
+	margin-right: 7.5%;
+}
+
+#title {
+	margin: 0 auto;
+	margin-left: 7.5%;
+	margin-right: 7.5%;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+#date {
+	margin-left: 7.5%;
+	margin-right: 7.5%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.divider {
+	width: 90%;
+}
+
+#description {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.back-nav {
+	text-align: center;
+}
+
+#back {
+	margin-left: 7.5%;
+	margin-right: 7.5%;
+	color: gray;
+	text-decoration: none;
+}
+
+#back:hover {
+	margin-left: 7.5%;
+	margin-right: 7.5%;
+	color: #000000;
+}
