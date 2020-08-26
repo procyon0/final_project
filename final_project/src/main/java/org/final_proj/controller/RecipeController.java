@@ -4,11 +4,10 @@
  */
 package org.final_proj.controller;
 
-import org.final_proj.domain.RecipeVO;
+import java.util.StringTokenizer;
+
 import org.final_proj.domain.SearchDTO;
 import org.final_proj.service.RecipeService;
-
-import java.util.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +50,21 @@ public class RecipeController {
 		model.addAttribute("search", search);
 	}
 	
-
+	// 상품 추천 시스템 테스트용 메소드
+	@RequestMapping("/recTest")
+	public void recommendTest(Model model) {
+		// 재료 출력
+		Long id = 108L;
+		log.info(id + "번 출력----------------------------------------");
+		String ingredient = service.getDetail(id).getIngredient();
+		StringTokenizer tz = new StringTokenizer(ingredient, "\n ");
+		while(tz.hasMoreElements()) {
+			log.info(tz.nextToken());
+		}
+		
+		model.addAttribute("ingredient", ingredient);
+		
+	}
 	
 
 }

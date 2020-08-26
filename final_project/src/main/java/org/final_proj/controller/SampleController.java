@@ -3,15 +3,24 @@
  */
 package org.final_proj.controller;
 
+import org.final_proj.service.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
 public class SampleController {	
+	// 레시피에서 상세 정보를 출력시키는 용도
+	private RecipeService recipeService;
+	
+	
+	
 	
 	// /main 요청을 main.jsp 페이지로 리다이렉트 시킴
 	@RequestMapping("/index")
@@ -33,4 +42,6 @@ public class SampleController {
 	public void martSample() {
 		
 	}
+	
+
 }
