@@ -3,13 +3,25 @@
  */
 console.log("추천 모듈--------------------------------");
 var recommendService = (function() {
-	// RecommendController로 분석할 문자열을 보내는 함수
-	function sendString(param, callback, error) {
-		var ingreValue = param.ingredient;
-		console.log(ingreValue);
-		$.post();
+	// RecommendController로 분석할 문자열을 POST 방식으로 보내는 함수
+	// (길이가 매우 길 수도 있기 때문에 POST 방식으로 전송함)
+	function getRecommend(param, callback, error) {
+		var strValue = param.str;
+		var destination = param.destination;
+		console.log("전송 받은 대상 문자열: " + ingreValue);
+		$.ajax({
+			type: "POST",
+			url: "/recommend/"+destination+"?str="+strValue,
+			data: strValue,
+			success: callback,
+			dataType: 'json'
+		}).done(function(data){
+			if(data) {
+				callback(data);
+			}
+		});
 	}
 	return {
-		sendString : sengString
+		getRecommend : getRecommend
 	};
 })();

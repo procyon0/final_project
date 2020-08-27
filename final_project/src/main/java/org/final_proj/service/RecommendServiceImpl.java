@@ -1,5 +1,7 @@
 package org.final_proj.service;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import org.final_proj.domain.GoodsVO;
@@ -21,20 +23,14 @@ public class RecommendServiceImpl implements RecommendService {
 	private RecommendMapper mapper;
 
 	@Override
-	public GoodsVO getIngredient(SearchDTO search) {
-		/*
-		 * log.info("추천 식재료 가져오기-----------------------------------------------");
-		 * return mapper.getIngredient(search);
-		 */
-		return null;
+	public HashSet<GoodsVO> getIngredient(SearchDTO search) {
+		log.info("추천 식재료 가져오기-----------------------------------------------");
+		return mapper.getIngredient(search);
 	}
 
 	@Override
-	public List<GoodsVO> getMealKit(SearchDTO search) {
-		/*
-		 * log.info("추천 밀키트 가져오기-----------------------------------------------");
-		 * return mapper.getMealkit(search);
-		 */
-		return null;
+	public HashSet<GoodsVO> getMealKit(SearchDTO search) {
+		log.info("추천 밀키트 가져오기-----------------------------------------------");
+		return mapper.getMealkit(search);
 	}
 }

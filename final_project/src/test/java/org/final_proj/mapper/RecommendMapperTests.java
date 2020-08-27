@@ -1,6 +1,6 @@
 package org.final_proj.mapper;
 
-import java.util.List;
+import java.util.*;
 
 import org.final_proj.domain.GoodsVO;
 import org.final_proj.domain.SearchDTO;
@@ -29,4 +29,20 @@ public class RecommendMapperTests {
 	 * search.setQuery("칼국수"); List<GoodsVO> gl = mapper.getMealkit(search);
 	 * gl.forEach(goods -> log.info(goods)); }
 	 */
+	@Test
+	public void getIngredientTest() {
+		SearchDTO search = new SearchDTO();
+		String str = "옥수수 물 당근";
+		StringTokenizer token = new StringTokenizer(str, "\n ");
+		HashSet<GoodsVO> gSet = new HashSet<GoodsVO>();
+		
+		while(token.hasMoreTokens()) {
+			String keyword = token.nextToken();
+			search.setQuery(keyword);
+			
+		}
+		
+		mapper.getIngredient(search);
+		log.info("재료 추천 테스트 결과: ");
+	}
 }

@@ -55,16 +55,8 @@ public class RecipeController {
 	public void recommendTest(Model model) {
 		// 재료 출력
 		Long id = 108L;
-		log.info(id + "번 출력----------------------------------------");
+		log.info("●테스트용 : "+id + "번 출력----------------------------------------");
 		String ingredient = service.getDetail(id).getIngredient();
-		StringTokenizer tz = new StringTokenizer(ingredient, "\n ");
-		while(tz.hasMoreElements()) {
-			log.info(tz.nextToken());
-		}
-		
 		model.addAttribute("ingredient", ingredient);
-		
 	}
-	
-
 }
