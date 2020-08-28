@@ -6,6 +6,7 @@ package org.final_proj.controller;
 import java.util.*;
 
 import org.final_proj.domain.GoodsVO;
+import org.final_proj.domain.ReqBodyDTO;
 import org.final_proj.domain.SearchDTO;
 import org.final_proj.service.RecommendService;
 import org.final_proj.service.SearchService;
@@ -14,8 +15,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
@@ -43,13 +46,21 @@ public class RecommendController {
 	 * } return new ResponseEntity<>(service.searchWay(search), HttpStatus.OK); }
 	 */
 
-	@PostMapping(value="/ingredient", produces= {MediaType.APPLICATION_JSON_UTF8_VALUE}) 
-	public ResponseEntity<HashSet<GoodsVO>> getRecIngre(@RequestParam("str") String str, Model model) {
+	@PostMapping(value="/ingredient", produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<HashSet<GoodsVO>> getRecIngre(@RequestBody ReqBodyDTO reqbody) {
+		// 매개변수 길이 제한 때문에 RequestParam 대신 RequestBody로 받을 것!
+		log.info("문자열 도착함!●●●●●●●" + reqbody.getStr());
+		reqbody.setStr(reqbody.getStr().replace("\n", " "));
+		reqbody.setStr(reqbody.getStr().replace("\'", " "));
+		reqbody.setStr(reqbody.getStr().replace("\"", " "));
+		reqbody.setStr(reqbody.getStr().replace("\t", " "));
+		log.info("문자열 치환 결과 ★★★★★★★" + reqbody.getStr());
+		StringTokenizer token = new StringTokenizer(reqbody.getStr()); 
+
 		HashSet<GoodsVO> recommendGoods = new HashSet<GoodsVO>();
 		SearchDTO search = new SearchDTO();
-		StringTokenizer token = new StringTokenizer(str, "\n \'\"");
-		log.info("문자열 도착함!●●●●●●\n" +str);
 		
+		// 검색
 		while(token.hasMoreTokens()) {
 			String tmpToken = token.nextToken();
 			log.info(tmpToken);

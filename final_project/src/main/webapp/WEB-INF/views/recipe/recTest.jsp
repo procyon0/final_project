@@ -35,14 +35,14 @@
 		// 유튜브 추천 상품을 출력할 곳 설정
 		var youtubeDiv = $("#youtubeRec");
 		// 백종원 유튜브 vid
-		var vidValue = "qWbHSOplcvY";
+		var vidValue = "8XzBuv7_hyY";
 		// 백종원 유튜브 설명
 		var descValue = "";
 		
 		/***************************/
 		showRecIngre();
-		showVideoDetail();
-		showYoutubeIngre();
+		var descValue = showVideoDetail();
+		showYoutubeIngre(descValue);
 		/***************************/
 		
 		function showRecIngre() {
@@ -79,7 +79,7 @@
 	                    return;
 	                }
 	               	descValue = data.items[0].snippet.description;
-	               	
+	               	alert("유튜브 1: "+descValue);
 	                str += "<h3>"+data.items[0].snippet.title+"</h3>";
 	                str += "<small id='date'>"+data.items[0].snippet.publishedAt+"<hr id='divider'></small>";
 	                str += "<div class='container'><div id='description'>";
@@ -87,11 +87,13 @@
 	                // 현재 날짜와 시간이 동시에 나옴. 날짜만 나오도록 문자열을 수정할 필요가 있음
 	                str += "</div></div>";
 	                descDiv.html(str);
+	                showYoutubeIngre(data.items[0].snippet.description);
 	            });
 	    }
 		
-		function showYoutubeIngre() {
+		function showYoutubeIngre(descValue) {
 			console.log("유튜브 문자열 전송 시도.....");
+			alert(descValue);
 			recommendService.getRecommend({
 				str : descValue,
 				destination : desti

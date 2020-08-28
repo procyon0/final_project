@@ -52,9 +52,8 @@ public class RecipeController {
 	
 	// 상품 추천 시스템 테스트용 메소드
 	@RequestMapping("/recTest")
-	public void recommendTest(Model model) {
+	public void recommendTest(@RequestParam("id") Long id, Model model) {
 		// 재료 출력
-		Long id = 108L;
 		log.info("●테스트용 : "+id + "번 출력----------------------------------------");
 		String ingredient = service.getDetail(id).getIngredient();
 		model.addAttribute("ingredient", ingredient);

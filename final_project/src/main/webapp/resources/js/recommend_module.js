@@ -8,13 +8,15 @@ var recommendService = (function() {
 	function getRecommend(param, callback, error) {
 		var strValue = param.str;
 		var destination = param.destination;
-		console.log("전송 받은 대상 문자열: " + ingreValue);
+		
+		console.log("전송 받은 대상 문자열: " + strValue);
 		$.ajax({
-			type: "POST",
-			url: "/recommend/"+destination+"?str="+strValue,
-			data: strValue,
+			method: "POST",
+			url: "/recommend/"+destination,
+			data: JSON.stringify({"str" : strValue}),
 			success: callback,
-			dataType: 'json'
+			dataType: "json",
+			contentType: "application/json"
 		}).done(function(data){
 			if(data) {
 				callback(data);
