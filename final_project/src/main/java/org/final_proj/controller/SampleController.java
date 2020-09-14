@@ -19,29 +19,31 @@ public class SampleController {
 	// 레시피에서 상세 정보를 출력시키는 용도
 	private RecipeService recipeService;
 	
-	
-	
-	
 	// /main 요청을 main.jsp 페이지로 리다이렉트 시킴
 	@RequestMapping("/index")
-	public void home(Model model) {
-		
-	}
+	public void home(Model model) {}
 	
 	@RequestMapping("/sample/detail")
-	public void sampleDetail(Model model) {
-		
-	}
+	public void sampleDetail(Model model) {}
 	
 	@RequestMapping("/sample/search")
-	public void searchSample() {
-		
-	}
+	public void searchSample() {}
 	
 	@RequestMapping("/sample/mart")
-	public void martSample() {
-		
+	public void martSample() {}
+	
+	@GetMapping("/sample/all")
+	public void doAll() {
+		log.info("아무나 접속");
 	}
 	
-
+	@GetMapping("/sample/member")
+	public void doMember() {
+		log.info("로그인한 회원 접속");
+	}
+	
+	@GetMapping("/sample/admin")
+	public void doAdmin() {
+		log.info("관리자 접속");
+	}
 }
