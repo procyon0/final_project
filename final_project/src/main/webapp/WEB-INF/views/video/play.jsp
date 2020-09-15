@@ -115,7 +115,9 @@ $(document).ready(function () {
 	<div class="container"></div>
 	<hr>
 	<h3>추천 상품</h3>
-	<div id="youtubeRec"></div>
+	<div id="youtubeRec">
+		
+	</div>
 	<div id="footer-nav">
 		<!-- 푸터가 들어갈 자리 -->
 	</div>
