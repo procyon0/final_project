@@ -53,3 +53,9 @@
 	margin-right: 7.5%;
 	color: #000000;
 }
+#youtubeRec {
+	margin: 0 auto;
+}
+#youtubeRec img {
+	display: inline;
+}

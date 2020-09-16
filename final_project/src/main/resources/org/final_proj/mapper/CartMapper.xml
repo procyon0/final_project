@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.final_proj.mapper.CartMapper">
+	<!-- 사용자의 카트에 있는 제품을 전체 불러옴 -->
+	<select id="getCart">
+		SELECT * FROM cart
+		WHERE userId LIKE #{user};
+	</select>
+</mapper>

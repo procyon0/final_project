@@ -22,7 +22,7 @@ public class RecipeServiceImpl implements RecipeService {
 	
 	@Override
 	public RecipeVO getDetail(Long id) {
-		log.info(id +"번 게시글 불러오기---------------------------------------------------");
+		log.info(id +"번 레시피 불러오기---------------------------------------------------");
 		return mapper.getDetail(id);
 	}
 

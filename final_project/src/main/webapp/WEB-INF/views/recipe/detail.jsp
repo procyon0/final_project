@@ -12,7 +12,52 @@
 <script type="text/javascript" src="/resources/js/detail.js"></script>
 <!-- <script type="text/javascript" src="/resources/js/read.js"></script> -->
 <link rel="stylesheet" href="/resources/css/detail.css">
+<script type="text/javascript" src="/resources/js/recommend_module.js"></script>
 <script type="text/javascript">
+	// 재료
+	var ingreValue = '<c:out value="${recipe.ingredient}"></c:out>';
+	// 추천 상품을 저장할 문자열
+	var recResult = "";
+	// 추천 결과를 출력할 곳
+	var recDiv = $("#recommend");
+
+	$(document).ready(function() {
+		// 재료
+		var ingreValue = '<c:out value="${recipe.ingredient}"></c:out>';
+		// 추천 받을 것(재료 or 밀키트)
+		var desti = "ingredient";
+		// 추천 결과를 출력할 곳	
+		var recDiv = $("#recommend");
+	
+		/***************************/
+		showRecIngre();
+		/***************************/
+	
+		function showRecIngre() {
+			console.log("문자열 전송 시도.....");
+			recommendService.getRecommend({
+				str : ingreValue,
+				destination : desti
+			}, function(goods) {
+				// 추천 상품을 저장할 문자열
+				var result = "";
+				// 추천 결과가 없으면 추천 상품이 없다고 출력하기
+				if (goods == null || goods.length == 0) {
+					console.log("전송은 성공했으나 추천 상품이 없습니다.1");
+					recDiv.html("<h3>추천 상품이 없습니다.</h3>");
+					return;
+				}
+				result += "<h1>상품 이름 1<h1>";
+				for (var i = 0, len = goods.length || 0; i < len; i++) {
+					result += "<h3>" + goods[i].GOODSNAME + "</h3>";
+					result += "<img src=\'"+goods[i].IMAGE+"\' width='320px'>"
+				}
+				recDiv.html(result);
+			});
+		}
+	});
+	
+	// TTS 함수
 	function makeSound(txt) {
 		// 음성 합성 모듈 불러옴
 		var synth = window.speechSynthesis;
@@ -108,6 +153,9 @@
 				<br> <img src='${recipe.photo_5}'>
 			</div>
 		</div>
+	</div>
+	<div id="recommend">
+		<!-- 추천 상품이 출력되는 곳 -->
 	</div>
 	<div>
 		<a href="javascript:window.history.back()">뒤로 가기</a>
