@@ -1,0 +1,17 @@
+CREATE table final_member(
+  userId varchar2(100) NOT NULL primary key,
+  userPwd varchar2(300) NOT NULL,
+  rePwd varchar2(300) NOT NULL,
+  userName varchar2(45) NOT NULL,
+  mailaddress varchar2(300) NOT NULL,
+  address varchar2(1000) NOT NULL,
+  regdate date default sysdate,
+  enabled char(1) DEFAULT '1'
+);
+
+
+create table final_auth(
+    userId varchar2(100) not null,
+    authority varchar2(50) not null,
+    constraint final_authorities foreign key(userId) references final_member(userId));
+    
