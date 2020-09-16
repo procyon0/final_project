@@ -1,0 +1,17 @@
+package org.final_proj.domain;
+
+import java.util.Date;
+
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@RequiredArgsConstructor
+public class CartDTO {
+	private String userId;
+	private String goodsId;
+	private Long amount;
+	private Long price;
+	private Date insertDate;
+	private Date updateDate;
+}
