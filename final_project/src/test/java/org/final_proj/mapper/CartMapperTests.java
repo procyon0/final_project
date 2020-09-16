@@ -1,5 +1,6 @@
 package org.final_proj.mapper;
 
+import org.final_proj.domain.UserVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ public class CartMapperTests {
 	private CartMapper cartMapper;
 	
 	@Test
-	public void user0000의_카트에_있는_물건_조회_테스트() {
-		
+	public void test0000의_카트에_있는_물건_조회_테스트() {
+		UserVO user = new UserVO();
+		user.setUserId("test0000");
+		cartMapper.getCart(user);
 	}
 }

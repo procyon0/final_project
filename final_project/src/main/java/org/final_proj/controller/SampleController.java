@@ -20,13 +20,13 @@ public class SampleController {
 	private RecipeService recipeService;
 	
 	
-	
-	
+
 	// /main 요청을 main.jsp 페이지로 리다이렉트 시킴
-	@RequestMapping("/index")
-	public void home(Model model) {
-		
-	}
+	/*
+	 * @RequestMapping("/index") public void home(Model model) {
+	 * 
+	 * }
+	 */
 	
 	@RequestMapping("/sample/detail")
 	public void sampleDetail(Model model) {

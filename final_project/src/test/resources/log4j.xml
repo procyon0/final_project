@@ -11,13 +11,13 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="org.test.controller">
-		<level value="debug" />
+	<logger name="org.final_proj.controller">
+		<level value="info" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="debug" />
+		<level value="info" />
 	</logger>	
 	
 	<logger name="org.springframework.beans">
@@ -25,11 +25,11 @@
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="debug" />
+		<level value="info" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="debug" />
+		<level value="info" />
 	</logger>
 
 	<!-- Root Logger -->
@@ -37,5 +37,15 @@
 		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
+<!-- 	<logger name="jdbc.audit">
+		<level value="warn"/>
+	</logger>
 	
+	<logger name="jdbc.resultset">
+		<level value="warn"/>
+	</logger>
+	
+	<logger name="jdbc.connection">
+		<leel value="warn"/>
+	</logger> -->
 </log4j:configuration>
