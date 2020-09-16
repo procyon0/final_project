@@ -3,15 +3,43 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.final_proj.mapper.CartMapper">
-	<!-- 사용자의 카트에 있는 제품을 전체 불러옴 -->
-	<select id="getCart" resultType="org.final_proj.domain.CartDTO">
+	<select id="getAllCart" resultType="org.final_proj.domain.CartDTO">
 		SELECT * FROM cart
-		WHERE userId LIKE #{userId}
 	</select>
 	
+	<!-- 사용자의 카트에 있는 제품을 전체 불러옴 -->
+	<select id="get" resultType="org.final_proj.domain.CartDTO">
+		SELECT * FROM cart
+		WHERE userId
+		LIKE #{userId}
+	</select>
+
 	<!-- 사용자의 카트에 제품을 등록함 -->
-	<insert id="addToCart">
+	<insert id="add">
 		INSERT INTO cart (userId, goodsId, amount, unitPrice, totalPrice)
-		VALUES (#{userId}, #{goodsId}, #{amount}, ${unitPrice}, #{totalPrice});
+		VALUES (#{userId}, #{goodsId}, #{amount} , (SELECT price FROM goods WHERE goodsId LIKE #{goodsId}),
+		(SELECT price * #{amount} FROM goods WHERE goodsId LIKE #{goodsId}))
 	</insert>
+	
+	<!-- 사용자의 카트에서 특정 제품을 삭제함 -->
+	<delete id="delete">
+		DELETE FROM cart
+		WHERE userid LIKE #{userId}
+		AND goodsid LIKE #{goodsId}
+	</delete>
+	
+	<!-- 사용자의 카트의 물품의 수량을 변경함 -->
+	<update id="update">
+		<![CDATA[
+		UPDATE cart
+		SET amount = #{amount}, totalPrice = unitprice * #{amount}
+		WHERE goodsId LIKE #{goodsId} AND userId LIKE #{userId}
+		]]>	
+	</update>
+	
+	<select id="getSum" resultType="int">
+		SELECT SUM(totalPrice)
+		FROM cart
+		WHERE userid LIKE #{userId}
+	</select>
 </mapper>

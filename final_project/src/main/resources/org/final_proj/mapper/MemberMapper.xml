@@ -22,14 +22,12 @@
 	</resultMap>
 
 	<select id="read" resultMap="memberMap">
-
 		SELECT
 		MEM.USERID ,USERPW, USERNAME ,ENABLED ,REGDATE, UPDATEDATE ,AUTH
 		FROM
 		TBL_MEMBER MEM LEFT OUTER JOIN TBL_MEMBER_AUTH AUTH ON MEM.USERID =
 		AUTH.USERID
 		WHERE MEM.USERID= #{USERID}
-
 	</select>
 
 	<insert id="insert">

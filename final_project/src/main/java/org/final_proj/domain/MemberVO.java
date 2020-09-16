@@ -4,6 +4,7 @@ package org.final_proj.domain;
 import java.util.List;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
 public class MemberVO {
