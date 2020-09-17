@@ -1,9 +1,7 @@
 package org.final_proj.persistence;
 
-import static org.junit.Assert.fail;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
+import java.io.*;
 
 import org.junit.Test;
 
@@ -14,20 +12,17 @@ public class JDBCTests {
 	static {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch(Exception e) {
-			e.printStackTrace();
+		} catch(ClassNotFoundException e) {
+			log.info("드라이버 로드 에러 발생: " + e.getMessage());
 		}
 	}
 	
 	@Test
 	public void testConnection() {
-		try (Connection con = DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521:XE",
-					"hr",
-					"hr")){
-						log.info(con);
-					}catch(Exception e) {
-						fail(e.getMessage());
-					}
+		try (Connection co = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","hr","hr")){
+			log.info(co);
+		} catch (SQLException e) {
+			log.info("DB 연결 에러 발생 " + e.getMessage());
+		}
 	}
 }

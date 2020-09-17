@@ -1,3 +1,6 @@
+/** Spring Framework를 생성할 때 같이 생성되는 기본 컨트롤러
+ * 
+ */
 package org.final_proj.controller;
 
 import java.text.DateFormat;

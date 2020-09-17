@@ -11,8 +11,7 @@ public class CartDTO {
 	private String userId;
 	private String goodsId;
 	private Long amount;
-	private Long unitPrice;
-	private Long totalPrice;
+	private Long price;
 	private Date insertDate;
 	private Date updateDate;
 }

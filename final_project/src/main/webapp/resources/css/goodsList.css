@@ -1,6 +1,6 @@
 * {margin: 0; padding: 0}
 body{font-family: sans-serif;}
-/* li{list-style: none;} */
+li{list-style: none;}
 a{text-decoration:none; color:black;}
 img{border: 0;}
 
@@ -94,17 +94,6 @@ img{border: 0;}
     font-family: 'Nanum Gothic', sans-serif;
 
 }
-button{
-    width:60px;
-    height: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    outline: none;
-    background: rgb(230, 98, 37);
-    color: seashell;
-    border-color: rgb(230, 98, 37);
-    font-family: 'Nanum Gothic', sans-serif;
-}
 select{
     font-size: 15px;
     width:80px;
@@ -131,7 +120,7 @@ input{
 input:hover{
     border-color:rgb(230, 98, 37);
 }
-#search_button{
+#button{
     width:60px;
     height: 100%;
     padding: 10px;
@@ -143,6 +132,43 @@ input:hover{
     font-family: 'Nanum Gothic', sans-serif;
 }
 
+
+#categoryBox{
+    
+    padding: 10px 50px;
+    padding-bottom:30px;
+    text-align: center;   
+}
+#M_button{
+    width:100px;
+    height:100%;
+    padding: 20px;
+    outline: none;
+    border:0;
+    border-radius: 60px;
+    background: rgb(230, 98, 37);
+    font-family: 'Nanum Gothic', sans-serif;
+}
+#F_button{
+    width:100px;
+    height:100%;
+    padding: 20px;
+    outline: none;
+    border:0;
+    border-radius: 60px;
+    background: rgb(230, 98, 37);
+    font-family: 'Nanum Gothic', sans-serif;
+}
+#s_button{
+    width:100px;
+    height:100%;
+    padding: 20px;
+    outline: none;
+    border:0;
+    border-radius: 60px;
+    background: rgb(230, 98, 37);
+    font-family: 'Nanum Gothic', sans-serif;
+}
 #image{
     padding: 30px;  
 }
@@ -177,5 +203,5 @@ input:hover{
     float: left;
     width: 300px;
     padding: 20px 20px 20px 20px;
-/*  border-bottom: 1px solid #ddd; */
+    border-bottom: 1px solid #ddd;
 }

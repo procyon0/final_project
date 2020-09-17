@@ -1,8 +1,7 @@
 package org.final_proj.security;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,31 +17,27 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-			Authentication auth) throws IOException, ServletException {
+			Authentication authentication) throws IOException, ServletException {
+		log.warn("로그인 성공");
 		
+		List<String> roleNames = new ArrayList<>();
 		
-		log.warn("Login Success");
-		
-		List<String>roleNames = new ArrayList<>();
-		
-		auth.getAuthorities().forEach(authority ->{
-			
-			roleNames.add(authority.getAuthority());
+		authentication.getAuthorities().forEach(authtority -> {
+			roleNames.add(authtority.getAuthority());
 		});
 		
-		log.warn("ROLE NAMES: " + roleNames);
+		log.warn("권한: " +  roleNames);
 		
 		if(roleNames.contains("ROLE_ADMIN")) {
-			
 			response.sendRedirect("/sample/admin");
 			return;
 		}
-		 if(roleNames.contains("ROLE_MEMBER")) {
-			 
-			 response.sendRedirect("/sample/member");
+		if(roleNames.contains("ROLE_MEMBER")) {
+			response.sendRedirect("/sample/member");
 			return;
-		 }
-	
-		 response.sendRedirect("/");
+		}
+		
+		response.sendRedirect("/");
 	}
+
 }
