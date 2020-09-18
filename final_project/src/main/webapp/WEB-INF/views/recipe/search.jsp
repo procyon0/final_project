@@ -186,40 +186,13 @@
 				}
 				str += "</div>";
 				$(".container").html(str);
-			});
-		
+		});
 	}
-
 </script>
 </head>
 <body>
 	<!-- 헤더 -->
-	<header id="logo_header">
-		<div id="logo">
-			<h1>
-				<a href="#">recipe</a>
-			</h1>
-		</div>
-		<nav id="menu">
-			<ul>
-				<li><a href="#">레시피검색</a></li>
-				<li><a href="#">요리비책</a>
-				<li><a href="#">마트</a>
-					<ul>
-						<li><a href="#">밀키트</a></li>
-						<li><a href="#">간편식</a></li>
-						<li><a href="#">소분재료</a></li>
-					</ul></li>
-				<li><a href="#">공지사항</a></li>
-			</ul>
-		</nav>
-		<nav id="login">
-			<ul>
-				<li><a href="#">로그인 </a></li>
-				<li><a href="#"> 회원가입</a></li>
-			</ul>
-		</nav>
-	</header>
+	<jsp:include page="../includes/header.jsp"></jsp:include>
 	<!-- ↑헤더 - 내용↓ 분할선 -->
 	<div id="search">
 		<form action="search.html" method="GET">

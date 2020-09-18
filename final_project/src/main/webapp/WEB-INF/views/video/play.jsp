@@ -106,9 +106,9 @@ $(document).ready(function () {
 });
 </script>
 <body>
-	<div id="header">
-		<!-- 메뉴가 들어갈 자리 -->
-	</div>
+
+	<jsp:include page="../includes/header.jsp"></jsp:include>
+	<!-- 유튜브 동영상 페이지 본문 -->
 	<div class="container">
 		<div id="vid"></div>
 	</div>

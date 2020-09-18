@@ -7,6 +7,7 @@ import org.final_proj.service.MemberService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -21,7 +22,7 @@ public class MemberMapperTests {
 	@Setter(onMethod_=@Autowired)
 	private MemberMapper mapper;
 	
-	@Setter(onMethod_ = {@Autowired})
+	@Setter(onMethod_=@Autowired)
 	private MemberService service;
 
 
@@ -29,7 +30,7 @@ public class MemberMapperTests {
 	@Test
 	public void testRead() {
 
-		MemberVO vo = mapper.read("new");
+		MemberVO vo = mapper.read("test0000");
 
 		log.info(vo);
 
@@ -41,7 +42,7 @@ public class MemberMapperTests {
 		MemberVO member = new MemberVO();
 
 		member.setUserId("new11");
-		member.setUserPwd("new11");
+		member.setUserId("new11");
 		member.setRePwd("new11");
 		member.setUserName("new member11");
 		member.setMailAddress("new11mem@naver.com");
