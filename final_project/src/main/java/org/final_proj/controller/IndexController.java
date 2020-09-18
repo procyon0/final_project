@@ -5,6 +5,7 @@ package org.final_proj.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.log4j.Log4j;
@@ -18,9 +19,9 @@ public class IndexController {
 	public void home(Model model) {
 		
 	}
-	
-	@RequestMapping("/sample/detail")
-	public void sampleDetail(Model model) {
+	// 장바구니 페이지로 이동
+	@GetMapping("/goods/cart")
+	public void cartView(Model model) {
 		
 	}
 }

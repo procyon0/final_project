@@ -93,7 +93,7 @@ img{border: 0;}
     font-family: 'Nanum Gothic', sans-serif;
 
 }
-input{
+/* input{
     font-size: medium;
     width:400px;
     height: 100%;
@@ -105,7 +105,7 @@ input{
 }
 input:hover{
     border-color:rgb(230, 98, 37);
-}
+} */
 #button{
     width:60px;
     height: 100%;
@@ -120,6 +120,7 @@ input:hover{
 #detail_goods{
     width: 1050px;
     margin: auto;
+    padding-top:20px;
 }
 #goods_img{
     float: left;
@@ -149,6 +150,11 @@ input:hover{
     margin-top: 19px;
     padding-bottom: 19px;
 }
+.list{
+    overflow: hidden;
+    padding: 18px 0;
+    border-bottom: 1px solid #f4f4f4
+}
 .tit{
     float: left;
     width: 150px;
@@ -160,8 +166,11 @@ input:hover{
     overflow: hidden;
     font-size: 14px;
     line-height: 20px;
-    word-break: break-all;
-    color: rgba(153, 153, 153, 0.753);
+   /*  word-break: break-all; */
+    color: black;
+}
+.dc_price{
+	float:right;
 }
 
 

@@ -20,6 +20,7 @@
 		<h1>
 			<a href="/index">메인 페이지로</a>
 		</h1>
+		<h1><a href="/login">로그인 페이지로</a></h1>
 	</div>
 
 </body>

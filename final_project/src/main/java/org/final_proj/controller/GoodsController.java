@@ -33,7 +33,5 @@ public class GoodsController {
    public void detail(@RequestParam("goodsId") String goodsId, Model model) {
       log.info("/detail");
       model.addAttribute("detail", service.getDetail(goodsId));
-   
-
    }
 }

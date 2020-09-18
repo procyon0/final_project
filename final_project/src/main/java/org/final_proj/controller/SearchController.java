@@ -30,9 +30,7 @@ import lombok.extern.log4j.Log4j;
 public class SearchController {
 	private SearchService service;
 	// 필터링을 적용하지 않은 검색 결과를 출력함
-	@GetMapping(value="/result",
-			produces = {
-					MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@GetMapping(value="/result", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<List<RecipeVO>> getSearchResult (@RequestParam("type") String type, @RequestParam("query") String query) {
 		log.info("search--------------------------------------------------------");
 		SearchDTO search = new SearchDTO();
@@ -43,7 +41,7 @@ public class SearchController {
 	}
 	
 	// 필터링할 키워드를 출력함
-	@GetMapping(value="/kind", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@GetMapping(value="/kind", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<List<String>> getKind (@RequestParam("type") String type, @RequestParam("query") String query) {
 		log.info("get Kind--------------------------------------------------------");
 		SearchDTO search = new SearchDTO();
@@ -54,7 +52,7 @@ public class SearchController {
 	}
 	
 	// 필터링할 키워드를 출력함
-	@GetMapping(value="/way", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@GetMapping(value="/way", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<List<String>> getWay (@RequestParam("type") String type, @RequestParam("query") String query) {
 		log.info("get Way--------------------------------------------------------");
 		SearchDTO search = new SearchDTO();
@@ -65,8 +63,7 @@ public class SearchController {
 	}
 	
 	// 필터링을 적용한 검색 결과를 출력함
-	@GetMapping(value="/filter", produces = {
-			MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@GetMapping(value="/filter", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<List<RecipeVO>>getFilteredResult (@RequestParam("type") String type, 
 			@RequestParam("query") String query, @RequestParam("filter") String filter,
 			@RequestParam("keyword") String keyword) { 
@@ -78,39 +75,4 @@ public class SearchController {
 		search.setFilterWord(keyword);
 		return new ResponseEntity<>(service.searchFilteredResult(search), HttpStatus.OK);
 	}
-
-
-
-	/*
-	 * @GetMapping("/search/{type}/{query}") public void
-	 * searchMain(@RequestParam("query") String query, @RequestParam("type") String
-	 * type, Model model) { log.info("search query: " + query +
-	 * "--------------------------------"); model.addAttribute("query", query);
-	 * model.addAttribute("type", type); SearchDTO result = new SearchDTO();
-	 * result.setQuery(query); result.setType(type); List<RecipeVO> recipe =
-	 * service.getSearchResult(result); model.addAttribute("recipe", recipe); // 검색
-	 * 결과 추리기
-	 * 
-	 * List<String> way = service.searchWay(result); List<String> kind =
-	 * service.searchKind(result);
-	 * 
-	 * model.addAttribute("way", way); model.addAttribute("kind", kind); }
-	 */
-
-	// 검색 결과를 필터링해 다시 출력하는 메소드
-	// 데이터를 search 페이지에 어떻게 다시 출력해야 하는지 모르겠음
-	/*	@GetMapping("/search/filter")
-	public String searchFilter(@RequestParam String keyword, Model model) {
-		log.info("filtering---------------------------------------------");
-		return "/search/filter";
-	}*/
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// 모든 레시피를 출력함
-	// 실제로 쓸 지는 모르겠음
-	/*
-	 * @GetMapping("/all") public void all(Model model) { log.info("all");
-	 * model.addAttribute("all", service.getList());
-	 * 
-	 * }
-	 */
 }

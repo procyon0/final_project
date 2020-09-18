@@ -47,15 +47,15 @@ public class RecommendController {
 	 */
 
 	@SuppressWarnings("deprecation")
-	@PostMapping(value="/ingredient", produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@PostMapping(value="/ingredient", produces= "application/json;charset=UTF-8")
 	public ResponseEntity<HashSet<GoodsVO>> getRecIngre(@RequestBody ReqBodyDTO reqbody) {
 		// 매개변수 길이 제한 때문에 RequestParam 대신 RequestBody로 받을 것
-		log.info("▶문자열 도착: " + reqbody.getStr());
+		log.info(">>>>>>> 문자열 도착: " + reqbody.getStr());
 		reqbody.setStr(reqbody.getStr().replace("\n", " "));
 		reqbody.setStr(reqbody.getStr().replace("\'", " "));
 		reqbody.setStr(reqbody.getStr().replace("\"", " "));
 		reqbody.setStr(reqbody.getStr().replace("\t", " "));
-		log.info("▶문자열 치환 결과: " + reqbody.getStr());
+		log.info(">>>>>> 문자열 치환 결과: " + reqbody.getStr());
 		StringTokenizer token = new StringTokenizer(reqbody.getStr()); 
 
 		HashSet<GoodsVO> recommendGoods = new HashSet<GoodsVO>();

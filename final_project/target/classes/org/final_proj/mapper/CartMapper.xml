@@ -3,43 +3,59 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.final_proj.mapper.CartMapper">
-	<select id="getAllCart" resultType="org.final_proj.domain.CartDTO">
+	<select id="getAll"
+		resultType="org.final_proj.domain.CartDTO">
 		SELECT * FROM cart
 	</select>
-	
+
 	<!-- 사용자의 카트에 있는 제품을 전체 불러옴 -->
 	<select id="get" resultType="org.final_proj.domain.CartDTO">
-		SELECT * FROM cart
-		WHERE userId
-		LIKE #{userId}
+		SELECT g.manufacturer||g.goodsname "goodsName", g.image "image", c.amount "amount", c.totalprice "totalPrice"
+		FROM cart c, final_member m , goods g
+		WHERE c.userid=m.userid AND g.goodsid=c.goodsid
+		AND c.userid LIKE #{userId}
 	</select>
 
 	<!-- 사용자의 카트에 제품을 등록함 -->
 	<insert id="add">
 		INSERT INTO cart (userId, goodsId, amount, unitPrice, totalPrice)
-		VALUES (#{userId}, #{goodsId}, #{amount} , (SELECT price FROM goods WHERE goodsId LIKE #{goodsId}),
-		(SELECT price * #{amount} FROM goods WHERE goodsId LIKE #{goodsId}))
+		VALUES (#{userId}, #{goodsId}, #{amount} , (SELECT price
+		FROM goods WHERE goodsId LIKE #{goodsId}),
+		(SELECT price * #{amount}
+		FROM goods WHERE goodsId LIKE #{goodsId}))
 	</insert>
-	
-	<!-- 사용자의 카트에서 특정 제품을 삭제함 -->
-	<delete id="delete">
+
+	<!-- 사용자의 카트에서 선택한 제품을 삭제함 -->
+	<delete id="delete" parameterType="java.util.List">
 		DELETE FROM cart
-		WHERE userid LIKE #{userId}
-		AND goodsid LIKE #{goodsId}
+		<where>
+			<foreach collection="list" item="item" separator="OR" open="(" close=")">
+				userid LIKE #{item.userId}
+				AND goodsid LIKE #{item.goodsId}
+			</foreach>
+		</where>
 	</delete>
-	
+
 	<!-- 사용자의 카트의 물품의 수량을 변경함 -->
 	<update id="update">
 		<![CDATA[
 		UPDATE cart
 		SET amount = #{amount}, totalPrice = unitprice * #{amount}
 		WHERE goodsId LIKE #{goodsId} AND userId LIKE #{userId}
-		]]>	
+		]]>
 	</update>
-	
+
 	<select id="getSum" resultType="int">
 		SELECT SUM(totalPrice)
 		FROM cart
 		WHERE userid LIKE #{userId}
 	</select>
+
+	<delete id="" parameterType="java.util.List">
+		DELETE FROM cart
+		WHERE userid LIKE #{userId}
+		<foreach collection="">
+			AND goodsid LIKE #{goodsId}
+		</foreach>
+	</delete>
 </mapper>
