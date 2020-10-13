@@ -11,12 +11,30 @@
     <title>Document</title>
     <script src="/resources/js/jquery-3.5.1.js" type="text/javascript"></script>
     <script src="/resources/js/youtube_module.js"></script>
+	<link rel="stylesheet" href="/resources/css/bootstrap.css">
+	<script type="text/javascript" src="/resources/js/bootstrap.js"></script>
+	<style type="text/css">
+
+#logo>h1>a{
+       text-decoration: none;
+      font-family: 'Lemonada', cursive;
+      font-size:53px;    
+      font-weight: bolder;
+       
+      }
+#menu>ul>li>a{
+      text-decoration: none;
+      }
+#login>ul>li>a{
+   text-decoration: none;
+}      
+</style>
     <script>
         $(document).ready(function () {
             var pid = '<c:out value="${pid}"></c:out>';
             var pageToken = '<c:out value="${pageToken}"></c:out>';
             
-            var recipeUI = $('body');
+            var recipeUI = $('#video');
 
             showPlaylist();
 
@@ -38,7 +56,7 @@
                             
                         }
                         if(data.nextPageToken != null) {
-                        	str += "<a href='/video/playlistOther?pid=" +pid + "&pageToken="+ data.nextPageToken + "'><h1>→</h1></a><br>";
+                        	str += "<div class='col-md-12'><a href='/video/playlistOther?pid=" +pid + "&pageToken="+ data.nextPageToken + "'><h1>→</h1></a></div><br>";
                         }
                         recipeUI.html(str);
                     });
@@ -57,6 +75,10 @@
 
 <body>
     <jsp:include page="../includes/header.jsp"></jsp:include>
+    <div class="container">
+    	<div class="row" id="video">
+    	</div>
+    </div>
 </body>
 
 </html>

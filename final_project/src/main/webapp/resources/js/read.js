@@ -16,6 +16,7 @@ var voices = [];
 
 // 재생 버튼을 누를 때 문장이 재생됨
 inputForm.onsubmit = function(event) {
+	var startTime = performance.now();
 	// submit을 누를때 페이지가 새로고침 되는 것을 방지함
 	event.preventDefault();
 	var readThis = new SpeechSynthesisUtterance(textInput.value);

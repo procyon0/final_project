@@ -19,23 +19,57 @@ public class GoodsServiceImpl implements GoodsService {
 	
 	@Setter(onMethod_= @Autowired)
 	private GoodsMapper mapper;
-	
+
 	@Override
-	public List<GoodsVO> getList() {
-		return mapper.getList();
+	public List<String> getGoodsNoList() {
+		return mapper.getGoodsNoList();
+	}
+
+	@Override
+	public List<GoodsVO> getGoodsAll(Criteria cri) {
+		return mapper.getGoodsAll();
+	}
+
+	@Override
+	public void updateGoods(GoodsVO vo) {
+		mapper.updateGoods(vo);
 		
 	}
-	
+
 	@Override
-	public GoodsVO getDetail(String goodsId) {
-		return mapper.getDetail(goodsId);
+	public GoodsVO getDetail(String goodsNo) {
+		return mapper.getDetail(goodsNo);
 	}
 
 	@Override
 	public List<GoodsVO> getList(Criteria cri) {
-		log.info("get List With criteria:" + cri);
-		return mapper.getListWithPaging(cri);
-	}  
+		return mapper.getList(cri);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+//	@Override
+//	public List<String> getGoodsNoList() {
+//		return mapper.getGoodsNoList();
+//	}
+//
+//	@Override
+//	public List<GoodsVO> getGoodsAll() {
+//		return mapper.getGoodsAll();
+//	}
+//
+//	@Override
+//	public void updateGoods(GoodsVO vo) {
+//		mapper.updateGoods(vo);
+//		
+//	}
+//	
+
 
 
 }

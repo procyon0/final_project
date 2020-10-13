@@ -5,14 +5,14 @@
 <mapper namespace="org.final_proj.mapper.RecommendMapper">
 	<!-- 재료 중에 추천 상품을 가져오기 -->
 	<select id="getIngredient" resultType="hashmap">
-		SELECT goodsId, goodsName, image, manufacturer FROM goods
+		SELECT goodsName, thumbImgUrl FROM goods
 		WHERE goodsName LIKE '%'||#{query}||'%'
 		AND category LIKE 'S'
 	</select>
 	
 	<!-- 밀키트 중에 추천 상품을 가져오기 -->
 	<select id="getMealkit" resultType="hashmap">
-		SELECT goodsId, goodsName, image, manufacturer FROM goods
+		SELECT goodsName, thumbImgUrl FROM goods
 		WHERE goodsName LIKE '%'||#{query}||'%'
 		AND category LIKE 'M'
 	</select>

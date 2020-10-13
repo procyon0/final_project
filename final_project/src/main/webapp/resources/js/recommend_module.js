@@ -8,11 +8,12 @@ var recommendService = (function() {
 	function getRecommend(param, callback, error) {
 		var strValue = param.str;
 		var destination = param.destination;
-		
+		var token = param.csrf;
 		console.log("전송 받은 대상 문자열: " + strValue);
 		$.ajax({
 			method: "POST",
 			url: "/recommend/"+destination,
+			headers: {'x-csrf-token' : token},
 			data: JSON.stringify({"str" : strValue}),
 			success: callback,
 			dataType: "json",

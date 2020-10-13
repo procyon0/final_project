@@ -4,7 +4,6 @@ import org.final_proj.domain.AuthVO;
 import org.final_proj.domain.MemberVO;
 import org.final_proj.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,12 +22,11 @@ public class MemberServiceImpl implements MemberService {
 	private MemberMapper memberMapper;
 	
 	@Autowired
-	private PasswordEncoder bcryptPasswordEncoder;
-	/*
-	 * @Autowired private MemberMapper memberMapper;
-	 */
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
+
 	@Override
 	public void registerMember(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
 		log.info("insert vo");
 		memberMapper.insert(vo);
 	}
@@ -36,6 +34,8 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	@Override
 	public void register(MemberVO vo, AuthVO auth) throws Exception {	
+		
+		
 		System.out.println("암호화 되기 전 : "+vo.getUserPwd());
 		vo.setUserPwd(bcryptPasswordEncoder.encode(vo.getUserPwd()));
 		vo.setRePwd(bcryptPasswordEncoder.encode(vo.getRePwd()));
@@ -46,15 +46,10 @@ public class MemberServiceImpl implements MemberService {
 		
 		System.out.println("insert auth");
 		memberMapper.authinsert(auth);
+
 		
 		System.out.println("end insert");
 		
 	}
-	
-	/*
-	 * @Bean BCryptPasswordEncoder passwordEncoder() { return new
-	 * BCryptPasswordEncoder(); }
-	 */
-
 
 }

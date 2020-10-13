@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +12,14 @@
 <script type="text/javascript" src="/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="/resources/js/detail.js"></script>
 <!-- <script type="text/javascript" src="/resources/js/read.js"></script> -->
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@500&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/detail.css">
 <script type="text/javascript" src="/resources/js/recommend_module.js"></script>
 <script type="text/javascript">
 	// 재료
-	var ingreValue = '<c:out value="${recipe.ingredient}"></c:out>';
+	
 	// 추천 상품을 저장할 문자열
 	var recResult = "";
 	// 추천 결과를 출력할 곳
@@ -23,21 +27,24 @@
 
 	$(document).ready(function() {
 		// 재료
-		var ingreValue = '<c:out value="${recipe.ingredient}"></c:out>';
+		var ingreValue = '<c:out value="${rcp_parts_dtls}"></c:out>';
 		// 추천 받을 것(재료 or 밀키트)
 		var desti = "ingredient";
 		// 추천 결과를 출력할 곳	
 		var recDiv = $("#recommend");
-	
+		
 		/***************************/
 		showRecIngre();
 		/***************************/
 	
 		function showRecIngre() {
+			var token ="${_csrf.token}";
+			//alert(token);
 			console.log("문자열 전송 시도.....");
 			recommendService.getRecommend({
 				str : ingreValue,
-				destination : desti
+				destination : desti,
+				csrf:token
 			}, function(goods) {
 				// 추천 상품을 저장할 문자열
 				var result = "";
@@ -50,7 +57,7 @@
 				result += "<h1>상품 이름 1<h1>";
 				for (var i = 0, len = goods.length || 0; i < len; i++) {
 					result += "<h3>" + goods[i].GOODSNAME + "</h3>";
-					result += "<img src=\'"+goods[i].IMAGE+"\' width='320px'>"
+					result += "<img src=\'"+goods[i].THUMBIMGURL+"\' width='320px'>"
 				}
 				recDiv.html(result);
 			});
@@ -77,6 +84,22 @@
 		synth.speak(readThis);
 	}
 </script>
+<style type="text/css">
+
+#logo>h1>a{
+       text-decoration: none;
+      font-family: 'Lemonada', cursive;
+      font-size:53px;    
+      font-weight: bolder;
+       
+      }
+#menu>ul>li>a{
+      text-decoration: none;
+      }
+#login>ul>li>a{
+   text-decoration: none;
+}      
+</style>
 </head>
 <body>
 	<!-- 헤더 -->
@@ -84,27 +107,75 @@
 	<!-- 헤더 끝 -->
 	<div id="recipe">
 		<h1>
-			<c:out value="${recipe.name}" />
+			<c:out value="${recipe.rcp_nm}" />
 		</h1>
 		<hr>
 		<div id="searchDetail_img">
 			<p>
-				<img src='${recipe.thumbnail}' width="571px">
+				<img src='${recipe.att_file_no_mk}' width="571px">
 			</p>
 		</div>
 		<div id="ingredients">
-			<h2>Ingredients</h2>
+			<h2>재료</h2>
 			<hr>
 			<br>
 			<p>
-				<c:out value="${recipe.ingredient}"></c:out>
+				<c:out value="${recipe.rcp_parts_dtls}"></c:out>
 			</p>
 		</div>
 
 		<div id="cooking">
 			<h2>요리 방법</h2>
 			<hr>
-			<div>${recipe.manual_1}
+			<c:if test="${not empty recipe.manual01}">
+				<div>${recipe.manual01}
+					<button onclick="makeSound('${recipe.manual01}')">재생</button>
+					<br> <img src='${recipe.manual_img01}'>
+				</div>
+			</c:if>
+			<c:if test="${not empty recipe.manual02}">
+				<div>${recipe.manual01}
+					<button onclick="makeSound('${recipe.manual02}')">재생</button>
+					<br> <img src='${recipe.manual_img02}'>
+				</div>
+			</c:if>
+			<c:if test="${not empty recipe.manual03}">
+				<div>${recipe.manual03}
+					<button onclick="makeSound('${recipe.manual03}')">재생</button>
+					<br> <img src='${recipe.manual_img03}'>
+				</div>
+			</c:if>
+			<c:if test="${not empty recipe.manual04}">
+				<div>${recipe.manual04}
+					<button onclick="makeSound('${recipe.manual04}')">재생</button>
+					<br> <img src='${recipe.manual_img04}'>
+				</div>
+			</c:if>
+			<c:if test="${not empty recipe.manual05}">
+				<div>${recipe.manual05}
+					<button onclick="makeSound('${recipe.manual05}')">재생</button>
+					<br> <img src='${recipe.manual_img05}'>
+				</div>
+			</c:if>
+			<c:if test="${not empty recipe.manual06}">
+				<div>${recipe.manual06}
+					<button onclick="makeSound('${recipe.manual06}')">재생</button>
+					<br> <img src='${recipe.manual_img06}'>
+				</div>
+			</c:if>
+			<c:if test="${not empty recipe.manual07}">
+				<div>${recipe.manual07}
+					<button onclick="makeSound('${recipe.manual07}')">재생</button>
+					<br> <img src='${recipe.manual_img07}'>
+				</div>
+			</c:if>
+			<c:if test="${not empty recipe.manual08}">
+				<div>${recipe.manual08}
+					<button onclick="makeSound('${recipe.manual08}')">재생</button>
+					<br> <img src='${recipe.manual_img08}'>
+				</div>
+			</c:if>
+			<%-- <div>${recipe.manual_1}
 				<button onclick="makeSound('${recipe.manual_1}')">재생</button>
 				<br> <img src='${recipe.photo_1}'>
 			</div>
@@ -127,7 +198,7 @@
 				${recipe.manual_5}
 				<button onclick="makeSound('${recipe.manual_5}')">재생</button>
 				<br> <img src='${recipe.photo_5}'>
-			</div>
+			</div> --%>
 		</div>
 	</div>
 	<div id="recommend">

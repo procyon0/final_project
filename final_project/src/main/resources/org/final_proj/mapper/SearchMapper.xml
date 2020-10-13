@@ -8,12 +8,13 @@
 	<select id="getResult"
 		resultType="org.final_proj.domain.RecipeVO">
 		<![CDATA[
-			SELECT id, name, thumbnail, way, kind, ingredient
+			SELECT rcp_seq, rcp_nm, att_file_no_mk, 
+			rcp_way2, rcp_pat2, rcp_parts_dtls
 			FROM recipe
 			WHERE
 		]]>
 		<include refid="searchRef"></include>
-		AND id > 0
+		AND rcp_seq > 0
 	</select>
 
 	<!-- 검색 결과의 개수 계산하기 -->
@@ -22,30 +23,31 @@
 		FROM recipe
 		WHERE
 		<include refid="searchRef"></include>
-		AND id > 0
+		AND rcp_seq > 0
 	</select>
 
 	<!-- 검색 결과에서 방법 키워드만 가져오기 -->
 	<select id="searchWay" resultType="String">
-		SELECT DISTINCT way
+		SELECT DISTINCT rcp_way2
 		FROM recipe
 		WHERE
 		<include refid="searchRef"></include>
-		AND id > 0
+		AND rcp_seq > 0
 	</select>
 
 	<!-- 검색 결과에서 종류 키워드만 가져오기 -->
 	<select id="searchKind" resultType="String">
-		SELECT DISTINCT kind
+		SELECT DISTINCT rcp_pat2
 		FROM recipe
 		WHERE
 		<include refid="searchRef"></include>
-		AND id > 0
+		AND rcp_seq > 0
 	</select>
 
 	<select id="getFilteredResult"
 		resultType="org.final_proj.domain.RecipeVO">
-		SELECT id, name, thumbnail, way, kind, ingredient
+		SELECT rcp_seq, rcp_nm, att_file_no_mk,
+		rcp_way2, rcp_pat2, rcp_parts_dtls
 		FROM recipe
 		WHERE
 		<include refid="searchRef"></include>
@@ -53,7 +55,7 @@
 		<include refid="filterRef"></include>
 		AND
 		<![CDATA[
-		 id > 0
+		 rcp_seq > 0
 		]]>
 	</select>
 
@@ -61,13 +63,13 @@
 	<sql id="searchRef">
 		<choose>
 			<when test="type == 'I'.toString()">
-				ingredient LIKE '%'||#{query}||'%'
+				rcp_parts_dtls LIKE '%'||#{query}||'%'
 			</when>
 			<when test="type == 'N'.toString()">
-				name LIKE '%'||#{query}||'%'
+				rcp_nm LIKE '%'||#{query}||'%'
 			</when>
 			<when test="type == 'K'.toString()">
-				kind LIKE '%'||#{query}||'%'
+				rcp_pat2 LIKE '%'||#{query}||'%'
 			</when>
 		</choose>
 	</sql>
@@ -76,10 +78,10 @@
 	<sql id="filterRef">
 		<choose>
 			<when test="filter == 'w'.toString()">
-				way LIKE #{filterWord}
+				rcp_way2 LIKE #{filterWord}
 			</when>
 			<when test="filter == 'k'.toString()">
-				kind LIKE #{filterWord}
+				rcp_pat2 LIKE #{filterWord}
 			</when>
 		</choose>
 	</sql>

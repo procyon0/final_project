@@ -8,14 +8,14 @@
 <title>~ 검색 결과를 테스트하는 페이지 ~</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/resources/css/search.css">
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Lemonada&display=swap"
-	rel="stylesheet">
-<link href="/resources/css/search.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap"
+		rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada&display=swap"
+		rel="stylesheet">
+<!-- <link href="/resources/css/search.css" rel="stylesheet"> -->
 <script type="text/javascript" src="/resources/js/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap.js"></script>
+<link rel="stylesheet" href="/resources/css/bootstrap.css">
 <script type="text/javascript" src="/resources/js/search_module.js"></script>
 <script type="text/javascript">
 	/** 검색 결과를 JSON 파일 형식으로 받아 출력하는 자바스크립트 페이지
@@ -68,14 +68,14 @@
 							return;
 						}
 						for (var i = 0, len = result.length || 0; i < len; i++) {
-							str += "<div id='block'>"
+							str += "<div id='block' style='max-width:50%;'>"
 							str += "<div id='img_blo'>";
-							str += "<a href='/recipe/detail?id=" + result[i].id + "'>";
-							str += "<img src='" + result[i].thumbnail + "' width='200px' height='200px'>";
+							str += "<a href='/recipe/detail?rcp_seq=" + result[i].rcp_seq + "'>";
+							str += "<img src='" + result[i].att_file_no_mk + "' width='200px' height='200px'>";
 							str += "</div>";
 							str += "<div id='content_blo'>";
 							str += "<h2>";
-							str += result[i].name;
+							str += result[i].rcp_nm;
 							str += "</a>";
 							str += "</h2>"
 							str += "</div>";
@@ -141,12 +141,12 @@
 						for (var i = 0, len = result.length || 0; i < len; i++) {
 							str += "<div id='block'>"
 							str += "<div id='img_blo'>";
-							str += "<a href='/recipe/detail?id=" + result[i].id + "'>";
-							str += "<img src='" + result[i].thumbnail + "' width='200px' height='200px'>";
+							str += "<a href='/recipe/detail?rcp_seq=" + result[i].rcp_seq + "'>";
+							str += "<img src='" + result[i].att_file_no_mk + "' width='200px' height='200px'>";
 							str += "</div>";
 							str += "<div id='content_blo'>";
 							str += "<h2>";
-							str += result[i].name;
+							str += result[i].rcp_nm;
 							str += "</a>";
 							str += "</h2>"
 							str += "</div>";
@@ -160,7 +160,7 @@
 	function getFilteredData (filterValue,keywordValue) {
 		console.log("필터링된 검색 결과 출력--------------");
 		var str = "<div class='result'>";
-		$(".result").remove();
+		$(".result").empty();
 		//alert("검색 결과 삭제");
 		searchService.getFilteredResult(
 				{query:queryValue, type:typeValue, filter:filterValue, keyword:keywordValue},
@@ -173,19 +173,19 @@
 					for (var i = 0, len = result.length || 0; i < len; i++) {
 						str += "<div id='block'>"
 						str += "<div id='img_blo'>";
-						str += "<a href='/recipe/detail?id=" + result[i].id + "'>";
-						str += "<img src='" + result[i].thumbnail + "' width='200px' height='200px'>";
+						str += "<a href='/recipe/detail?rcp_seq=" + result[i].rcp_seq + "'>";
+						str += "<img src='" + result[i].att_file_no_mk + "' width='200px' height='200px'>";
 						str += "</div>";
 						str += "<div id='content_blo'>";
 						str += "<h2>";
-						str += result[i].name;
+						str += result[i].rcp_nm;
 						str += "</a>";
 						str += "</h2>"
 						str += "</div>";
 						str += "</div>"
 				}
 				str += "</div>";
-				$(".container").html(str);
+				$(".result").html(str);
 		});
 	}
 </script>
@@ -194,34 +194,44 @@
 	<!-- 헤더 -->
 	<jsp:include page="../includes/header.jsp"></jsp:include>
 	<!-- ↑헤더 - 내용↓ 분할선 -->
-	<div id="search">
-		<form action="search.html" method="GET">
-			<select>
-				<option value="I">재료</option>
-				<option value="N">요리</option>
-			</select> <input type="search" title="검색" placeholder="입력해주세요.">
-			<button id="searchBtn">검색</button>
-		</form>
+	<div class="container">
+		<div id="search">
+			<form action="/recipe/search" method="GET">
+				<select name="type">
+					<option value="I">재료</option>
+					<option value="N">요리</option>
+				</select> <input name= "query" type="search" title="검색" placeholder="입력해주세요.">
+				<button id="searchBtn">검색</button>
+			</form>
+		</div>
 	</div>
-	<div id="filter">
-		<!-- 검색 결과를 필터링할 키워드가 출력되는 곳 -->
-		<div>
+	<div class="container">
+	<!--<table class="table">
+			<tr>
+				
+			</tr>
+	</table> -->
+		<div id="filter">
+			<!-- 검색 결과를 필터링할 키워드가 출력되는 곳 -->
 			<div>
 				요리 종류  <span id="kind"></span>
 			</div>
 			<div>
 				조리 방법 <span id="way"></span>
 			</div>
-		</div>
 		<button id="resetBtn" onclick='resetResult()'>초기화</button>
+		</div>
 	</div>
+	
 	<div class="container">
 		<div class="result">
-		<!-- 검색 결과가 출력되는 곳 -->
+			<!-- 검색 결과가 출력되는 곳 -->
 		</div>
 	</div>
-	<div id="footer">
-		<a href="/main">메인으로</a>
+	<div class="container">
+		<div id="footer">
+			<a href="/main">메인으로</a>
+		</div>
 	</div>
 </body>
 </html>

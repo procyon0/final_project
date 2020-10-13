@@ -1,3 +1,5 @@
+/** 받은 문자열과 상품을 비교해 일치한 제품이 있으면 출력하는 맵퍼
+ * */
 package org.final_proj.mapper;
 
 import java.util.*;

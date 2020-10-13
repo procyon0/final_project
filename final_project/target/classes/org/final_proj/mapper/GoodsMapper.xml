@@ -5,8 +5,8 @@
 
 <mapper namespace="org.final_proj.mapper.GoodsMapper">
 
-
-	<!--상품목록 -->
+<!-- 
+	상품목록 
 	<select id="getList" resultType="org.final_proj.domain.GoodsVO">
   	<![CDATA[
   	
@@ -15,7 +15,7 @@
   	]]>
 	</select>
 
-	<!--검색페이지,tab 페이지 카테고리 구분 및 페이징처리 -->
+	검색페이지,tab 페이지 카테고리 구분 및 페이징처리
 	<select id="getListWithPaging"
 		resultType="org.final_proj.domain.GoodsVO">
 	  	<![CDATA[
@@ -23,13 +23,13 @@
 	  		select 	* 
 	  		from 
 	  		(
-	  		select rownum rn,goodsId,goodsName,price,weight,manufacturer,category,stock,image,ex
+	  		select rownum rn,goodsno,goodsName,price,weight,category,stock,thumbnail,short_ex
 	  		from goods 			
 	  	]]>	
 	  		<where>
 				<if test=" keyword != null and keyword != '' ">
 					goodsName like '%' || #{keyword} || '%'
-					or manufacturer like '%'|| #{keyword} || '%'
+				
 					
 				</if>		
 				<if test=" pageNum != null and pageNum != '' ">
@@ -47,14 +47,85 @@
 	  	
 	</select>
 
-	<!--상세페이지 조회 -->
+	상세페이지 조회
 	<select id="getDetail"
 		resultType="org.final_proj.domain.GoodsVO">
   	<![CDATA[
   	
-  		select 	* from Goods where goodsId = #{goodsId}
+  		select 	* from Goods where goodsno = #{goodsno}
   	]]>
-	</select>
+	</select> -->
+
+
+
+
+<!--DB에 있는  goodsNo가져오기  -->
+<select id="getGoodsNoList" resultType="String">
+
+SELECT GOODSNO FROM GOODS
+
+</select>
+
+
+<!--전체리스트가져오기  -->
+<select id="getGoodsAll" resultType="org.final_proj.domain.GoodsVO">
+
+SELECT * FROM GOODS
+
+</select>
+
+
+<!--크롤링후  DB에 update 하기  -->
+<update id="updateGoods" >
+
+	update GOODS
+	  	set 
+	  		goodsName =#{goodsName},
+	 		price =#{price},
+	 		weight =#{weight},
+	 		saleUnit =#{saleUnit},
+	 		shippingType =#{shippingType},
+			THUMBIMGURL =#{thumbImgUrl},
+			shortEx =#{shortEx},
+			longEx =#{longEx},
+			goodsIntroImgUrl =#{goodsIntroImgUrl},
+			ckPointImgUrl =#{ckPointImgUrl},
+			goodsPickImgUrl =#{goodsPickImgUrl},
+			goodsDetailImgUrl =#{goodsDetailImgUrl}
+			
+	  	where GOODSNO = #{goodsNo}
+
+</update>
+
+<!--  	상세페이지 조회 -->
+<select id="getDetail"
+		resultType="org.final_proj.domain.GoodsVO">
+  	<![CDATA[
+  	
+  		select 	* from Goods 
+  		where goodsNo = #{goodsNo}
+  	]]>
+</select>
+
+
+<select id="getList" resultType="org.final_proj.domain.GoodsVO">
+	<![CDATA[
+	select *
+	from
+	goods
+		]]>
+	<where>
+		<if test="keyword != null and keyword != ''">
+			goodsName like '%' ||#{keyword} ||'%'
+		</if>
+	</where>	
+		
+</select>
+
+	  
+
+
+
 
 </mapper>
   

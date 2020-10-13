@@ -7,21 +7,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <script src="/resources/js/jquery-3.5.1.js" type="text/javascript"></script>
 <script src="/resources/js/youtube_module.js"></script>
 <script type="text/javascript" src="/resources/js/recommend_module.js"></script>
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@500&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/play.css">
+<style type="text/css">
+
+#logo>h1>a{
+       text-decoration: none;
+      font-family: 'Lemonada', cursive;
+      font-size:53px;    
+      font-weight: bolder;
+       
+      }
+#menu>ul>li>a{
+      text-decoration: none;
+      }
+#login>ul>li>a{
+   text-decoration: none;
+}      
+</style>
 <script>
 $(document).ready(function () {
     var vidValue = '<c:out value="${vid}"></c:out>';
     var videoUI = $('#vid');
+   
  	// 유튜브의 동영상 설명
 	var descDiv = $("#youtubeDesc");
 	// 유튜브 추천 상품을 출력할 곳 설정
@@ -56,6 +69,7 @@ $(document).ready(function () {
     }
 	
 	function showVideoDetail() {
+		
         youtubeService.getVideoDetail(
             { vid: vidValue },
             function (data) {
@@ -81,10 +95,12 @@ $(document).ready(function () {
 	function showYoutubeIngre(descValue) {
 		console.log("유튜브 문자열 전송 시도.....");
 		let desti = "ingredient";
+		var token ="${_csrf.token}";
 		//alert(descValue);
 		recommendService.getRecommend({
 			str : descValue,
-			destination : desti
+			destination : desti,
+			csrf:token
 		}, function(goods) {
 			// 추천 상품을 저장할 문자열
 			var result = "";
@@ -98,13 +114,15 @@ $(document).ready(function () {
 			}
 			for (var i = 0, len = goods.length || 0; i < len; i++) {
 				result += "<small>" + goods[i].GOODSNAME + "</small>";
-				result += "<img src=\'"+goods[i].IMAGE+"\' width='240px'>"
+				// 이미지 출력 안됨 → 나중에 수정할 것
+				result += "<img src=\'"+goods[i].THUMBIMGURL+"\' width='240px'>"
 			}
 			youtubeDiv.html(result);
 		});
 	}
 });
 </script>
+</head>
 <body>
 
 	<jsp:include page="../includes/header.jsp"></jsp:include>

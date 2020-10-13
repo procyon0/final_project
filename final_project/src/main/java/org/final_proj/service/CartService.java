@@ -20,4 +20,10 @@ public interface CartService {
 	
 	// 장바구니의 전체 상품의 합 구하기
 	public void getCartSum(MemberVO member);
+
+	// 수량이 변경된 상품의 정보를 다시 가져옴
+	public CartDTO getGoods(CartDTO item);
+	
+	// 결제할 장바구니의 상품을 일부 불러옴
+	public List<CartDTO> checkoutGoods(List<CartDTO> items);
 }

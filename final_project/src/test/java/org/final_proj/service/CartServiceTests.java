@@ -22,42 +22,49 @@ import lombok.extern.log4j.Log4j;
 public class CartServiceTests {
 	@Setter(onMethod_ = @Autowired)
 	private CartService cartService;
-	
+
 	@Test
 	public void 장바구니_목록_꺼내오기_테스트() {
 		MemberVO member = new MemberVO();
-		member.setUserId("test0000");
-		cartService.cartList(member).forEach(item -> log.info("장바구니: " + item));
+		String userId = "test0000";
+		List <CartDTO> items = new ArrayList<CartDTO>();
+		member.setUserId(userId);
+		items = cartService.cartList(member);
+		items.forEach(item -> log.info(item));
 	}
-	
+
 	@Test
 	public void 장바구니_물건_추가하기_테스트() {
-		CartDTO item = new CartDTO();
-		item.setUserId("test0000");
+		String goodsNo ="11473";
+		CartDTO item = new CartDTO("test0000", goodsNo);
 		item.setAmount(10L);
-		item.setGoodsId("17");
+		item.setUnitPrice(0L);
 		cartService.addToCart(item);
 	}
-	
+
 	@Test
 	public void 장바구니에_있는_물건_여러_개_삭제하기() {
 		List<CartDTO> items = new ArrayList<CartDTO>();
-		CartDTO item1 = new CartDTO();
-		item1.setUserId("test0000");
-		item1.setGoodsId("12");
-		items.add(item1);
-		log.info(item1);
-		CartDTO item2 = new CartDTO();
-		item2.setUserId("test0000");
-		item2.setGoodsId("11");
-		log.info(item2);
-		items.add(item2);
-		log.info(items);
+		items.add(new CartDTO("test0000", "31473"));
+		items.add(new CartDTO("test0000", "31474"));
 		cartService.deleteFromCart(items);
 	}
-	
+
 	@Test
 	public void 물건_개수_수정하기() {
-		CartDTO item = new CartDTO();
+		CartDTO item = new CartDTO("test0000", "31475");
+		item.setAmount(20L);
+		cartService.updateAmount(item);
 	}
+
+	@Test 
+	public void getGoodsTest() {
+
+		List<CartDTO> items = new ArrayList<CartDTO>();
+		items.add(new CartDTO("test1111","31474"));
+		items.add(new CartDTO("test1111","31476"));
+		cartService.checkoutGoods(items);
+
+	}
+
 }

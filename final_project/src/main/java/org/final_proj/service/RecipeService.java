@@ -8,4 +8,5 @@ import org.final_proj.domain.SearchDTO;
 public interface RecipeService {
 	public RecipeVO getDetail(Long id);
 	public List<RecipeVO> getList();
+	public String getIngredient(Long id);
 }

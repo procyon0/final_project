@@ -11,12 +11,30 @@
     <title>Document</title>
     <script src="/resources/js/jquery-3.5.1.js" type="text/javascript"></script>
     <script src="/resources/js/youtube_module.js"></script>
+	<link rel="stylesheet" href="/resources/css/bootstrap.css">
+	<script type="text/javascript" src="/resources/js/bootstrap.js"></script>
+	<style type="text/css">
+
+#logo>h1>a{
+       text-decoration: none;
+      font-family: 'Lemonada', cursive;
+      font-size:53px;    
+      font-weight: bolder;
+       
+      }
+#menu>ul>li>a{
+      text-decoration: none;
+      }
+#login>ul>li>a{
+   text-decoration: none;
+}      
+</style>
     <script>
         $(document).ready(function () {
             var pid = '<c:out value="${pid}"></c:out>';
             var token = '<c:out value="${pageToken}"></c:out>';
             
-            var recipeUI = $('body');
+            var recipeUI = $('#video');
 
             showResult();
 
@@ -32,14 +50,13 @@
                         for (var i = 0 || 0; i < 5; i++) {
                         	str += "<a href='/video/play?vid="+data.items[i].snippet.resourceId.videoId + "'>";
                             str += "<img src='" + data.items[i].snippet.thumbnails.medium.url + "' width='240px'>";
-                            str += "<br>"
-                           	str += data.items[i].snippet.title +"</a>";
-                            str += "<hr>"
-                            
+                            str += "<br><p class='overflow-auto'>"
+                           	str += data.items[i].snippet.title +"</p></a>";
+                            str += "<hr>";
                         }
-              				str += "<a href='/video/playlistOther?pid=" +pid + "&pageToken="+ data.prevPageToken + "'><h1>←</h1></a><br>";
+              				str += "<div class='col-md-12'><a href='/video/playlistOther?pid=" +pid + "&pageToken="+ data.prevPageToken + "'><h1>←</h1></a><br></div>";
                         if(data.nextPageToken != null) {
-                        	str += "<a href='/video/playlistOther?pid=" +pid + "&pageToken="+ data.nextPageToken + "'><h1>→</h1></a><br>";
+                        	str += "<div class='col-md-12'><a href='/video/playlistOther?pid=" +pid + "&pageToken="+ data.nextPageToken + "'><h1>→</h1></a><br></div>";
                         }
                         recipeUI.html(str);
                     });
@@ -58,6 +75,10 @@
 
 <body>
     <jsp:include page="../includes/header.jsp"></jsp:include>
+    <div class="container">
+    	<div class="row" id="video">
+    	</div>
+    </div>
 </body>
 
 </html>

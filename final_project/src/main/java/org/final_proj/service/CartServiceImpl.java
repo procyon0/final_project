@@ -26,7 +26,7 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public void addToCart(CartDTO item) {
 		log.info("▶사용자\'"+ item.getUserId()+"\'의 장바구니에"
-				+ item.getGoodsId()+"를 추가합니다...................");
+				+ item.getGoodsNo()+"를 추가합니다...................");
 		mapper.add(item);
 	}
 
@@ -40,14 +40,26 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public void updateAmount(CartDTO item) {
 		log.info("▶사용자\'"+ item.getUserId() +"\'의 장바구니에서"
-				+ item.getGoodsId() +"의 개수를 " + item.getAmount() + "로 변경합니다..........");
-		mapper.update(item);
+				+ item.getGoodsNo()+"의 개수를 " + item.getAmount() + "로 변경합니다..........");
+		mapper.updateAmount(item);
 	}
 
 	@Override
 	public void getCartSum(MemberVO member) {
 		
 		
+	}
+
+	@Override
+	public CartDTO getGoods(CartDTO item) {
+		log.info(">>>> getGoods........");
+		return mapper.getGoods(item);
+	}
+
+	@Override
+	public List<CartDTO> checkoutGoods(List<CartDTO> items) {
+		log.info(">>>> checkoutGoods......");
+		return mapper.checkout(items);
 	}
 
 

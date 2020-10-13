@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.final_proj.mapper.OrderMapper">
+	<insert id="insertOrder" parameterType="java.util.List">
+		INSERT INTO final_order 
+		(orderid, userId, goodsno, amount, unitPrice, totalPrice)
+		<where>
+			<foreach collection="list" item="item" separator=",">
+				(#{orderId}, #{userId}, #{goodsNo}, #{amount}, #{unitPrice}, #{totalPrice})
+			</foreach>
+		</where>
+	</insert>
+	
+	<delete id="deleteOrderedGoods" parameterType="java.util.List">
+		DELETE FROM cart
+		<where>
+			<foreach collection="list" item="item" separator="OR"
+				open="(" close=")">
+				(userid LIKE #{item.userId} AND goodsNo LIKE #{item.goodsNo})
+			</foreach>
+		</where>
+	</delete>
+</mapper>

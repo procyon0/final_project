@@ -4,14 +4,20 @@ import lombok.Data;
 
 @Data
 public class GoodsVO {
-
-	private String goodsId;
+	private String goodsNo;
 	private String goodsName;
-	private Long price;
+	private Integer price;
+	private String priceStr;
 	private String weight;
-	private String manufacturer;
+	private String saleUnit;
+	private String shippingType;
 	private String category;
-	private Long stock;
-	private String image;
-	private String ex;
+	private String thumbImgUrl;
+	private String shortEx;
+	private String longEx;
+	private String goodsIntroImgUrl;
+	private String ckPointImgUrl;
+	private String goodsPickImgUrl;
+	private String goodsDetailImgUrl;
+
 }

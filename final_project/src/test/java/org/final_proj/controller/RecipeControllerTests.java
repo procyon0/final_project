@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -18,8 +19,10 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
-		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
+		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
+		"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 @Log4j
+@EnableWebSecurity
 public class RecipeControllerTests {
 	@Setter(onMethod_ = {@Autowired})
 	private WebApplicationContext wctx;
@@ -42,7 +45,7 @@ public class RecipeControllerTests {
 	@Test
 	public void testDetail() throws Exception {
 		log.info(mockMvc.perform(MockMvcRequestBuilders
-				.get("/recipe/detail").param("id", "201"))
+				.get("/recipe/detail").param("rcp_seq", "387"))
 				.andReturn()
 				.getModelAndView().getModelMap());
 	}

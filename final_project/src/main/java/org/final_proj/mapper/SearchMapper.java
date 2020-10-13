@@ -1,3 +1,5 @@
+/** 레시피 검색 결과를 출력하는 맵퍼
+ * */
 package org.final_proj.mapper;
 
 import java.util.List;

@@ -17,21 +17,24 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @AllArgsConstructor
 public class GoodsController {
-   
-   private GoodsService service;
-   
-   @GetMapping("/list")
-   public void list(Criteria cri, Model model) {
-      log.info("list" + cri);
-      //cri.setKeyword("아삭");
-      log.info("keyword" + cri.getKeyword());
-      model.addAttribute("list", service.getList(cri));
-      model.addAttribute("pageMaker", new PageDTO(cri ,9));
-   }
-      
-   @GetMapping("/detail")
-   public void detail(@RequestParam("goodsId") String goodsId, Model model) {
-      log.info("/detail");
-      model.addAttribute("detail", service.getDetail(goodsId));
-   }
+	
+	private GoodsService service;
+	
+	@GetMapping("/list")
+	public void list(Criteria cri, Model model) {
+		log.info("list" + cri);
+		//cri.setKeyword("아삭");
+		log.info("keyword" + cri.getKeyword());
+		model.addAttribute("list", service.getGoodsAll(cri));
+		model.addAttribute("list",service.getList(cri));
+		//model.addAttribute("pageMaker", new PageDTO(cri ,9));
+	}
+		
+	@GetMapping("/detail")
+	public void detail(@RequestParam("goodsNo") String goodsNo, Model model) {
+		log.info("/detail");
+		model.addAttribute("detail", service.getDetail(goodsNo));
+	
+
+	}
 }

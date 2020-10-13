@@ -5,37 +5,60 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
 
-<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-<!-- <bean id="customservice" class="org.final_proj.security.CustomUserDetailsService"/> -->
+	<bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<bean id="customUserDetailsService"
+		class="org.final_proj.service.CustomUserDetailsService" />
+	<bean id="customAuthenticationSuccessHandler"
+		class="org.final_proj.service.AuthenticationSuccessHandler">
+		<property name="loginidname" value="userId" />
+		<property name="defaultUrl" value="/secu/login" />
+	</bean>
+	<bean id="customAuthenticationFailureHandler"
+		class="org.final_proj.service.AuthenticationFailureHandler">
+		<property name="loginidname" value="userId" />
+		<property name="loginpwdname" value="userPwd" />
+		<property name="errormsgname" value="ERRORMSG" />
+		<property name="defaultFailureUrl" value="/accessError" />
+	</bean>
+	<bean id="CustomLogoutHandler"
+		class="org.final_proj.service.CustomLogoutHandler" />
+
+	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/secu/member"
+			access="hasAnyRole('MEMBER', 'ADMIN')" />
+		<security:intercept-url pattern="/admin/*"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/member/*"
+			access="permitAll" />
+		<security:intercept-url pattern="/order/*"
+			access="hasAnyRole('MEMBER', 'ADMIN')" />
+		<security:intercept-url pattern="/cart/*"
+			access="hasAnyRole('MEMBER', 'ADMIN')" />
+
+		<security:remember-me
+			data-source-ref="dataSource" token-validity-seconds="604800" />
 
 
+		<security:access-denied-handler
+			error-page="/accessError" />
+		<security:form-login login-page="/secu/login"
+			username-parameter="userId" password-parameter="userPwd"
+			authentication-success-handler-ref="customAuthenticationSuccessHandler" />
 
-<security:http auto-config="true" use-expressions="true">
-<security:intercept-url pattern="/secu/login" access="permitAll" />
-<security:intercept-url pattern="/secu/member" access="hasAnyRole('MEMBER', 'ADMIN')" />
-<security:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')" />
-<security:intercept-url pattern="/member/*" access="permitAll" />
+		<!-- authentication-failure-handler-ref="customAuthenticationFailureHandler" -->
+		<security:logout
+			success-handler-ref="CustomLogoutHandler" invalidate-session="false"
+			delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE" />
+	</security:http>
 
-<security:access-denied-handler error-page="/accessError"/>
-<security:form-login 
-			default-target-url="/index"
-			authentication-failure-url="/accessError"/>
-<security:logout logout-url="/logout"
-		invalidate-session="true"
-		logout-success-url="/"
-		delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"/>
-</security:http>
-
-														
-<security:authentication-manager>
-	<security:authentication-provider>
-	<security:jdbc-user-service data-source-ref="dataSource" id="userService"
-		users-by-username-query="select userId, userPwd, enabled from final_member where userId=?"
-		authorities-by-username-query="select userId, authority from final_auth where userId=? "
-	/>
-	<security:password-encoder ref="bcryptPasswordEncoder"/>
-	</security:authentication-provider>
-</security:authentication-manager>
+	<security:authentication-manager>
+		<security:authentication-provider
+			user-service-ref="customUserDetailsService">
+			<security:password-encoder
+				ref="bcryptPasswordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
 
 
 </beans>

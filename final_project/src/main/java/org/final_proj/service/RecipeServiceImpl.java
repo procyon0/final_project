@@ -31,5 +31,11 @@ public class RecipeServiceImpl implements RecipeService {
 		log.info("목록 불러오기---------------------------------------------------------------");
 		return mapper.getList();
 	}
+
+	@Override
+	public String getIngredient(Long id) {
+		log.info("재료 불러오기------------------------------------------------------------");
+		return mapper.getIngredient(id);
+	}
 	
 }

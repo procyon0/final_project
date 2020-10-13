@@ -19,9 +19,9 @@ public class IndexController {
 	public void home(Model model) {
 		
 	}
-	// 장바구니 페이지로 이동
-	@GetMapping("/goods/cart")
-	public void cartView(Model model) {
+	
+	@GetMapping("/searchMain")
+	public void searchMain() {
 		
 	}
 }

@@ -7,11 +7,21 @@ import org.final_proj.domain.GoodsVO;
 
 public interface GoodsService {
 
-	public List<GoodsVO> getList();
+//	public List<GoodsVO> getList();
+//	
+//	public GoodsVO getDetail(String goodsno);
+//	
+//	public List<GoodsVO> getList(Criteria cri);
+	 
+	public List<String> getGoodsNoList();
+
+	public List<GoodsVO> getGoodsAll(Criteria cri);
+
+	public void updateGoods(GoodsVO vo);
 	
-	public GoodsVO getDetail(String goodsId);
+	public GoodsVO getDetail(String goodsNo);
 	
 	public List<GoodsVO> getList(Criteria cri);
-	 
+
 }
     

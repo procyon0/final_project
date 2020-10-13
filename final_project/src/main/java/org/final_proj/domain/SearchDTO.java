@@ -1,3 +1,5 @@
+/** 검색할 검색어와 타입을 저장하는 객체
+ * */
 package org.final_proj.domain;
 
 import org.springframework.stereotype.Component;

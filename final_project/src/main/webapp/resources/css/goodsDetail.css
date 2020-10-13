@@ -1,122 +1,9 @@
 * {margin: 0; padding: 0}
 body{font-family: sans-serif;}
 li{list-style: none;}
-a{text-decoration:none; color:  seashell;}
+a{text-decoration:none; color:coral;}
 img{border: 0;}
 
-#logo_header{
-    width: 960px;
-    margin: 0 auto;
-    height: 160px;
-    position: relative;
-}
-#logo_header>#logo{
-    position: absolute;
-    left: -100px; top: 20px;
-}
-#logo{
-    font-family: 'Lemonada', cursive;
-    color : black;
-    font-size:20pt;
-}
-#logo>h1>a{
-    text-decoration: none; color:black;
-}
-#menu{
-    position: absolute;
-    top: 40px;
-    left:180px;
-    font-family: 'Nanum Gothic', sans-serif;
-
-}
-#menu>ul{
-    overflow:hidden;
-    
-}
-#menu>ul ul{
-    display: none;
-    padding:5px;
-    
-}
-#menu>ul>li>ul>li{
-    padding: 10px;
-
-}
-#menu>ul>li{
-    float:left;
-    text-align: center;
-}
-#menu ul li:hover ul{
-    display: block; 
-    position: relative;
-}
-#menu>ul>li:hover ,a:hover{
-    color: coral;
-    display: block;  
-}
-#menu>ul>li>a:hover{
-    color: coral;
-}
-#menu>ul>li>a{
-    display:block;
-    margin: 0 20px;
-    padding: 2px 10px;
-    color:black;
-    font-weight: bold;
-    font-family: 'Nanum Gothic', sans-serif;
-    font-size: 18pt;
-}
-
-#login{
-    position: absolute;
-    right: -100px; top: 40px;
-    font-size: 10pt;
-
-}
-#login>ul{
-    overflow:hidden;
-}
-#login>ul>li{
-    float:left;
-    left: 0; 
-}
-#login>ul>li>a{
-    display:block;
-    margin: 0 5px;
-    padding: 2px 10px;
-    color :black;
-}
-#search{
-
-    text-align: center;
-    padding: 100px;
-    font-family: 'Nanum Gothic', sans-serif;
-
-}
-/* input{
-    font-size: medium;
-    width:400px;
-    height: 100%;
-    padding: 10px;
-    border-radius: 50px;
-    outline: none;
-    font-family: 'Nanum Gothic', sans-serif;
-    
-}
-input:hover{
-    border-color:rgb(230, 98, 37);
-} */
-#button{
-    width:60px;
-    height: 100%;
-    padding: 10px;
-    border-radius: 50px;
-    outline: none;
-    background: rgb(230, 98, 37);
-    color: seashell;
-    border-color: rgb(230, 98, 37);
-    font-family: 'Nanum Gothic', sans-serif;
-}
 #detail_goods{
     width: 1050px;
     margin: auto;
@@ -169,9 +56,102 @@ input:hover{
    /*  word-break: break-all; */
     color: black;
 }
-.dc_price{
-	float:right;
+#get_goods{
+   width: 280px;
+    float: right;
+    text-align: center;
+/*    margin-top: 93px;
+    margin-right: 180px; */
+}
+.cart_btn{
+   font-family: 'Nanum Gothic', sans-serif;
+   height:72px;
+   width:72px;
+    color:coral;
+    border:none;
+    font-size:14px;
+    cursor:pointer;
+    font-weight: bolder;
+    background : url("https://res.kurly.com/pc/ico/1908/ico_cart_x2_v2.png") no-repeat;
+    max-width:50%;
+    /*     border-radius: 50px;
+    background-color: white;
+    border-width: thin;
+    border-color: coral;
+    border-style: solid;
+    border-radius: 5px; */
+}
+.cart_btn:hover{ 
+   border-bottom: 1px solid coral;   
+/*    border: 1px solid coral;
+   color : white; 
+   background-color : coral; */
+}
+.cart_btn:hover>a{
+   border-bottom: 1px solid coral;
+/*    border: 1px solid coral;
+   color :white;  */
+}
+#back_block{
+   width: 280px;
+    float: left;
+    text-align: center;
+}
+.back_btn{
+   font-family: 'Nanum Gothic', sans-serif;
+   height:72px;
+   width:72px;
+   font-size:14px;
+    text-align:center;
+    border:none;
+/*     border-radius: 50px;
+    background-color: white;
+    border-width: thin;
+    border-color: coral;
+    border-style: solid;
+    border-radius: 5px; */
+    color:coral;
+    cursor:pointer;
+    font-weight: bolder;
+    
+}
+.back_btn:hover{
+   border-bottom: 1px solid coral;   
+/*    border: 1px solid coral;
+   color :white; 
+   background-color : coral; */
+}
+.back_btn:hover>a{
+/*    border-bottom: 1px solid coral; */
+/*    border: 1px solid coral;
+   color :white;  */
+}
+.shortEx{
+   margin:20px;
+   font-family: 'Nanum Gothic', sans-serif;
+   font-size :30px;
+   text-align:center;
+}
+.goodsName{
+   
+   margin:30px;
+   font-family: 'Nanum Gothic', sans-serif;
+   font-size:40px;
+   color:rgba(128, 128, 128, 0.877);
+   text-align:center;
+}
+.longEx{
+   
+   margin:20px;
+   font-size:20px;
+   
+   
+}
+hr{   
+   border-top: 1px solid coral;
 }
 
-
-
+#test{
+   width: 100%;
+   background: red
+}
