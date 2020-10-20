@@ -1,4 +1,4 @@
-/** 장바구니에 있는 상품을 수정, 삭제 하는 기능을 담당하는 비동기형 컨트롤러
+/** 장바구니에 있는 상품을 수정, 삭제 하는 기능 등을 담당하는 REST 컨트롤러
  * */
 package org.final_proj.controller;
 
@@ -27,14 +27,14 @@ public class CartController {
 	// 특정 사용자의 장바구니 목록을 불러와 JSON 형식으로 보냄
 	@PostMapping(value="/list", produces="application/json;charset=UTF-8") 
 	public ResponseEntity<List<CartDTO>> getCartList(@RequestBody MemberVO member) throws Exception {
-		log.info(">>>>>> 장바구니 목록 불러오기");
+		log.info(">>>>>> 장바구니 목록 불러오기" + member.getUserId());
 		return new ResponseEntity<List<CartDTO>>(service.cartList(member), HttpStatus.OK);
 	}
 
 	// 사용자의 장바구니에 물건을 추가함
 	@PostMapping(value="/add", produces="application/json;charset=UTF-8")
 	public ResponseEntity<List<CartDTO>> addToCart(@RequestBody CartDTO item) throws Exception {
-		log.info(">>>>>> 장바구니에 물건 추가하기");
+		log.info(">>>>>> 장바구니에 물건 추가합니다....");
 		MemberVO member = new MemberVO();
 		member.setUserId(item.getUserId());
 		service.addToCart(item);
@@ -44,7 +44,7 @@ public class CartController {
 	// 사용자의 장바구니에서 물건 여러 개 삭제하기
 	@PostMapping(value="/delete", produces="application/json;charset=UTF-8")
 	public ResponseEntity<List<CartDTO>> deleteFromCart(@RequestBody List<CartDTO> items) throws Exception {
-		log.info(">>>>>> 장바구니의 물건 삭제하기");
+		log.info(">>>>>> 장바구니의 물건 삭제합니다.....");
 		MemberVO member = new MemberVO();
 		member.setUserId(items.get(0).getUserId());
 		service.deleteFromCart(items);
@@ -54,9 +54,19 @@ public class CartController {
 	// 사용자의 장바구니에 있는 물건의 개수 변경하기
 	 @PostMapping(value="/update", produces="application/json;charset=UTF-8") 
 	 public HttpStatus updateAmount(@RequestBody CartDTO item) throws Exception {
-		 	service.updateAmount(item);
-		 	return HttpStatus.OK;
+		log.info(">>>> 장바구니 물품의 개수를 변경합니다......");
+		service.updateAmount(item);
+		// 업데이트 에러 처리 나중에 하기
+		return HttpStatus.OK;
 	}
+	
+	// 변경한 장바구니 제품 출력
+	
+	  @PostMapping(value="/goods", produces = "application/json;charset=utf-8")
+	  public ResponseEntity<CartDTO> getGoods(@RequestBody CartDTO item) throws Exception { 
+		  log.info(">>>>> 장바구니의 특정 물품을 반환합니다......"); 
+		  return new ResponseEntity<CartDTO>(service.getGoods(item), HttpStatus.OK); }
+	 
 	 
 
 }

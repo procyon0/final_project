@@ -10,14 +10,14 @@ var searchService = (function() {
 		console.log(query);
 		console.log(type);
 		$.getJSON("/search/result?type=" + type +"&query=" + query,
-		function(data) {
-			if(callback) {
-				callback(data);
-			}
-		}).fail(function(xhr, status, err) {
-			if(error) {
-				error();
-			}
+			function(data) {
+				if(callback) {
+					callback(data);
+				}
+			}).fail(function(xhr, status, err) {
+				if(error) {
+					error();
+				}
 		});
 	}
 	function getKind (param, callback, error) {
@@ -65,10 +65,25 @@ var searchService = (function() {
 			}
 		});
 	}
+	// 이름+식재료 통합 검색 결과
+	function getGeneral(param, callback, error) {
+		var query = param.query;
+		$.getJSON("/search/general?query="+query,
+			function() {
+				if(callback) {
+					callback(data);
+				}
+			}).fail(function(xhr, status, error) {
+				if(error) {
+					error();
+				}
+			});
+	}
 	return {
 		getResult : getResult,
 		getFilteredResult:getFilteredResult,
 		getKind:getKind,
-		getWay:getWay
+		getWay:getWay,
+		getGeneral:getGeneral
 	};
 })();

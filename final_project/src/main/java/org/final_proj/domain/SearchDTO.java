@@ -5,9 +5,11 @@ package org.final_proj.domain;
 import org.springframework.stereotype.Component;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Component
+@NoArgsConstructor
 public class SearchDTO {
 	private String type;
 	private String query;
@@ -19,6 +21,11 @@ public class SearchDTO {
 	 * 3. 음식 종류: K
 	 */
 
+	public SearchDTO(String type, String query) {
+		this.type = type;
+		this.query = query;
+	}
+	
 	public String [] getTypeArr() {
 		return type == null? 
 				new String[] {} : type.split(""); 

@@ -6,13 +6,6 @@ import org.final_proj.domain.Criteria;
 import org.final_proj.domain.GoodsVO;
 
 public interface GoodsService {
-
-//	public List<GoodsVO> getList();
-//	
-//	public GoodsVO getDetail(String goodsno);
-//	
-//	public List<GoodsVO> getList(Criteria cri);
-	 
 	public List<String> getGoodsNoList();
 
 	public List<GoodsVO> getGoodsAll(Criteria cri);
@@ -22,6 +15,9 @@ public interface GoodsService {
 	public GoodsVO getDetail(String goodsNo);
 	
 	public List<GoodsVO> getList(Criteria cri);
+	
+	public List<GoodsVO> goodsList(String ingre);
 
+	
 }
     

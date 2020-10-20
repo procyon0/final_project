@@ -1,6 +1,7 @@
 package org.final_proj.controller;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,7 +29,9 @@ private MockMvc mockMvc;
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(wctx).build();
 	}
-	/*
-	 * @Test public void
-	 */
+
+	@Test
+	public void 대충_테스트라는_이름() {
+		
+	}
 }

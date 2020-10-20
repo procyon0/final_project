@@ -4,15 +4,26 @@ package org.final_proj.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.final_proj.domain.AuthVO;
 import org.final_proj.domain.MemberVO;
 import org.final_proj.service.MemberService;
+import org.final_proj.service.UserMailSendService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -22,39 +33,49 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class SecuController {
 	
-	private MemberService service;  
-
-	//sign up get
+	private MemberService service;
+	
+	@Autowired
+	private UserMailSendService mailsender;
+	
+	//sign up=================================================================
 	@RequestMapping(value="/member/register", method=RequestMethod.GET)
 	public void getRegister() throws Exception{
 		log.info("get register.........");
 	}
-	
-	//sign up post
-	@RequestMapping(value="/member/register", method=RequestMethod.POST)
-		public String postRegister(MemberVO vo, AuthVO auth) throws Exception{
-			log.info("post register...........");
-			List<AuthVO> authList = new ArrayList<AuthVO>();
-			vo.setAuthList(authList);
-			authList.add(auth);
-			log.info("vo :"+vo);
-			log.info("auth :"+auth);
-			service.register(vo, auth);
 
-			return "redirect:/member/registersuccess";
+	@RequestMapping(value="/member/register", method=RequestMethod.POST)
+		public String postRegister(@Valid @ModelAttribute("signup") MemberVO vo, AuthVO auth, Error errors) throws Exception{
+			log.info("post register...........");
+			int result = service.idCheck(vo);
+				try{
+					if(result == 1) {
+						return "/member/register";
+					}else if(result == 0) {
+						List<AuthVO> authList = new ArrayList<AuthVO>();
+						vo.setAuthList(authList);
+						authList.add(auth);
+						log.info("vo :"+vo);
+						log.info("auth :"+auth);
+						service.register(vo, auth);
+					}
+				}catch(Exception e) {
+						throw new RuntimeException();
+					}
+					return "redirect:/member/registersuccess";
 		}
+	
 	@RequestMapping(value="/member/registersuccess", method=RequestMethod.GET)
     public void doregister() throws Exception{
        log.info("register success");
 	}
 	
-	//=================================================================
+	//login&out=================================================================
 	@GetMapping("/secu/login")
-	public void loginInput(String error, String logout, Model model) {
+	public void loginInput(Model model, String error, String logout) {
 		log.info("login page!");
 		log.info("error: "+error);
 		log.info("logout: "+logout);
-		
 	
 		if(error != null) {
 		model.addAttribute("error", "로그인 실패");
@@ -65,23 +86,118 @@ public class SecuController {
 
 	}
 	
-	//=================================================================
-	@GetMapping("/member/findid")
+	@RequestMapping(value="/logout", method = {RequestMethod.GET, RequestMethod.POST})
+	public void dologout() {
+		log.info("logout page........");
+		
+	}
+	
+	//find=================================================================
+	@RequestMapping(value="/member/findid", method=RequestMethod.POST)
+	@ResponseBody
+	public String findidPost(@RequestParam("findName")String findname, @RequestParam("findMail")String findmail) {
+		
+		String result = service.findid(findname, findmail);
+		log.info("controller result: "+result);
+		return result;
+	}
+	
+	@RequestMapping(value="/member/findid", method=RequestMethod.GET)
 	public void dofindId() {
 		log.info("Find Id Page......");
 	}
-	@GetMapping("/member/findpwd")
-	public void dofindPwd() {
+	
+	@RequestMapping(value="/member/findpwd", method=RequestMethod.POST)
+	public String findpwdPost(@RequestParam("findId")String findid, @RequestParam("findName")String findname, @RequestParam("findMail")String findmail, HttpServletRequest request) {
+		log.info("Find Pwd Page......");
+		mailsender.findPwd(findid, findname, findmail, request);
+		
+		return "redirect:/member/sendmail";
+		
+	}
+	@RequestMapping(value="/member/sendmail", method=RequestMethod.GET)
+	public void pwdSendmail() {
+		log.info("send mail......");
+	}
+	
+	@RequestMapping(value="/member/findpwd", method=RequestMethod.GET)
+	public void postFindPwd() {
 		log.info("Find Pwd Page......");
 	}
-	//=================================================================
-	
-	
-	@GetMapping("/admin/admin")
-	public void doadmin() {
-		log.info("admin page........");
+	//check=================================================================
+	@RequestMapping(value="/member/idcheck", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public int idCheck(MemberVO vo) throws Exception{
+		int result = service.idCheck(vo);
+		return result;
 	}
 	
+	@RequestMapping(value="/member/pwdcheck", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public int pwdcheck(MemberVO vo) throws Exception{
+		int result = service.pwdCheck(vo);
+		return result;
+	}
+	
+	
+	//update=================================================================
+	@RequestMapping(value="/member/mypage", method=RequestMethod.GET)
+	public void myPageget(Model model, Authentication auth) throws Exception {
+		log.info("my info get........");
+		
+		String userId = auth.getName();
+		
+		model.addAttribute("member", service.login(userId));
+	
+		
+	}
+	
+	@RequestMapping(value="/member/mypage", method=RequestMethod.POST)
+	public String myPagepost(@ModelAttribute MemberVO vo) throws Exception {
+		log.info("my info post........");
+		service.updatemyinfo(vo);
+		
+//		ResponseEntity<String> result = null;
+//		
+//		result = new ResponseEntity<String>("success",HttpStatus.OK);
+//		return result; 
+	
+	return "redirect:/member/updatesuccess";
+	}
+	
+	@RequestMapping(value="/member/updatesuccess", method=RequestMethod.GET)
+	public void mypageSuccess() throws Exception {
+		log.info("update member info success");
+	}
+
+	//=================================================================
+	@RequestMapping(value="/member/outmember", method=RequestMethod.GET)
+    public void outMemberGet() throws Exception{
+       log.info("outmemberGet.....");
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/member/outmember", method=RequestMethod.POST)
+	public ResponseEntity<String> outMemberpost(MemberVO vo, AuthVO auth, Authentication authen, HttpSession session) throws Exception {
+		log.info("outmemberPost.....");
+		
+		ResponseEntity<String> result = null;
+		service.deleteauth(auth);
+		service.deletemember(vo);
+		
+		session.invalidate();
+		
+		result = new ResponseEntity<String>("success",HttpStatus.OK);
+		return result;
+		
+	}
+	//admin=================================================================
+	@RequestMapping(value="/admin/admin", method=RequestMethod.GET)
+	public void memberList() throws Exception {
+		log.info("member List Get");
+		
+	}
+	//=================================================================	
 	@GetMapping("/secu/member")
 	public void domember() {
 		log.info("member page........");
@@ -94,15 +210,8 @@ public class SecuController {
 		model.addAttribute("msg","Access Denied");
 	}
 	
-	@GetMapping("/secu/logout")
-	public void dologout() {
-		log.info("logout page........");
-	}
-	
 	@GetMapping("/index")
 	public void doindex() {
 		log.info("index page........");
 	}
-
-	
 }

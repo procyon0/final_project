@@ -27,4 +27,5 @@ public class RecipeVO {
 	private String manual_img07;	// 과정 7 사진
 	private String manual08;		// 과정 8
 	private String manual_img08;	// 과정 8 사진
+	private String rcp_dtls;		// 레시피 재료 검색 키워드
 }

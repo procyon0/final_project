@@ -15,7 +15,7 @@
   	]]>
 	</select>
 
-	검색페이지,tab 페이지 카테고리 구분 및 페이징처리
+	검색페이지 및 페이징처리
 	<select id="getListWithPaging"
 		resultType="org.final_proj.domain.GoodsVO">
 	  	<![CDATA[
@@ -23,13 +23,13 @@
 	  		select 	* 
 	  		from 
 	  		(
-	  		select rownum rn,goodsno,goodsName,price,weight,category,stock,thumbnail,short_ex
+	  		select rownum rn,goodsNo,goodsName,price,weight,category,shortEx
 	  		from goods 			
 	  	]]>	
 	  		<where>
 				<if test=" keyword != null and keyword != '' ">
 					goodsName like '%' || #{keyword} || '%'
-				
+					or manufacturer like '%'|| #{keyword} || '%'
 					
 				</if>		
 				<if test=" pageNum != null and pageNum != '' ">
@@ -82,6 +82,7 @@ SELECT * FROM GOODS
 	  	set 
 	  		goodsName =#{goodsName},
 	 		price =#{price},
+	 		priceStr =#{priceStr},
 	 		weight =#{weight},
 	 		saleUnit =#{saleUnit},
 	 		shippingType =#{shippingType},
@@ -97,6 +98,8 @@ SELECT * FROM GOODS
 
 </update>
 
+	  
+
 <!--  	상세페이지 조회 -->
 <select id="getDetail"
 		resultType="org.final_proj.domain.GoodsVO">
@@ -108,19 +111,44 @@ SELECT * FROM GOODS
 </select>
 
 
+<!--상품검색페이지  -->
+
 <select id="getList" resultType="org.final_proj.domain.GoodsVO">
-	<![CDATA[
-	select *
-	from
-	goods
-		]]>
-	<where>
-		<if test="keyword != null and keyword != ''">
-			goodsName like '%' ||#{keyword} ||'%'
-		</if>
-	</where>	
-		
+
+     <![CDATA[
+     
+        select   * 
+        from 
+        Goods
+      ]]>   
+        <where> 
+       		<if test=" keyword != null and keyword != '' ">
+					goodsName like '%' || #{keyword} || '%'
+    		</if>
+    	</where>
+
 </select>
+
+<select id="getRecipe" resultType="org.final_proj.domain.RecipeVO">
+	<![CDATA[
+		select * from recipe
+	
+	]]>
+	
+</select>
+
+<select id="getGoods" resultType ="org.final_proj.domain.GoodsVO">
+<![CDATA[
+	select *
+	from goods
+	where shortName like '%' || #{ingre} || '%' and category = 'S'
+	]]>
+
+	
+
+
+</select>
+
 
 	  
 

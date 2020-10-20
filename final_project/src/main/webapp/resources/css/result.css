@@ -90,7 +90,7 @@ img{border: 0;}
 #search{
 
     text-align: center;
-    /*padding: 100px;*/
+    padding: 100px;
     font-family: 'Nanum Gothic', sans-serif;
 
 }
@@ -140,11 +140,11 @@ button{
 
 #img_blo{
     
-    /*float: left;    */
+    float: left;    
 }
 #content_blo{
     height: 200px;
-    /*margin-left: 250px;*/
+    margin-left: 250px;
     font-size:15px;  
 }
 #content_blo>h2>a:hover{

@@ -4,7 +4,12 @@
  */
 package org.final_proj.controller;
 
+import java.util.List;
+
+import org.final_proj.domain.GoodsVO;
+import org.final_proj.domain.RecipeVO;
 import org.final_proj.domain.SearchDTO;
+import org.final_proj.service.GoodsService;
 import org.final_proj.service.RecipeService;
 
 import org.springframework.stereotype.Controller;
@@ -23,41 +28,37 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class RecipeController {
 	private RecipeService service;
-
-	// **검색 결과를 표시함
-	// 파라미터 전달 받아야함
-	// 리다이렉트할 게 없으므로 void임
+	private GoodsService gService;
 	
-	
-	// 레시피의 상세 정보를 출력함
-	// pathvariable로 바꿀 것
-	@GetMapping("/detail")
-	public void getDetail(@RequestParam Long rcp_seq, Model model) {
-		log.info("detail-id: " + rcp_seq + "----------------------------------");
-		model.addAttribute("recipe", service.getDetail(rcp_seq));
-		model.addAttribute("rcp_parts_dtls", service.getIngredient(rcp_seq));
+	// 레시피 검색 메인 페이지로 이동
+	@GetMapping("/main")
+	public void goMain(Model model) {
+		log.info(">>>> 레시피 검색 메인 페이지.........");
+		model.addAttribute("query", "");
+		model.addAttribute("type", "");
+		model.addAttribute("search", "");
 	}
 	
-	// 검색 페이지를 출력하고 검색어를 searchController로 넘김
+	// 레시피의 상세 정보를 출력함
+	@GetMapping("/detail")
+	public void getDetail(@RequestParam Long rcp_seq, Model model) {
+		log.info(">>>> "+ rcp_seq + "번 레시피의 상세 정보를 출력함.........");
+		RecipeVO vo = service.getDetail(rcp_seq);
+		model.addAttribute("recipe", vo);
+		String ingre = vo.getRcp_dtls();
+		List<GoodsVO> gList = gService.goodsList(ingre); // 
+		log.info("상품이름: "+gList);
+		model.addAttribute("gList",gList);
+		//log.info("상품이름: "+gList.get(0).getGoodsName());
+	}
+	
+	// 검색 결과 페이지를 출력함
 	@GetMapping("/search")
 	public void getSearch(@RequestParam("type") String type, @RequestParam("query") String query, Model model) {
-		log.info("검색 - 타입: " + type + "검색어: " + query);
-		SearchDTO search = new SearchDTO();
-		search.setQuery(query);
-		search.setType(type);
+		log.info(">>>> 조건: " + type + ", 검색어: " + query + "의 검색 결과.........");
+		SearchDTO search = new SearchDTO(type, query);
 		model.addAttribute("query", query);
 		model.addAttribute("type", type);
 		model.addAttribute("search", search);
 	}
-	
-	// 상품 추천 시스템 테스트용 메소드
-	@RequestMapping("/recTest")
-	public void recommendTest(@RequestParam("rcp_seq") Long rcp_seq, Model model) {
-		// 재료 출력
-		log.info("●테스트용 : "+rcp_seq + "번 출력----------------------------------------");
-		String ingredient = service.getDetail(rcp_seq).getRcp_parts_dtls();
-		model.addAttribute("ingredient", ingredient);
-	}
-	
-
 }

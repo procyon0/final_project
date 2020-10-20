@@ -8,6 +8,6 @@
 </head>
 <body>
 admin page
-<a href="../logout">로그아웃</a>
+
 </body>
 </html>

@@ -25,7 +25,7 @@ public class VideoController {
 	private VideoService service;
 	
 	// 요리비책(동영상) 페이지로 넘어감
-	@GetMapping("/channels")
+	@GetMapping("/main")
 	public void channelPage(Model model) {
 		List<ChannelVO> cList = service.getChannel();
 		model.addAttribute("cList", cList);
@@ -51,4 +51,11 @@ public class VideoController {
 		model.addAttribute("vid", vid);
 		
 	}
+	
+	// 유튜브 검색 결과 페이지
+	@GetMapping("/search")
+	public void getSearchResult(@RequestParam("query")String query, Model model) {
+		model.addAttribute("query", query);
+	}
+	
 }

@@ -51,9 +51,7 @@
 		<where>
 			<foreach collection="list" item="item" separator="OR"
 				open="(" close=")">
-				(userid LIKE #{item.userId}
-				AND goodsNo LIKE
-				#{item.goodsNo})
+				(userid LIKE #{item.userId} AND goodsNo LIKE #{item.goodsNo})
 			</foreach>
 		</where>
 	</delete>
@@ -69,10 +67,9 @@
 
 	<select id="getGoods" resultMap="cart">
 		SELECT g.goodsNo "goodsNo",
-		c.totalprice "totalPrice"
+		c.totalprice "totalPrice", c.amount "amount"
 		FROM cart c, final_member m , goods g
-		WHERE
-		c.userid = m.userid AND g.goodsNo=c.goodsNo
+		WHERE c.userid = m.userid AND g.goodsNo=c.goodsNo
 		AND c.userid LIKE #{userId}
 		AND g.goodsNo LIKE #{goodsNo}
 	</select>
@@ -84,9 +81,8 @@
 	</select>
 
 	<select id="checkout" resultMap="cart">
-		SELECT g.goodsNo "goodsNo", g.goodsName "goodsName", g.thumbImgUrl "thumbImgUrl",
-		c.amount
-		"amount", c.unitPrice "unitPrice" ,c.totalprice "totalPrice"
+		SELECT 	g.goodsNo "goodsNo", g.goodsName "goodsName", g.thumbImgUrl "thumbImgUrl", c.amount "amount",
+				c.unitPrice "unitPrice" ,c.totalprice "totalPrice", c.userId "userId"
 		FROM cart c, goods g
 		<where>
 			<foreach collection="list" item="item" separator="OR" >

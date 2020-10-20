@@ -1,0 +1,34 @@
+@charset "UTF-8";
+* {margin: 0; padding: 0}
+body{font-family: sans-serif;}
+li{list-style: none;}
+a{text-decoration: none;}
+img{border: 0;}
+#logo>h1>a {
+	font-weight: 400;
+	font-size: 36px;
+}
+#title {
+	background-color: white!important;
+}
+
+#divider {
+	border-color: #DDDDDD;
+	border-style: 2px;
+}
+
+#tfoot {
+	color: coral;
+}
+#continue {
+	background: white;
+	border: coral solid 1px!important;
+	color: coral;
+}
+#history {
+	background: coral!important;
+	color: white!important;
+}
+.hover-coral:hover {
+	color: coral;
+}

@@ -20,14 +20,6 @@ public class SearchServiceTests {
 	private SearchService service;
 	
 	@Test
-	public void testSearchResult() {
-		SearchDTO query = new SearchDTO();
-		query.setQuery("후식");
-		query.setType("K");
-		service.getSearch(query).forEach(result -> log.info(result));
-	}
-	
-	@Test
 	public void testSearchWay() {
 		SearchDTO query = new SearchDTO();
 		query.setQuery("당근");
@@ -37,9 +29,7 @@ public class SearchServiceTests {
 	
 	@Test
 	public void testSearchKind() {
-		SearchDTO query = new SearchDTO();
-		query.setQuery("당근");
-		query.setType("I");
+		SearchDTO query = new SearchDTO("I", "당근");
 		service.searchKind(query).forEach(result -> log.info(result));
 	}
 	

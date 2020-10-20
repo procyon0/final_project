@@ -1,5 +1,6 @@
 package org.final_proj.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.final_proj.domain.Criteria;
@@ -45,30 +46,25 @@ public class GoodsServiceImpl implements GoodsService {
 	public List<GoodsVO> getList(Criteria cri) {
 		return mapper.getList(cri);
 	}
-
 	
-	
-	
-	
-	
-	
-	
-//	@Override
-//	public List<String> getGoodsNoList() {
-//		return mapper.getGoodsNoList();
-//	}
-//
-//	@Override
-//	public List<GoodsVO> getGoodsAll() {
-//		return mapper.getGoodsAll();
-//	}
-//
-//	@Override
-//	public void updateGoods(GoodsVO vo) {
-//		mapper.updateGoods(vo);
-//		
-//	}
-//	
+	//ingre를 쪼개서  넣어서  상품정보를 가져와서(가격이름 등등) 하나에 다 모아서  List<GoodsVO> 담아둔다.
+	@Override
+	public List<GoodsVO> goodsList(String ingre) {
+		log.info("상품재료:"+ingre);
+		String [] goodsNameList = ingre.split(",");
+		List <GoodsVO> goodsList= new ArrayList<GoodsVO>();
+		for(String goodsName:goodsNameList) {
+			GoodsVO vo = new GoodsVO();
+		//	log.info("상품이름: "+goodsName.trim()); 
+			vo = mapper.getGoods(goodsName.trim()); // 공백제거를 위해
+			if(vo !=null) {
+				goodsList.add(vo); 	// vo(GoodsVO)를 goodsList에 추가
+				//log.info("상품이름: "+vo.getGoodsName()); 
+			}
+			
+		}
+		return goodsList;
+	}
 
 
 

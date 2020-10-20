@@ -24,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		//userName means userid
 		MemberVO member = memberMapper.read(userName);
 		log.info("queried by member mapper: "+ member);
-		log.info("■■■■■사용자 아이디: " + member);
+		log.info("사용자 아이디: " + member);
 		
 		if(member == null) {
 			// 나중에 에러처리 해야할 듯

@@ -14,7 +14,8 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
+"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 @Log4j
 public class SearchMapperTests {
 	@Setter(onMethod_ = @Autowired)
@@ -23,11 +24,11 @@ public class SearchMapperTests {
 	@Test
 	public void testSearchRecipe() {
 		SearchDTO query = new SearchDTO();
-		query.setQuery("당근");
-		query.setType("I");
+		query.setQuery("감자");
+		query.setType("N");
 		List <RecipeVO> l = mapper.getResult(query);
 		
-		l.forEach(r -> log.info(r));
+		l.forEach(r -> log.info("@@@@@@	" + r));
 	}
 	
 	@Test

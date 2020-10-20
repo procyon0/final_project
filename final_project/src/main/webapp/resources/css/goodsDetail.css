@@ -1,7 +1,7 @@
 * {margin: 0; padding: 0}
 body{font-family: sans-serif;}
 li{list-style: none;}
-a{text-decoration:none; color:coral;}
+a{text-decoration:none; color:black;}
 img{border: 0;}
 
 #detail_goods{
@@ -57,101 +57,90 @@ img{border: 0;}
     color: black;
 }
 #get_goods{
-   width: 280px;
-    float: right;
-    text-align: center;
-/*    margin-top: 93px;
-    margin-right: 180px; */
+	width: 280px;
+    float: left;
+   /*  text-align: center; */
+
 }
 .cart_btn{
-   font-family: 'Nanum Gothic', sans-serif;
-   height:72px;
-   width:72px;
-    color:coral;
-    border:none;
+	font-family: 'Nanum Gothic', sans-serif;
+	height:80px;
+	width:150px;
+    border:solid 1px coral;
+    text-align:center;
     font-size:14px;
     cursor:pointer;
     font-weight: bolder;
-    background : url("https://res.kurly.com/pc/ico/1908/ico_cart_x2_v2.png") no-repeat;
     max-width:50%;
-    /*     border-radius: 50px;
     background-color: white;
-    border-width: thin;
-    border-color: coral;
-    border-style: solid;
-    border-radius: 5px; */
 }
 .cart_btn:hover{ 
-   border-bottom: 1px solid coral;   
-/*    border: 1px solid coral;
-   color : white; 
-   background-color : coral; */
+	
+	background-color: coral;
+	color:white;
 }
 .cart_btn:hover>a{
-   border-bottom: 1px solid coral;
-/*    border: 1px solid coral;
-   color :white;  */
+	background-color: white;
+
 }
 #back_block{
-   width: 280px;
+	width: 280px;
     float: left;
     text-align: center;
 }
 .back_btn{
-   font-family: 'Nanum Gothic', sans-serif;
-   height:72px;
-   width:72px;
-   font-size:14px;
+	font-family: 'Nanum Gothic', sans-serif;
+	height:80px;
+	width:150px;
+	font-size:14px;
     text-align:center;
-    border:none;
-/*     border-radius: 50px;
+   	border:solid 1px coral;
     background-color: white;
-    border-width: thin;
-    border-color: coral;
-    border-style: solid;
-    border-radius: 5px; */
-    color:coral;
     cursor:pointer;
     font-weight: bolder;
     
 }
 .back_btn:hover{
-   border-bottom: 1px solid coral;   
-/*    border: 1px solid coral;
-   color :white; 
-   background-color : coral; */
+	background-color: coral;
+	border:none;
+	color:white;
 }
 .back_btn:hover>a{
-/*    border-bottom: 1px solid coral; */
-/*    border: 1px solid coral;
-   color :white;  */
+	background-color: coral;
+	border:none;
+	color:white;
+}
+
+.back_btn:hover>a{
+	background-color: coral;
+	
 }
 .shortEx{
-   margin:20px;
-   font-family: 'Nanum Gothic', sans-serif;
-   font-size :30px;
-   text-align:center;
+	margin:20px;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size :30px;
+	text-align:center;
 }
 .goodsName{
-   
-   margin:30px;
-   font-family: 'Nanum Gothic', sans-serif;
-   font-size:40px;
-   color:rgba(128, 128, 128, 0.877);
-   text-align:center;
+	
+	margin:30px;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size:40px;
+	color:rgba(128, 128, 128, 0.877);
+	text-align:center;
 }
 .longEx{
-   
-   margin:20px;
-   font-size:20px;
-   
-   
+	
+	margin:20px;
+	font-size:20px;
+	
+	
 }
-hr{   
-   border-top: 1px solid coral;
+hr{	
+	border-top: 1px solid coral;
 }
 
 #test{
-   width: 100%;
-   background: red
+	width: 100%;
+	background: red
 }

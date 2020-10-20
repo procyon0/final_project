@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>푸터</title>
 </head>
 <body>
-
+	<div class="container text-center">
+		<a href="#logo"><img src="/resources/img/top_arrow.png" width="10px">맨 위로</a>
+	</div>
 </body>
 </html>

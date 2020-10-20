@@ -4,13 +4,10 @@ body{font-family: sans-serif;}
 li{list-style: none;}
 a{text-decoration: none;}
 img{border: 0;}
-
-#logo>h1>a{
-       text-decoration: none;
-      font-family: 'Lemonada', cursive;
-      font-size:53px;    
-      font-weight: bolder;
-      }
+#logo>h1>a {
+	font-weight: 400;
+	font-size: 36px;
+}
 #menu>ul>li>a{
       text-decoration: none;
       }

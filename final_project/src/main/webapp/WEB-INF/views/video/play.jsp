@@ -6,30 +6,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>동영상 재생</title>
 <script src="/resources/js/jquery-3.5.1.js" type="text/javascript"></script>
 <script src="/resources/js/youtube_module.js"></script>
 <script type="text/javascript" src="/resources/js/recommend_module.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@500&display=swap" rel="stylesheet"> 
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Lemonada:wght@500&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap"
+	rel="stylesheet">
+<script type="text/javascript" src="/resources/js/bootstrap.js"></script>
+<link rel="stylesheet" href="/resources/css/bootstrap.css">
 <link rel="stylesheet" href="/resources/css/play.css">
-<style type="text/css">
-
-#logo>h1>a{
-       text-decoration: none;
-      font-family: 'Lemonada', cursive;
-      font-size:53px;    
-      font-weight: bolder;
-       
-      }
-#menu>ul>li>a{
-      text-decoration: none;
-      }
-#login>ul>li>a{
-   text-decoration: none;
-}      
-</style>
 <script>
 $(document).ready(function () {
     var vidValue = '<c:out value="${vid}"></c:out>';
@@ -43,32 +32,29 @@ $(document).ready(function () {
     /**************************/
     showVideoDetailInfo();
     var descValue = showVideoDetail();
-	showYoutubeIngre(descValue);
+	//showYoutubeIngre(descValue);
 	/**************************/
 	
 	function showVideoDetailInfo() {
-        youtubeService.getVideoDetail(
-            { vid: vidValue },
-            function (data) {
+        youtubeService.getVideoDetail({ vid: vidValue },
+        	function (data) {
                 var str = "";
                 if (data == null || data.length == 0) {
                     videoUI.html("");
                     return;
                 }
-                	str += '<iframe id="video" width="960" height="540" src="https://www.youtube.com/embed/' + vidValue + '" frameborder="0" ';
-                	str += 'allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-                   	str += "<h3 id='title'>"+data.items[0].snippet.title+"</h3>";
-                   	str += "<small id='date'>"+data.items[0].snippet.publishedAt+"<hr id='divider'></small>";
-                    str += "<div class='container'><div id='description'>";
-                    str += data.items[0].snippet.description;
-                    // 현재 날짜와 시간이 동시에 나옴. 날짜만 나오도록 문자열을 수정할 필요가 있음
-                    str += "</div></div>";
+                str += '<iframe id="video" width="960" height="540" src="https://www.youtube.com/embed/' + vidValue + '" frameborder="0" ';
+                str += 'allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                str += "<h3 id='title'>"+data.items[0].snippet.title+"</h3>";
+                str += "<div class='container'><details id='description' class='overflow-auto'>";
+                str += "<p>" + data.items[0].snippet.description + "</p>";
+                str += "</details></div>";
  
                 videoUI.html(str);
             });
     }
 	
-	function showVideoDetail() {
+	/* function showVideoDetail() {
 		
         youtubeService.getVideoDetail(
             { vid: vidValue },
@@ -88,7 +74,7 @@ $(document).ready(function () {
                 // 현재 날짜와 시간이 동시에 나옴. 날짜만 나오도록 문자열을 수정할 필요가 있음
                 str += "</div></div>";
                 descDiv.html(str);
-                showYoutubeIngre(data.items[0].snippet.description);
+                //showYoutubeIngre(data.items[0].snippet.description);
             });
     }
 	
@@ -119,7 +105,7 @@ $(document).ready(function () {
 			}
 			youtubeDiv.html(result);
 		});
-	}
+	} */
 });
 </script>
 </head>
@@ -127,17 +113,13 @@ $(document).ready(function () {
 
 	<jsp:include page="../includes/header.jsp"></jsp:include>
 	<!-- 유튜브 동영상 페이지 본문 -->
-	<div class="container">
-		<div id="vid"></div>
+	<div class="jumbotron" id="bg">
+		<div class="container justify-content-center">
+			<div id="vid"></div>
+			<hr id="divider">
+		</div>
 	</div>
 	<div class="container"></div>
-	<hr>
-	<h3>추천 상품</h3>
-	<div id="youtubeRec">
-		
-	</div>
-	<div id="footer-nav">
-		<!-- 푸터가 들어갈 자리 -->
-	</div>
+	<jsp:include page="../includes/footer.jsp"></jsp:include>
 </body>
 </html>

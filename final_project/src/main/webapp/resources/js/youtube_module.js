@@ -14,7 +14,7 @@ var youtubeService = (function() {
 		var part = "snippet";
 		//var playlistName = param.playlistName;
 		$.getJSON("https://www.googleapis.com/youtube/v3/playlistItems?part="+part+"&playlistId="
-					+playlistId+"&key="+key, 
+					+playlistId+"&key="+key + "&maxResults=12", 
 			function(data) {
 				if(callback) {
 					callback(data);
@@ -43,7 +43,7 @@ var youtubeService = (function() {
 			}).fail(function(xhr, status, err) {
 				if(error) {
 					error();
-				}
+			}
 		});
     }
 	// ****유튜브에서 동영상의 정보를 가져오는 함수****
@@ -64,9 +64,44 @@ var youtubeService = (function() {
 				}
 			});
 	}
+	//****유튜브에서 검색 결과를 가져오는 함수****
+	function search(param, callback, error) {
+		var q = param.query;
+		var key = "AIzaSyBxTQh0vv3IGHD1PUzHlmxkuJmkf9vYmDw";
+		var part = "snippet";
+		$.getJSON("https://www.googleapis.com/youtube/v3/search?key="+key+"&part="+part+"&q="+q+"&type=video&maxResults=4",
+			function(data) {
+				if(callback) {
+					console.log(q + "의 검색 결과");
+					callback(data);
+				}
+			}).fail(function() {
+				alert("에러 발생");
+			});
+	}
+	// ****유튜브 검색 결과 중에서 이전, 다음 페이지를 가져오는 함수****
+	// 매개 변수 : 검색어(q),페이지 토큰(pageToken, 유튜브 제공)
+	function otherPages(param, callback, error) {
+		var q = param.query;
+		var page = param.token;
+		var key = "AIzaSyBxTQh0vv3IGHD1PUzHlmxkuJmkf9vYmDw";
+		var part = "snippet";
+		$.getJSON("https://www.googleapis.com/youtube/v3/search?key="+key+"&part="+part+"&q="+q+
+		"&type=video&maxResults=4" + "&pageToken=" + page,
+			function(data) {
+				if(callback) {
+					console.log(q + "의 검색 결과");
+					callback(data);
+				}
+			}).fail(function() {
+				alert("에러 발생");
+			});
+	}
 	return {
 		getPlaylist:getPlaylist,
 		getPlaylistOther:getPlaylistOther,
-		getVideoDetail:getVideoDetail
+		getVideoDetail:getVideoDetail,
+		search:search,
+		otherPages:otherPages
 	}
 })();

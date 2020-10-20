@@ -14,13 +14,13 @@
 <div class="wrap_box">
 <div class="box">
 <h3>비밀번호 찾기</h3>
-<form action="/findid" method="post">
+<form action="/member/findpwd" method="post">
 <label>이름</label><p>
-<input type="text" id="userId" name="userId" placeholder="고객님의 이름을 입력해주세요"/><p>
+<input type="text" id="findName" name="findName" placeholder="고객님의 이름을 입력해주세요"/><p>
 <label>아이디</label><p>
-<input type="text" id="userId" name="userId" placeholder="고객님의 아이디를 입력해주세요"/><p>
+<input type="text" id="findId" name="findId" placeholder="고객님의 아이디를 입력해주세요"/><p>
 <label>이메일</label><p>
-<input type="text" id="mailaddress" name="mailaddress" placeholder="가입시 등록하신 이메일주소를 입력해주세요" /><p>
+<input type="text" id="findMail" name="findMail" placeholder="가입시 등록하신 이메일주소를 입력해주세요" /><p>
 <input type="submit" value="찾기"/>
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
