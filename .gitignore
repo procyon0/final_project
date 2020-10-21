@@ -1,2 +1,5 @@
 final_project/src/main/webapp/resources/img/*.jpg
-final_project/src/main/webapp/WEB-INF/spring/*.xml
+final_project/src/main/webapp/resources/img/*.png
+final_project/src/main/webapp/WEB-INF/spring/*
+*.png
+*.jpg
