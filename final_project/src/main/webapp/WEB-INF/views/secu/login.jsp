@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Login page</title>
 <link href="${path}/resources/css/logincss.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 </head>
 <script>
 function moveRegister(){

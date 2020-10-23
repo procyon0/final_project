@@ -3,6 +3,7 @@ package org.final_proj.controller;
 import org.final_proj.domain.Criteria;
 import org.final_proj.domain.PageDTO;
 import org.final_proj.service.GoodsService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ public class GoodsController {
 	
 	private GoodsService service;
 	
+	
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
 		log.info("list" + cri);
@@ -29,7 +31,8 @@ public class GoodsController {
 		model.addAttribute("list",service.getList(cri));
 		//model.addAttribute("pageMaker", new PageDTO(cri ,9));
 	}
-		
+	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/detail")
 	public void detail(@RequestParam("goodsNo") String goodsNo, Model model) {
 		log.info("/detail");

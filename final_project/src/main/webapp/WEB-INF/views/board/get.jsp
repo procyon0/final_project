@@ -105,6 +105,10 @@ tr>td>a:hover{
 .box{
 	margin:165px;
 }
+.h1{
+	font-weight:bolder;
+	font-size:56px;
+}
 
 </style>
 <body>
@@ -152,14 +156,12 @@ tr>td>a:hover{
 						
 						<sec:authorize access="isAuthenticated()">
 						
-						<c:if test="${pinfo.username eq board.writer}">
-						
-							<button data-oper='modify' class="btn btn-default" type="submit">Modify</button>
-							
-						</c:if>
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<button data-oper='modify' class="btn btn-default" type="submit">수정하기</button>
+						</sec:authorize>
 		
 						</sec:authorize>
-						<button data-oper='list' class="btn btn-info" type="submit">List</button>
+						<button data-oper='list' class="btn btn-info" type="submit">목록으로</button>
 
 					<form id='operForm' action="/board/modify" method="get">
 						<input type="hidden" id='bno' name='bno'
@@ -182,13 +184,14 @@ tr>td>a:hover{
 		<!--end panel body  -->
 	</div>
 	<!--/.row  -->
-	
-	<div class="row center-block">
+
+<!--파일첨부보여지는곳  -->	
+<!-- 	<div class="row center-block">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 			
 			<div class="panel-heading">Files</div>
-			<!-- /.panel-heading -->
+			/.panel-heading
 			<div class="panel-body">
 			
 			<div class="uploadResult">
@@ -196,12 +199,12 @@ tr>td>a:hover{
 				</ul>
 			</div>
 		</div>
-		<!--end panel-body  -->
+		end panel-body 
 		</div>
-	<!--end panel-body  -->
+	end panel-body 
 	</div>
-	<!--end panel  -->
-</div>
+	end panel 
+</div> -->
 <!--/.row  -->
 	
 	

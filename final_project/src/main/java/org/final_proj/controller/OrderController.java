@@ -11,6 +11,7 @@ import org.final_proj.domain.OrderVO;
 import org.final_proj.mapper.OrderMapper;
 import org.final_proj.service.CartService;
 import org.final_proj.service.OrderService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,12 +35,14 @@ public class OrderController {
 	private OrderService orderService;
 
 	// 장바구니 페이지로 이동함
+	@PreAuthorize("isAuthenticated()")    
 	@GetMapping("/cart")
 	public void toList(Model model) throws Exception {
 		log.info(">>>> 장바구니");
 	}
 
 	// 주문 결제 페이지로 이동함
+	@PreAuthorize("isAuthenticated()")    
 	@PostMapping("/checkout")
 	public void toCheckout(@RequestParam("items") List<String> items, @AuthenticationPrincipal MemberVO member,
 			Model model) {
@@ -60,6 +63,7 @@ public class OrderController {
 	}
 
 	// 결제 완료 페이지로 이동함
+	@PreAuthorize("isAuthenticated()")    
 	@PostMapping("/completed")
 	public void toCompleted(@RequestParam("items") List<String> items,
 			@AuthenticationPrincipal MemberVO member, Model model) {
@@ -93,6 +97,7 @@ public class OrderController {
 	}
 
 	// 주문 조회 페이지로 이동함
+	@PreAuthorize("isAuthenticated()")    
 	@GetMapping("/history")
 	public void toOrderHistory(@AuthenticationPrincipal Principal principal, Model model) {
 		log.info(">>>> 주문 내역 페이지");
@@ -102,8 +107,9 @@ public class OrderController {
 	}
 
 	// 주문 상세 페이지로 이동함
+	@PreAuthorize("isAuthenticated()")    
 	@GetMapping("/detail")
-	public void toDetail(@RequestParam("orderId") Long orderId, @AuthenticationPrincipal MemberVO member, Model model) {
+	public void toDetail(@RequestParam("orderI.0d") Long orderId, @AuthenticationPrincipal MemberVO member, Model model) {
 		log.info(">>>> 주문 내역 상세 페이지");
 		log.info(">>>>>>>> 주문 번호: " + orderId);
 		log.info("주문 내역: " +  orderService.getDetail(orderId));

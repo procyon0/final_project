@@ -107,11 +107,24 @@ img{border: 0;}
 }
 
 </style>
+<script>
+function logoutcheck(){
+   
+   var result = confirm("로그아웃 하시겠습니까?");
+   
+   if(result){
+      document.getElementById('logout-form').submit();
+   }else{
+      
+   }
+}
+</script>
 </head>
 <body>
+
     <header id="logo_header">
         <div id="logo">
-            <h1><a href="/">레시피슈퍼</a></h1>
+            <a href="/"><img src="/resources/img/logo.png"></a>
         </div>
         <nav id="menu">
             <ul>

@@ -7,18 +7,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text-html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<!-- <script>
+<title>Error</title>
+<script>
 alert("권한이 없습니다. 관리자에게 문의해주세요");
 history.go(-1);
-</script> -->
-
-
-<h1>Access Denied Page</h1>
-<h2><c:out value="${SPRING_SECURITY_403_EXCEPTION.getMessage()}"/></h2>
-<h3><c:out value="${msg}"/></h3>
-
-
+</script>
+</head>
+<body>
+</body>
 </html>

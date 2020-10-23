@@ -9,8 +9,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Register page</title>
+<title>My Info</title>
 <link href="${path}/resources/css/mypage.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 </head>
 <script>
 	function moveDelete(){
@@ -25,7 +26,7 @@
 				success:function(result){
 					if(result=='success'){
 						alert("탈퇴되었습니다.");
-						location.href="/index";
+						location.href="/";
 					}else{
 						alert("관리자에게 문의해주세요.");
 					}
@@ -144,7 +145,7 @@
 </script>
 <style>
 .bt1{
-	border-bottom:0.1px solid black;
+	border-bottom:0.1px solid lightgray;
 }
 </style>
 <body>
@@ -186,16 +187,17 @@
 						<td align="center"><input type="text" name="address" id="address" value="${member.address}"/>
 						</td>
 					</tr>
-					<tr>
+<!-- 					<tr>
 						<th align="center"></th>
 						<td align="center">
 						<input type="submit" value="정보수정" id="update_btn" name="update_btn"/>
 						<button type="button" onclick="moveDelete();">회원탈퇴</button>
 						</td>
-					</tr>
+					</tr> -->
+					<tr><td><button type="button" onclick="moveDelete();">회원탈퇴</button></td>
+					<td align="right"><input type="submit" value="정보수정" id="update_btn" name="update_btn"/></td>
 				</table>
-
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			</form>
 		</div>
 	</div>

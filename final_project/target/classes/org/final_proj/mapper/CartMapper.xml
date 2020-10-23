@@ -29,12 +29,7 @@
 
 	<!-- 사용자의 카트에 제품을 등록함 -->
 	<insert id="add">
-		INSERT INTO cart (userId, goodsNo, amount, unitPrice,
-		totalPrice)
-		VALUES (#{userId}, #{goodsNo}, #{amount} , (SELECT price
-		FROM goods WHERE goodsNo LIKE #{goodsNo}),
-		(SELECT price * #{amount}
-		FROM goods WHERE goodsNo LIKE #{goodsNo}))
+		CALL my_cart_proc(#{userId}, #{goodsNo}, #{amount})
 	</insert>
 
 	<!-- 사용자 한 명의 장바구니의 전체 가격을 구함 -->

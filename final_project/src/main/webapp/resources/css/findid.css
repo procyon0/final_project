@@ -14,13 +14,14 @@ a:visited{color:black;}
 .box{
     position: relative;
     top:-10%;
-    left:35%;
+    left:30%;
 }
 
 h3{
     font-size:25px;
     margin-bottom: 7%;
-    margin-left: 11%;
+    margin-left: 10%;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 input[type="text"]{
@@ -34,6 +35,7 @@ input[type="text"]{
         font-size: 14px;
         cursor:text;
         margin-bottom:10px;
+        font-family: 'Nanum Gothic', sans-serif;
         
 }
 input[type="submit"]{
@@ -48,12 +50,14 @@ input[type="submit"]{
     font-weight: bolder;
     margin-top:20px;
     margin-bottom:10px;
+    font-family: 'Nanum Gothic', sans-serif;
 	
 }
 
 label{
 	font-size:13px;
 	padding:10px;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 input:focus { 

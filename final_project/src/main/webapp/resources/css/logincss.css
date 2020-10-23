@@ -19,11 +19,13 @@ a:visited{color:black;}
 .remember{
 	position:relative;
 	font-size:12px;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 h3{
     font-size:25px;
     margin-bottom: 7%;
     margin-left: 14%;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 .findid{
@@ -34,6 +36,7 @@ h3{
     top:-17px;
     left:21%;
     margin-bottom:3px;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 .findid:hover{
 	text-decoration:underline;
@@ -49,6 +52,7 @@ h3{
     top:-34px;
     left:27%;
     padding:4px;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 input[type="text"], [type="password"]{
@@ -62,6 +66,7 @@ input[type="text"], [type="password"]{
         font-size: 14px;
         cursor:text;
         margin-bottom:10px;
+        font-family: 'Nanum Gothic', sans-serif;
         
 }
 input[type="submit"]{
@@ -75,6 +80,7 @@ input[type="submit"]{
     cursor:pointer;
     font-weight: bolder;
     margin-bottom:10px;
+    font-family: 'Nanum Gothic', sans-serif;
 	
 }
 button[type="button"]{
@@ -91,6 +97,7 @@ button[type="button"]{
     font-weight: bolder;
     margin-top:10px;
     margin-bottom:10px;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 input:focus { 

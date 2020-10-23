@@ -10,14 +10,13 @@
 <script src="/resources/js/jquery-3.5.1.js" type="text/javascript"></script>
 <script src="/resources/js/youtube_module.js"></script>
 <script type="text/javascript" src="/resources/js/recommend_module.js"></script>
-<link
-	href="https://fonts.googleapis.com/css2?family=Lemonada:wght@500&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/bootstrap.js"></script>
+<script type="text/javascript" src="/resources/slick/slick.js"></script>
 <link rel="stylesheet" href="/resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/resources/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="/resources/slick/slick-theme.css"/>
 <link rel="stylesheet" href="/resources/css/play.css">
 <script>
 $(document).ready(function () {
@@ -27,13 +26,11 @@ $(document).ready(function () {
  	// 유튜브의 동영상 설명
 	var descDiv = $("#youtubeDesc");
 	// 유튜브 추천 상품을 출력할 곳 설정
-	var youtubeDiv = $("#youtubeRec");
-    
-    /**************************/
-    showVideoDetailInfo();
+	var youtubeDiv = $("#rec");
+  	
+    showVideoDetailInfo();		// 유튜브 아래 설명 출력
     var descValue = showVideoDetail();
-	//showYoutubeIngre(descValue);
-	/**************************/
+	showYoutubeIngre(descValue);		// 추천 상품 출력
 	
 	function showVideoDetailInfo() {
         youtubeService.getVideoDetail({ vid: vidValue },
@@ -54,7 +51,7 @@ $(document).ready(function () {
             });
     }
 	
-	/* function showVideoDetail() {
+	function showVideoDetail() {
 		
         youtubeService.getVideoDetail(
             { vid: vidValue },
@@ -74,7 +71,7 @@ $(document).ready(function () {
                 // 현재 날짜와 시간이 동시에 나옴. 날짜만 나오도록 문자열을 수정할 필요가 있음
                 str += "</div></div>";
                 descDiv.html(str);
-                //showYoutubeIngre(data.items[0].snippet.description);
+                showYoutubeIngre(data.items[0].snippet.description);
             });
     }
 	
@@ -99,13 +96,13 @@ $(document).ready(function () {
 				return;
 			}
 			for (var i = 0, len = goods.length || 0; i < len; i++) {
-				result += "<small>" + goods[i].GOODSNAME + "</small>";
-				// 이미지 출력 안됨 → 나중에 수정할 것
-				result += "<img src=\'"+goods[i].THUMBIMGURL+"\' width='240px'>"
+				result += "<div><a href='/goods/detail?goodsNo="+goods[i].GOODSNO+"'><img src=\'"+goods[i].THUMBIMGURL+"\' class='thumb'><br>";
+				result += "<p 'text-truncate' style='max-width:240px;'>" + goods[i].GOODSNAME + "</p></a></div>";
 			}
-			youtubeDiv.html(result);
+			$('#rec').slick('slickAdd', result);
+			//youtubeDiv.html(result);
 		});
-	} */
+	}
 });
 </script>
 </head>
@@ -119,7 +116,16 @@ $(document).ready(function () {
 			<hr id="divider">
 		</div>
 	</div>
+	<div class="container" id="rec">
+	</div>
 	<div class="container"></div>
 	<jsp:include page="../includes/footer.jsp"></jsp:include>
+	<script>
+	$('#rec').slick({
+		  infinite: true,
+		  slidesToShow: 4,
+		  slidesToScroll: 4
+	});
+	</script>
 </body>
 </html>

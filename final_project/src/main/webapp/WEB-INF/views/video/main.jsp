@@ -58,7 +58,7 @@
 			  infinite: true,
 			  slidesToShow: 4,
 			  slidesToScroll: 4
-			});
+		});
 
     });
 </script>

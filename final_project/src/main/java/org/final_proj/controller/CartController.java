@@ -5,10 +5,12 @@ package org.final_proj.controller;
 import java.util.List;
 
 import org.final_proj.domain.CartDTO;
+import org.final_proj.domain.IngredientDTO;
 import org.final_proj.domain.MemberVO;
 import org.final_proj.service.CartService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,7 @@ public class CartController {
 	}
 
 	// 사용자의 장바구니에 물건을 추가함
+	@PreAuthorize("isAuthenticated()")    
 	@PostMapping(value="/add", produces="application/json;charset=UTF-8")
 	public ResponseEntity<List<CartDTO>> addToCart(@RequestBody CartDTO item) throws Exception {
 		log.info(">>>>>> 장바구니에 물건 추가합니다....");
@@ -40,8 +43,30 @@ public class CartController {
 		service.addToCart(item);
 		return new ResponseEntity<List<CartDTO>>(service.cartList(member), HttpStatus.OK);
 	}
+	
+	@PreAuthorize("isAuthenticated()")    
+	@PostMapping(value="/addAll", produces="application/json;charset=UTF-8")
+	public ResponseEntity<List<CartDTO>> addAllToCart(@RequestBody IngredientDTO data) throws Exception {
+		log.info(">>>>>> 장바구니 물건 여러개 추가...");
+		MemberVO member = new MemberVO();
+		member.setUserId(data.getUserId());
+		
+		CartDTO dto = new CartDTO();
+		for(int i=0; i<data.getGoodsNo().size();i++) {
+			dto.setUserId(data.getUserId());
+			dto.setGoodsNo(data.getGoodsNo().get(i)); //i번째(0)
+			dto.setAmount(data.getAmount().get(i));
+			service.addToCart(dto);
+			log.info("goodsNo:"+ dto.getGoodsNo());
+		}
+		
+		return new ResponseEntity<List<CartDTO>>(service.cartList(member), HttpStatus.OK);
+	}
+
+	
 
 	// 사용자의 장바구니에서 물건 여러 개 삭제하기
+	@PreAuthorize("isAuthenticated()")    
 	@PostMapping(value="/delete", produces="application/json;charset=UTF-8")
 	public ResponseEntity<List<CartDTO>> deleteFromCart(@RequestBody List<CartDTO> items) throws Exception {
 		log.info(">>>>>> 장바구니의 물건 삭제합니다.....");
@@ -52,6 +77,7 @@ public class CartController {
 	}
 
 	// 사용자의 장바구니에 있는 물건의 개수 변경하기
+	@PreAuthorize("isAuthenticated()")    
 	 @PostMapping(value="/update", produces="application/json;charset=UTF-8") 
 	 public HttpStatus updateAmount(@RequestBody CartDTO item) throws Exception {
 		log.info(">>>> 장바구니 물품의 개수를 변경합니다......");
@@ -61,12 +87,12 @@ public class CartController {
 	}
 	
 	// 변경한 장바구니 제품 출력
-	
-	  @PostMapping(value="/goods", produces = "application/json;charset=utf-8")
-	  public ResponseEntity<CartDTO> getGoods(@RequestBody CartDTO item) throws Exception { 
-		  log.info(">>>>> 장바구니의 특정 물품을 반환합니다......"); 
-		  return new ResponseEntity<CartDTO>(service.getGoods(item), HttpStatus.OK); }
-	 
+	@PreAuthorize("isAuthenticated()")    
+	@PostMapping(value="/goods", produces = "application/json;charset=utf-8")
+	public ResponseEntity<CartDTO> getGoods(@RequestBody CartDTO item) throws Exception {
+		log.info(">>>>> 장바구니의 특정 물품을 반환합니다......");
+		return new ResponseEntity<CartDTO>(service.getGoods(item), HttpStatus.OK);
+	}
 	 
 
 }

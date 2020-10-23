@@ -11,7 +11,7 @@ import org.final_proj.domain.RecipeVO;
 import org.final_proj.domain.SearchDTO;
 import org.final_proj.service.GoodsService;
 import org.final_proj.service.RecipeService;
-
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +40,7 @@ public class RecipeController {
 	}
 	
 	// 레시피의 상세 정보를 출력함
+	@PreAuthorize("isAuthenticated()") 
 	@GetMapping("/detail")
 	public void getDetail(@RequestParam Long rcp_seq, Model model) {
 		log.info(">>>> "+ rcp_seq + "번 레시피의 상세 정보를 출력함.........");

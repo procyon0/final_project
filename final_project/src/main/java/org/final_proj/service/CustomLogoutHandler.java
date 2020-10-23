@@ -18,7 +18,7 @@ public class CustomLogoutHandler implements LogoutSuccessHandler {
 			
 			request.getSession().invalidate();
 		}
-		response.sendRedirect("/index");
+		response.sendRedirect("/");
 		
 	}
 

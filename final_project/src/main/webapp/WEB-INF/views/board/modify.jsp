@@ -106,6 +106,11 @@ tr>td>a:hover{
 .box{
 	margin:165px;
 }
+.h1{
+	font-weight:bolder;
+	font-size:56px;
+}
+
 textarea{
 
 }
@@ -120,12 +125,12 @@ textarea{
 </div>
 /.row -->
 <!-- 첨부파일 -->
-<div class="row center-block">
+<!-- <div class="row center-block">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 			
 			<div class="panel-heading">Files</div>
-			<!-- /.panel-heading -->
+			/.panel-heading
 			<div class="panel-body">
 				<div class="form-group uploadDiv">
 					<input type="file" name="uploadFile" multiple="multiple">
@@ -137,12 +142,12 @@ textarea{
 				</ul>
 			</div>
 		</div>
-		<!--end panel-body  -->
+		end panel-body 
 		</div>
-	<!--end panel-body  -->
+	end panel-body 
 	</div>
-	<!--end panel  -->
-</div>
+	end panel 
+</div> -->
 <!--/.row  첨부파일 끝-->
 <div class="row center-block">
    <div class="col-md-12">
@@ -197,12 +202,12 @@ textarea{
                          
                          <sec:authorize access="isAuthenticated()">
                          
-                         <c:if test="${pinfo.username eq board.writer}">
-                         	<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
-                        	<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
-                         </c:if>
+                         <sec:authorize access="hasRole('ROLE_ADMIN')">
+                         	<button type="submit" data-oper='modify' class="btn btn-default">수정하기</button>
+                        	<button type="submit" data-oper='remove' class="btn btn-danger">삭제하기</button>
                          </sec:authorize>
-                         <button type="submit" data-oper='list' class="btn btn-info">List</button>
+                         </sec:authorize>
+                         <button type="submit" data-oper='list' class="btn btn-info">목록으로</button>
                          
                          
                   </form>

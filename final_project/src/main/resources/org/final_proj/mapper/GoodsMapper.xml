@@ -141,7 +141,7 @@ SELECT * FROM GOODS
 <![CDATA[
 	select *
 	from goods
-	where shortName like '%' || #{ingre} || '%' and category = 'S'
+	where shortName like   #{ingre}   and category = 'S'
 	]]>
 
 	

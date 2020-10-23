@@ -1,9 +1,12 @@
 package org.final_proj.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+import org.final_proj.domain.AdminVO;
 import org.final_proj.domain.AuthVO;
 import org.final_proj.domain.MemberVO;
-
+import org.final_proj.domain.OrderVO;
 
 public interface MemberMapper {
 		public MemberVO read(String userId);
@@ -28,6 +31,8 @@ public interface MemberMapper {
 		
 		public int pwdCheck(MemberVO vo);
 		
-		public MemberVO allmember(MemberVO vo);
+		public List<MemberVO> allmember();
+		
+		public List<AdminVO> orderlist();
 
 }

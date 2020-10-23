@@ -46,6 +46,11 @@ tr>td>a:hover{
 .box{
 	margin:165px;
 }
+.h1{
+	font-weight:bolder;
+	font-size:56px;
+}
+
 
 </style>
 </head>  
@@ -82,8 +87,8 @@ tr>td>a:hover{
                        								value='<sec:authentication property="principal.username"/>' readonly="readonly">
                        	</div>
                         	
-                        	<button type="submit" class="btn btn-default">Submit</button>
-                        	<button type="submit" class="btn btn-default">Reset Button</button>
+                        	<button type="submit" class="btn btn-default">등록하기</button>
+                        <!-- 	<button type="submit" class="btn btn-default">Reset Button</button> -->
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         	
                         </form>
@@ -96,14 +101,14 @@ tr>td>a:hover{
 </div>
 <!-- /.row -->
             
-<!-- 새로추가하는부분 -->
+<!-- 새로 첨부파일 추가하는 부분  -->
 
-<div class="row center-block">
+<!-- <div class="row center-block">
 	<div class="col-md-12">
 		<div class="panel panel-default">
 		
 		<div class="panel-heading">File Attach</div>
-		<!--/.panel-heading -->
+		/.panel-heading
 		<div class="panel-body">
 			<div class="form-group uploadDiv">
 				<input type ="file" name ='uploadFile' multiple>
@@ -113,19 +118,18 @@ tr>td>a:hover{
 				<ul>
 				
 				</ul>
-			</div>
-		
-		
+			</div>		
+		</div>
+		end panel-body
 		
 		</div>
-		<!--end panel-body -->
-		
-		</div>
-		<!--end panel-body  -->
+		end panel-body 
 	</div>
-	<!-- end panel -->
+	end panel
 </div>
-<!-- /.row -->   
+/.row   
+ -->
+
 <script type="text/javascript">
 
 	$(document).ready(function(e){

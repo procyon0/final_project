@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Find Password</title>
 <link href="${path}/resources/css/findpwd.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="wrap_box">

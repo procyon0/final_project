@@ -74,7 +74,9 @@ tr>td>a:hover{
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				NOTICE
-				<button id='regBtn' type="button" class="btn btn-xs pull-right">글쓰기</button>
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<button id='regBtn' type="button" class="btn btn-xs pull-right">글쓰기</button>
+				</sec:authorize>
 			</div>
 			
 			

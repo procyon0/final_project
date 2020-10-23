@@ -1,11 +1,23 @@
-* {margin: 0; padding: 0}
-body{font-family: sans-serif;}
-li{list-style: none;}
-a{text-decoration:none; color:black;}
-img{border: 0;}
-#logo>h1>a {
-	font-weight: 400;
-	font-size: 36px;
+* {
+	margin: 0;
+	padding: 0
+}
+
+body {
+	font-family: sans-serif;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+img {
+	border: 0;
 }
 
 h2 {
@@ -72,18 +84,12 @@ hr {
 .cart_btn {
 	cursor: hand;
 	position: relative;
-	top: 150px;
-	left: 150px;
+	top: 250px;
+	left: 180px;
 	z-index: 1;
 	background-color: rgba(0, 0, 255, 0);
 	border: none;
 }
-.form{
-	width:200px;
-}
-
-
-
 /* 상품추천 슬라이드 css */
 .slider {
 	width: 50%;
@@ -103,13 +109,55 @@ hr {
 	font-family: Arial;
 }
 
+.slick-next slick-arrow
+{
+	position: absolute;
+	border: none;
+}
+
 .relatedGoods {
 	position: absolute;
 	z-index: -1;
 }
 
-.btn_test {
+.select_btn{
+	cursor: hand;
 	z-index: 2;
 	height: 200px;
 	width: 200px;
 }
+ .All_cart_btn{
+	height:50px;
+	width:100px;
+    border:solid 1px coral;
+    text-align:center;
+    font-size:14px;
+    cursor:pointer;
+    max-width:50%;
+    background-color: white;
+    border-radius:20px;
+}
+.All_cart_btn:hover{ 
+	
+	background-color: coral;
+	color:white;
+}
+.All_cart_btn:hover>a{
+	background-color: white;
+
+}
+.All_btn>.All_cart_btn{
+	position: relative;
+	top: 50px;
+	right: -100x;
+	z-index:2;	
+}  
+
+ .All_btn>.All_cart_btn{
+	position: relative;
+	top: 50px;
+	right: -100x;
+/* 	background-color:white; */
+/* 	border:none; */
+	z-index:2;	
+} 
