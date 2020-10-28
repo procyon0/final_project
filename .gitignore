@@ -1,5 +1,9 @@
 final_project/src/main/webapp/resources/img/*.jpg
 final_project/src/main/webapp/resources/img/*.png
+# spring 폴더에 있는 모든 파일을 커밋에서 제외함
+# 이유: 개인정보 있는 파일이 있음
 final_project/src/main/webapp/WEB-INF/spring/*
+# 스프링 시큐리티 설정 파일은 커밋함
+!final_project/src/main/webapp/WEB-INF/spring/security-context.xml
 *.png
 *.jpg
